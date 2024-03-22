@@ -61,22 +61,22 @@ typedef struct{
 * @SPI_CPOL
 */
 
-#define SPI_CPOL_HIGH 	0
-#define SPI_CPOL_LOW 		1
+#define SPI_CPOL_HIGH 	1
+#define SPI_CPOL_LOW 		0
 
 /*
 * @SPI_CPHA
 */
 
-#define SPI_CPHA_HIGH 	0
-#define SPI_CPHA_LOW 		1
+#define SPI_CPHA_HIGH 	1
+#define SPI_CPHA_LOW 		0
 
 /*
 * @SPI_SSM
 */
 
-#define SPI_SSM_HW 		0
-#define SPI_SSM_SW		1
+#define SPI_SSM_DISABLE 		0
+#define SPI_SSM_ENABLE			1
 
 
 /*
@@ -112,5 +112,7 @@ void SPI_IRQHandling( SPI_Handle_t *pSPIHandle );
  */
  
  uint8_t SPI_getFlagSTatus(SPI_RegDef_t *pSPIx,uint32_t FlagName);
+ void SPI_Enable(SPI_RegDef_t *pSPIx,uint8_t enable);
+ void SPI_SSIConfig(SPI_RegDef_t *pSPIx,uint8_t enable);
  
 #endif

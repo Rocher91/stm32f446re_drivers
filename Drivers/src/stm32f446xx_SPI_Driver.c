@@ -47,14 +47,14 @@ void SPI_Init(SPI_Handle_t *pSPIHandle ){
 	
 	//1. Configure the device Mode
 	
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_DeviceMode << SPI_CR1_MASTER_SELECTION );
+	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_DeviceMode << SPI_CR1_MASTER_SELECTION );
 	
 	//1. Configure the BusConfig
 	
 	if( pSPIHandle->SPICOnfig.SPI_BusConfig == SPI_BUS_CONFIG_FULL_DUPLEX ){
 		
 		//BIDI Mode should be cleared
-		tempreg &= ~(1<<SPI_CR1_BIDIMODE);
+		tempreg &= (uint32_t) ~(1<<SPI_CR1_BIDIMODE);
 		
 	}
 	else if( pSPIHandle->SPICOnfig.SPI_BusConfig == SPI_BUS_CONFIG_HALF_DUPLEX ){
@@ -65,26 +65,26 @@ void SPI_Init(SPI_Handle_t *pSPIHandle ){
 	else if( pSPIHandle->SPICOnfig.SPI_BusConfig == SPI_BUS_CONFIG_SIMPLEX_RXONLY){
 		
 		//BIDI Mode should be cleared
-		tempreg &= ~(1<<SPI_CR1_BIDIMODE);
+		tempreg &= (uint32_t) ~(1<<SPI_CR1_BIDIMODE);
 		//RXONLY bit must be set
 		tempreg |= (1<<SPI_CR1_RXONLY);
 	
 	}
 	
 	//2. Configure the CPHA
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_CPHA << SPI_CR1_CPHA );
+	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_CPHA << SPI_CR1_CPHA );
 	
 	//3. Configure the CPOL
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_CPOL << SPI_CR1_CPOL );
+	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_CPOL << SPI_CR1_CPOL );
 	
 	//4. Configure the DFF
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_DFF << SPI_CR1_DFF );
+	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_DFF << SPI_CR1_DFF );
 	
 	//5. Configure the SMM
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_SSM << SPI_CR1_SSM );
+	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_SSM << SPI_CR1_SSM );
 	
 	//6. Configure the SMM
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_SclkSpeed << SPI_CR1_BAUDRATE );
+	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_SclkSpeed << SPI_CR1_BAUDRATE );
 
 	
 	pSPIHandle->pSPIx->CR[0] = tempreg;
@@ -130,7 +130,7 @@ void SPI_DeInit( SPI_RegDef_t *pSPIx ){
 		}
 		
 	}
-	void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
+void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
 
 /*
  * IRQ Configuration and ISR handling
@@ -149,3 +149,25 @@ uint8_t SPI_getFlagSTatus(SPI_RegDef_t *pSPIx,uint32_t FlagName){
 		return FLAG_RESET;
 	}
  }
+
+ 
+void SPI_Enable(SPI_RegDef_t *pSPIx,uint8_t enable){
+	
+	 if (enable){
+			pSPIx->CR[0] |= (1<<SPI_CR1_ENABLE);
+	 }
+	 else{
+			pSPIx->CR[0] &= ~(1<<SPI_CR1_ENABLE);
+	 }
+ }
+
+void SPI_SSIConfig(SPI_RegDef_t *pSPIx,uint8_t enable){
+	
+	if (enable){
+		pSPIx->CR[0] |= (1<<SPI_CR1_SSI);
+	}
+	else{
+		pSPIx->CR[0] &= ~~(1<<SPI_CR1_SSI);
+	}
+}
+ 
