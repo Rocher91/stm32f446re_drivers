@@ -60,6 +60,7 @@ void SPI2_GPIO_Inits(void){
 	SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_15;
 	GPIO_Init(&SPI_Pins);
 	
+	GPIO_PerCLKControl( GPIOB , ENABLE);
 	
 	//SPI_PerCLKControl(SPI2,ENABLE);
 }
