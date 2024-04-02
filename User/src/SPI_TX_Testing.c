@@ -22,7 +22,7 @@ void SPI2_Init(){
 		.pSPIx 										= SPI2,
 		.SPICOnfig.SPI_BusConfig 	= SPI_BUS_CONFIG_FULL_DUPLEX,
 		.SPICOnfig.SPI_CPHA 			= SPI_CPHA_LOW,
-		.SPICOnfig.SPI_CPOL 			= SPI_CPOL_LOW,
+		.SPICOnfig.SPI_CPOL 			= SPI_CPOL_HIGH,
 		.SPICOnfig.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER,
 		.SPICOnfig.SPI_DFF 				= SPI_DFF_8BITS,
 		.SPICOnfig.SPI_SclkSpeed 	= SPI_SPICLK_PCLK_DIV_2,
@@ -30,7 +30,6 @@ void SPI2_Init(){
 	};
 	
 	SPI_Init(&SPI2_Handle);
-	SPI_SSIConfig(SPI2,ENABLE);	
 }
 
 void SPI2_GPIO_Inits(void){
@@ -47,36 +46,37 @@ void SPI2_GPIO_Inits(void){
 	};
 	
 	//SS
-	SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_12;
-	GPIO_Init(&SPI_Pins);
+	//SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_12;
+	//GPIO_Init(&SPI_Pins);
 	
 	//SCLK
 	SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_13;
 	GPIO_Init(&SPI_Pins);
 	
 	//MISO
-	SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_14;
-	GPIO_Init(&SPI_Pins);
+	//SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_14;
+	//GPIO_Init(&SPI_Pins);
 	//MOSI
 	SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_15;
 	GPIO_Init(&SPI_Pins);
 	
 	
-	SPI_PerCLKControl(SPI2,ENABLE);
+	//SPI_PerCLKControl(SPI2,ENABLE);
 }
 
 
 int main(){
 	
-	static char txData[12] = "Hello World";
+	static char txData[] = "Hello World";
 	
 	SPI2_GPIO_Inits();
 	SPI2_Init();
 	
+	SPI_SSIConfig(SPI2,ENABLE);	
 	//Enable SPI
 	SPI_Enable(SPI2,ENABLE);
 	
-	SPI_Write(SPI2,(uint8_t*)&txData,strlen(txData));
+	SPI_Write(SPI2,(uint8_t*)txData,strlen(txData));
 	SPI_Enable(SPI2,DISABLE);
 	
 	while(1);

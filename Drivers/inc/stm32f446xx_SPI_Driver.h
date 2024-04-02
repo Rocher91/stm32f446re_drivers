@@ -34,7 +34,7 @@ typedef struct{
 
 #define SPI_BUS_CONFIG_FULL_DUPLEX 		1
 #define SPI_BUS_CONFIG_HALF_DUPLEX 		2
-#define SPI_BUS_CONFIG_SIMPLEX_RXONLY 4
+#define SPI_BUS_CONFIG_SIMPLEX_RXONLY 3
 
 /*
 * @SPI_SclkSpeed
