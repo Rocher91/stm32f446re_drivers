@@ -76,9 +76,9 @@ void SPI_Init(SPI_Handle_t *pSPIHandle ){
 	
 	//1. Configure the device Mode
 	
-	tempreg |= ( pSPIHandle->SPICOnfig.SPI_DeviceMode << SPI_CR1_MASTER_SELECTION ); //OK
+	tempreg |=  (uint32_t)(pSPIHandle->SPICOnfig.SPI_DeviceMode << SPI_CR1_MASTER_SELECTION) ; //OK
 	
-	//1. Configure the BusConfig
+	//2. Configure the BusConfig
 	
 	if( pSPIHandle->SPICOnfig.SPI_BusConfig == SPI_BUS_CONFIG_FULL_DUPLEX ){	//OK
 		
@@ -100,19 +100,20 @@ void SPI_Init(SPI_Handle_t *pSPIHandle ){
 	
 	}
 	
-	//2. Configure the CPHA
+	
+	//3. Configure the CPHA
 	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_CPHA << SPI_CR1_CPHA );	//OK
 	
-	//3. Configure the CPOL
+	//4. Configure the CPOL
 	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_CPOL << SPI_CR1_CPOL );	//OK
 	
-	//4. Configure the DFF
+	//5. Configure the DFF
 	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_DFF << SPI_CR1_DFF );	//OK
 	
-	//5. Configure the SMM
+	//6. Configure the SMM
 	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_SSM << SPI_CR1_SSM );	//OK
 	
-	//6. Configure the SMM
+	//7. Configure the Baudrate
 	tempreg |= (uint32_t)( pSPIHandle->SPICOnfig.SPI_SclkSpeed << SPI_CR1_BAUDRATE );	//OK
 
 	
@@ -143,9 +144,9 @@ void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
 				//16 bit DFF
 				// 1. Load the data in to DR
 				pSPIx->DR = *( (uint16_t *) pTxBuffer );
-				Len-=2;
-				//Len--;
-				//Len--;
+				//Len-=2;
+				Len--;
+				Len--;
 				
 				(uint16_t *) pTxBuffer++;
 				
@@ -154,7 +155,6 @@ void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
 				//8 bit DFF
 				pSPIx->DR = *pTxBuffer;
 				Len--;
-				
 				pTxBuffer++;
 			}
 			
@@ -170,7 +170,8 @@ void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
 void SPI_IRQInterruptConfig( uint8_t IRQNumber, uint8_t Enable_Disable);
 void SPI_IRQConfigPriority( uint8_t IRQNumber, uint32_t IRQPriority );
 void SPI_IRQHandling( SPI_Handle_t *pSPIHandle );
-	
+
+
 uint8_t SPI_getFlagSTatus(SPI_RegDef_t *pSPIx,uint32_t FlagName){	
 	
 	if(  pSPIx->SR & FlagName ){	

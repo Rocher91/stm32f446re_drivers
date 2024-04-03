@@ -99,10 +99,13 @@ void GPIO_PerCLKControl( GPIO_RegDef_t *pGPIOx, uint8_t Enable_Disable ){
 void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	uint32_t temp 		= 0;
-	uint32_t temp1 		= 0;
-	uint32_t temp2 		= 0;
+	uint8_t temp1 		= 0;
+	uint8_t temp2 		= 0;
 	uint8_t portcode 	= 0;
 
+	
+	GPIO_PerCLKControl( pGPIOHandle->pGPIOx, ENABLE );
+	
 	//1. Configure the mode of GPIO pin.
 
 	if( pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG ){
@@ -155,7 +158,7 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
-	 pGPIOHandle->pGPIOx->OSPEEDER &= ~( 0x03 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 pGPIOHandle->pGPIOx->OSPEEDER &= ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
 	 pGPIOHandle->pGPIOx->OSPEEDER |= temp;
 
 	 temp = 0;
@@ -164,7 +167,7 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinPupdControl << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
-	 pGPIOHandle->pGPIOx->PUPDR &= ~( 0x03 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 pGPIOHandle->pGPIOx->PUPDR &= ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
 	 pGPIOHandle->pGPIOx->PUPDR |= temp;
 
 	 temp = 0;
@@ -172,14 +175,14 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 	//4. Configure the OPType of GPIO pin.
 	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
-	 pGPIOHandle->pGPIOx->OTYPER &= ~( 0x03 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 pGPIOHandle->pGPIOx->OTYPER &= ~( 0x01 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 	 pGPIOHandle->pGPIOx->OTYPER |= temp;
 
 	temp = 0;
 	//5. Configure the alternate functionality GPIO pin.
 	if( pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ALTERNATE ){
 
-		uint32_t temp1 = 0, temp2 = 0;
+		uint8_t temp1 = 0, temp2 = 0;
 
 		temp1 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 8;
 		temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 8;
@@ -189,7 +192,6 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	}
 
-	 temp = 0;
 }
 void GPIO_DeInit( GPIO_RegDef_t *pGPIOx ){
 

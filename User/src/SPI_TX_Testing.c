@@ -1,6 +1,6 @@
 #include "stm32f446xx.h"
 #include "stm32f446xx_SPI_Driver.h"
-#include "stm32f446xx_GPIO_Driver.h"
+#include "stm32f446xx_Gpio_Driver.h"
 #include <string.h>
 
 
@@ -45,6 +45,8 @@ void SPI2_GPIO_Inits(void){
 		
 	};
 	
+	
+	
 	//SS
 	//SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_12;
 	//GPIO_Init(&SPI_Pins);
@@ -60,7 +62,7 @@ void SPI2_GPIO_Inits(void){
 	SPI_Pins.GPIO_PinConfig.GPIO_PinNumber	= GPIO_PIN_15;
 	GPIO_Init(&SPI_Pins);
 	
-	GPIO_PerCLKControl( GPIOB , ENABLE);
+	//GPIO_PerCLKControl( GPIOB , ENABLE);
 	
 	//SPI_PerCLKControl(SPI2,ENABLE);
 }
@@ -68,16 +70,20 @@ void SPI2_GPIO_Inits(void){
 
 int main(){
 	
-	static char txData[] = "Hello World";
+	char txData[] = "MPF52300!";
 	
 	SPI2_GPIO_Inits();
 	SPI2_Init();
 	
-	SPI_SSIConfig(SPI2,ENABLE);	
+	SPI_SSIConfig(SPI2,ENABLE);
+	
 	//Enable SPI
 	SPI_Enable(SPI2,ENABLE);
 	
 	SPI_Write(SPI2,(uint8_t*)txData,strlen(txData));
+	
+	while( SPI_getFlagSTatus(SPI2,SPI_BUSY_FLAG) );
+	
 	SPI_Enable(SPI2,DISABLE);
 	
 	while(1);
