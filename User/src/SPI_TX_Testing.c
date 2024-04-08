@@ -83,7 +83,6 @@ int main(){
 	SPI_Write(SPI2,(uint8_t*)txData,strlen(txData));
 	
 	while( SPI_getFlagSTatus(SPI2,SPI_BUSY_FLAG) );
-	
 	SPI_Enable(SPI2,DISABLE);
 	
 	while(1);

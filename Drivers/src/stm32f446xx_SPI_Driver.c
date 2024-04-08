@@ -161,15 +161,144 @@ void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
 		}
 		
 	}
-void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
+void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len){
+		
+		while(Len >0){
+			
+			//1. Wait until RXNE is non empty
+			
+			while( SPI_getFlagSTatus(pSPIx,SPI_RXBUFFER_EMPTY_FLAG) == FLAG_SET );  
+			
+			//2. check the DFF bit in CR1
+			if( (pSPIx->CR[0]&(1<< SPI_CR1_DFF )) ){
+				
+				*((uint16_t*)pRxBuffer)	= pSPIx->DR;
+				Len-=2;
+				
+				(uint16_t*)pRxBuffer++;
+			}
+			else{
+				
+					//8 bit DFF
+					*(pRxBuffer)	= pSPIx->DR;
+					Len--;
+					pRxBuffer++;
+			}
+		}
+
+
+}
+
+
+void SPI_WriteIT(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
+	
+}
+void SPI_ReadIT(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len){
+
+}
 
 /*
  * IRQ Configuration and ISR handling
  */
  
-void SPI_IRQInterruptConfig( uint8_t IRQNumber, uint8_t Enable_Disable);
-void SPI_IRQConfigPriority( uint8_t IRQNumber, uint32_t IRQPriority );
-void SPI_IRQHandling( SPI_Handle_t *pSPIHandle );
+//IRQ Configuration and ISR handling
+/********************************************************************************
+ * @fn			- GPIO_IRQInterruptConfig
+ *
+ * @brief		-
+ *
+ * @param[in]	-	IRQNumber
+ * @param[in]	-	Enable_Disable
+ *
+ * @return
+ *
+ * @Note
+ *
+ * */
+void SPI_IRQInterruptConfig( uint8_t IRQNumber, uint8_t Enable_Disable){
+
+	if( Enable_Disable == ENABLE){
+
+		if( IRQNumber <= 31){
+			//Program ISER0 register
+			*NVIC_ISER0 |= (1 << IRQNumber);
+		}
+		else if( IRQNumber > 31 && IRQNumber < 64 ){
+
+			//Program ISER1 register
+			*NVIC_ISER1 |= (1 << ( IRQNumber % 32) );
+		}
+		else if( IRQNumber >= 64 && IRQNumber < 96 ){
+
+			//Program ISER2 register
+			*NVIC_ISER2 |= (1 << ( IRQNumber % 64 ) );
+
+		}
+	}else{
+
+		if( IRQNumber <= 31){
+
+			//Program ICER0 register
+			*NVIC_ICER0 |= (1 << IRQNumber);
+		}
+		else if( IRQNumber > 31 && IRQNumber < 64 ){
+
+			//Program ICER1 register
+			*NVIC_ICER1 |= (1 << ( IRQNumber % 32 ) );
+		}
+		else if( IRQNumber >= 64 && IRQNumber < 96 ){
+
+			//Program ICER2 register
+			*NVIC_ICER2 |= (1 << ( IRQNumber % 64 ) );
+
+		}
+
+	}
+
+}
+
+/********************************************************************************
+ * @fn		- GPIO_IRQConfigPriority
+ *
+ * @brief	-
+ *
+ * @param[in]		-	IRQNumber
+ * @param[in]		-	IRQPriority
+ *
+ * @return
+ *
+ * @Note
+ *
+ * */
+
+void SPI_IRQConfigPriority( uint8_t IRQNumber, uint32_t IRQPriority ){
+
+	// 1. first lets find out the ipr register.
+	uint8_t iprx = IRQNumber / 4;
+	uint8_t iprx_section = IRQNumber % 4;
+
+	uint8_t shift_amount = ( 8 * iprx_section )+ ( 8 - NO_PR_BITS_IMPLEMENTED );
+
+	*(NVIC_IPR_BASE + iprx  ) |= ( IRQPriority << shift_amount );
+}
+
+/********************************************************************************
+ * @fn		- GPIO_IRQHandling
+ *
+ * @brief	-
+ *
+ * @param[in]
+ * @param[in]
+ *
+ * @return
+ *
+ * @Note
+ *
+ * */
+void SPI_IRQHandling( SPI_Handle_t *pSPIHandle ){
+ 
+	
+}
 
 
 uint8_t SPI_getFlagSTatus(SPI_RegDef_t *pSPIx,uint32_t FlagName){	
@@ -195,11 +324,21 @@ void SPI_Enable(SPI_RegDef_t *pSPIx,uint8_t enable){
 
 void SPI_SSIConfig(SPI_RegDef_t *pSPIx,uint8_t enable){
 	
-	if (enable){
+	if (enable == ENABLE){
 		pSPIx->CR[0] |= (1<<SPI_CR1_SSI);	//OK
 	}
 	else{
 		pSPIx->CR[0] &= ~(1<<SPI_CR1_SSI);	//OK
+	}
+}
+
+void SPI_SSOECOnfig(SPI_RegDef_t *pSPIx,uint8_t enable){
+
+	if (enable == ENABLE){
+		pSPIx->CR[1] |= (1<<SPI_CR2_SS_ENABLE);	//OK
+	}
+	else{
+		pSPIx->CR[1] &= ~(1<<SPI_CR2_SS_ENABLE);	//OK
 	}
 }
  

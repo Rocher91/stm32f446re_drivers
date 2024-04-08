@@ -22,12 +22,196 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\xavier.rocher\Documents\Projects\FW\stm32f446re_drivers\stm32f446re.uvprojx
-Project File Date:  04/02/2024
+Project File Date:  04/05/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\stm32f446re.axf" - 0 Error(s), 0 Warning(s).
+Drivers/src/stm32f446xx_SPI_Driver.c(2): warning: In file included from...
+./Drivers/inc\stm32f446xx_SPI_Driver.h(121): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+Drivers/src/stm32f446xx_SPI_Driver.c(39): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                                SPI1_PCLCK_DIS();
+                                ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(622): note: expanded from macro 'SPI1_PCLCK_DIS'
+#define SPI1_PCLCK_DIS()                RCC->APB2ENR &= ~(0x01 << 12)
+                                                     ~~ ^~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(42): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                                SPI2_PCLCK_DIS();
+                                ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(552): note: expanded from macro 'SPI2_PCLCK_DIS'
+#define SPI2_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 14)
+                                                     ~~ ^~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(45): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                                SPI3_PCLCK_DIS();
+                                ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(553): note: expanded from macro 'SPI3_PCLCK_DIS'
+#define SPI3_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 15)
+                                                     ~~ ^~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(48): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                                SPI4_PCLCK_DIS();
+                                ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(623): note: expanded from macro 'SPI4_PCLCK_DIS'
+#define SPI4_PCLCK_DIS()                RCC->APB2ENR &= ~(0x01 << 13)
+                                                     ~~ ^~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(2): warning: In file included from...
+./Drivers/inc\stm32f446xx_SPI_Driver.h(18): warning: padding size of 'SPI_Handle_t' with 1 byte to alignment boundary [-Wpadded]
+typedef struct{
+        ^
+Drivers/src/stm32f446xx_SPI_Driver.c(123): warning: unused parameter 'pSPIx' [-Wunused-parameter]
+void SPI_DeInit( SPI_RegDef_t *pSPIx ){
+                               ^
+Drivers/src/stm32f446xx_SPI_Driver.c(146): warning: cast from 'uint8_t *' (aka 'unsigned char *') to 'uint16_t *' (aka 'unsigned short *') increases required alignment from 1 to 2 [-Wcast-align]
+                                pSPIx->DR = *( (uint16_t *) pTxBuffer );
+                                               ^~~~~~~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(151): warning: cast from 'uint8_t *' (aka 'unsigned char *') to 'uint16_t *' (aka 'unsigned short *') increases required alignment from 1 to 2 [-Wcast-align]
+                                (uint16_t *) pTxBuffer++;
+                                ^~~~~~~~~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(151): warning: expression result unused [-Wunused-value]
+                                (uint16_t *) pTxBuffer++;
+                                ^            ~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(175): warning: cast from 'uint8_t *' (aka 'unsigned char *') to 'uint16_t *' (aka 'unsigned short *') increases required alignment from 1 to 2 [-Wcast-align]
+                                *((uint16_t*)pRxBuffer) = pSPIx->DR;
+                                  ^~~~~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(175): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                                *((uint16_t*)pRxBuffer) = pSPIx->DR;
+                                                        ~ ~~~~~~~^~
+Drivers/src/stm32f446xx_SPI_Driver.c(178): warning: cast from 'uint8_t *' (aka 'unsigned char *') to 'uint16_t *' (aka 'unsigned short *') increases required alignment from 1 to 2 [-Wcast-align]
+                                (uint16_t*)pRxBuffer++;
+                                ^~~~~~~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(178): warning: expression result unused [-Wunused-value]
+                                (uint16_t*)pRxBuffer++;
+                                ^          ~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(183): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+                                        *(pRxBuffer)    = pSPIx->DR;
+                                                        ~ ~~~~~~~^~
+Drivers/src/stm32f446xx_SPI_Driver.c(193): warning: unused parameter 'pSPIx' [-Wunused-parameter]
+void SPI_WriteIT(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
+                               ^
+Drivers/src/stm32f446xx_SPI_Driver.c(193): warning: unused parameter 'pTxBuffer' [-Wunused-parameter]
+void SPI_WriteIT(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
+                                                ^
+Drivers/src/stm32f446xx_SPI_Driver.c(193): warning: unused parameter 'Len' [-Wunused-parameter]
+void SPI_WriteIT(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len){
+                                                                   ^
+Drivers/src/stm32f446xx_SPI_Driver.c(196): warning: unused parameter 'pSPIx' [-Wunused-parameter]
+void SPI_ReadIT(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len){
+                              ^
+Drivers/src/stm32f446xx_SPI_Driver.c(196): warning: unused parameter 'pRxBuffer' [-Wunused-parameter]
+void SPI_ReadIT(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len){
+                                             ^
+Drivers/src/stm32f446xx_SPI_Driver.c(196): warning: unused parameter 'Len' [-Wunused-parameter]
+void SPI_ReadIT(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len){
+                                                                ^
+Drivers/src/stm32f446xx_SPI_Driver.c(298): warning: unused parameter 'pSPIHandle' [-Wunused-parameter]
+void SPI_IRQHandling( SPI_Handle_t *pSPIHandle ){
+                                    ^
+Drivers/src/stm32f446xx_SPI_Driver.c(321): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        pSPIx->CR[0] &= ~(1<<SPI_CR1_ENABLE);   //OK
+                                     ~~ ^~~~~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(331): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                pSPIx->CR[0] &= ~(1<<SPI_CR1_SSI);      //OK
+                             ~~ ^~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(341): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                pSPIx->CR[1] &= ~(1<<SPI_CR2_SS_ENABLE);        //OK
+                             ~~ ^~~~~~~~~~~~~~~~~~~~~~~
+Drivers/src/stm32f446xx_SPI_Driver.c(344): warning: no newline at end of file [-Wnewline-eof]
+ 
+ ^
+26 warnings generated.
+compiling stm32f446xx_SPI_Driver.c...
+SPI_CMD_Handling.c(2): warning: In file included from...
+./Drivers/inc\stm32f446xx_SPI_Driver.h(121): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+./Drivers/inc\stm32f446xx_SPI_Driver.h(18): warning: padding size of 'SPI_Handle_t' with 1 byte to alignment boundary [-Wpadded]
+typedef struct{
+        ^
+SPI_CMD_Handling.c(3): warning: In file included from...
+./Drivers/inc\stm32f446xx_Gpio_Driver.h(27): warning: padding size of 'GPIO_Handle_t' with 2 bytes to alignment boundary [-Wpadded]
+typedef struct{
+        ^
+SPI_CMD_Handling.c(123): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Write(pSPIx,&cmd,strlen(cmd));
+                                            ^~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(126): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Read(pSPIx,&dummy_read,strlen(dummy_read));
+                                                  ^~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(129): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Write(pSPIx,&dummy_write,strlen(dummy_write));
+                                                    ^~~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(140): warning: incompatible pointer types passing 'uint8_t **' (aka 'unsigned char **') to parameter of type 'uint8_t *' (aka 'unsigned char *'); remove & [-Wincompatible-pointer-types]
+                        SPI_Write(pSPIx,&args,1);
+                                        ^~~~~
+./Drivers/inc\stm32f446xx_SPI_Driver.h(99): note: passing argument to parameter 'pTxBuffer' here
+void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len);
+                                              ^
+SPI_CMD_Handling.c(190): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Write(SPI2,&cmd_code,strlen(cmd_code));
+                                                ^~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(193): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Read(SPI2,&dummy_read,strlen(dummy_read));
+                                                 ^~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(196): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Write(SPI2,&dummy_write,strlen(dummy_write));
+                                                   ^~~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(207): warning: incompatible pointer types passing 'uint8_t (*)[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') [-Wincompatible-pointer-types]
+                        SPI_Write(SPI2,&args,1);
+                                       ^~~~~
+./Drivers/inc\stm32f446xx_SPI_Driver.h(99): note: passing argument to parameter 'pTxBuffer' here
+void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len);
+                                              ^
+SPI_CMD_Handling.c(219): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Write(SPI2,&cmd_code,strlen(cmd_code));
+                                                ^~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(222): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Read(SPI2,&dummy_read,strlen(dummy_read));
+                                                 ^~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(226): warning: incompatible integer to pointer conversion passing 'uint8_t' (aka 'unsigned char') to parameter of type 'const char *' [-Wint-conversion]
+                SPI_Write(SPI2,&dummy_write,strlen(dummy_write));
+                                                   ^~~~~~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
+extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+                                               ^
+SPI_CMD_Handling.c(236): warning: incompatible pointer types passing 'uint8_t (*)[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') [-Wincompatible-pointer-types]
+                        SPI_Write(SPI2,&args,1);
+                                       ^~~~~
+./Drivers/inc\stm32f446xx_SPI_Driver.h(99): note: passing argument to parameter 'pTxBuffer' here
+void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len);
+                                              ^
+SPI_CMD_Handling.c(255): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+16 warnings generated.
+compiling SPI_CMD_Handling.c...
+linking...
+Program Size: Code=3964 RO-data=492 RW-data=0 ZI-data=1632  
+".\Objects\stm32f446re.axf" - 0 Error(s), 42 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +242,7 @@ Package Vendor: Keil
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

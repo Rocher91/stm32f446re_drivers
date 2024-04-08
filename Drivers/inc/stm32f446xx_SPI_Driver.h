@@ -96,8 +96,10 @@ void SPI_DeInit( SPI_RegDef_t *pSPIx );
  * Data Send and Receive
  */
 	
-	void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len);
-	void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
+void SPI_Write(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len);
+void SPI_Read(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
+void SPI_WriteIT(SPI_RegDef_t *pSPIx , uint8_t *pTxBuffer,uint32_t Len);
+void SPI_ReadIT(SPI_RegDef_t *pSPIx,uint8_t *pRxBuffer,uint32_t Len);
 
 /*
  * IRQ Configuration and ISR handling
@@ -114,5 +116,6 @@ void SPI_IRQHandling( SPI_Handle_t *pSPIHandle );
  uint8_t SPI_getFlagSTatus(SPI_RegDef_t *pSPIx,uint32_t FlagName);
  void SPI_Enable(SPI_RegDef_t *pSPIx,uint8_t enable);
  void SPI_SSIConfig(SPI_RegDef_t *pSPIx,uint8_t enable);
+ void SPI_SSOECOnfig(SPI_RegDef_t *pSPIx,uint8_t enable);
  
 #endif

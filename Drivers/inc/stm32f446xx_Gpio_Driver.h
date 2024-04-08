@@ -52,10 +52,10 @@ typedef struct{
 
 
 #define NUCLEO_PORT_LED		GPIOA
-#define NUCLEO_PIN_LED		5
+#define NUCLEO_PIN_LED		GPIO_PIN_5
 
 #define NUCLEO_PORT_BUTTON	GPIOC
-#define NUCLEO_PIN_BUTTON	13
+#define NUCLEO_PIN_BUTTON	GPIO_PIN_13
 
 /* GPIO MODER -- 187 -- rm0390 */
 
