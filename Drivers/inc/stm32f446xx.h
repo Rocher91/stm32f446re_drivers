@@ -10,8 +10,10 @@
 #define INC_STM32F446XX_H_
 
 #include <stdint.h>
+#include <stddef.h>
 
-#define __vo volatile
+#define __vo 		volatile
+#define __weak 	__attribute__((weak))
 
 #define ENABLE 	1
 #define DISABLE 0
@@ -1266,13 +1268,13 @@ typedef struct{
 
 
 
-#define SPI_CR2_RX_DMA_ENABLE						0
-#define SPI_CR2_TX_DMA_ENABLE						1
-#define SPI_CR2_SS_ENABLE 							2
-#define SPI_CR2_FF											4
-#define SPI_CR2_ERROR_INTERRUPT_ENABLE	5
-#define SPI_CR2_RXBUFFER_NEMPTY_ENABLE	6
-#define SPI_CR2_TXBUFFER_NEMPTY_ENABLE	7
+#define SPI_CR2_RX_DMA_ENABLE											0
+#define SPI_CR2_TX_DMA_ENABLE											1
+#define SPI_CR2_SS_ENABLE 												2
+#define SPI_CR2_FRAME_FORMAT											4
+#define SPI_CR2_ERROR_INTERRUPT_ENABLE						5
+#define SPI_CR2_RXBUFFER_NEMPTY_INTERRUPT_ENABLE	6
+#define SPI_CR2_TXBUFFER_EMPTY_INTERRUPT_ENABLE		7
 
 
 #define SPI_SR_RXBUFFER_NEMPTY		0
@@ -1281,8 +1283,9 @@ typedef struct{
 #define SPI_SR_UDR								3
 #define SPI_SR_CRC_ERROR					4
 #define SPI_SR_MODE_FAULT					5
-#define SPI_SR_BUSY								6
-#define SPI_SR_FRAME_ERROR				7
+#define SPI_SR_OVERRUN						6
+#define SPI_SR_BUSY								7
+#define SPI_SR_FRAME_ERROR				8
 
 
 #define SPI_RXBUFFER_EMPTY_FLAG  	(1<<SPI_SR_RXBUFFER_NEMPTY)

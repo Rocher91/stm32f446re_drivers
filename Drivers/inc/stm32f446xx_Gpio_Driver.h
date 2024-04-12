@@ -103,6 +103,7 @@ typedef struct{
 #define GPIO_AF14		14
 #define GPIO_AF15		15
 
+
 //Peripheral Clock Setup
 void GPIO_PerCLKControl( GPIO_RegDef_t *pGPIOx, uint8_t Enable_Disable );
 
