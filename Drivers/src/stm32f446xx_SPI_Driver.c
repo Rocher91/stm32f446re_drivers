@@ -108,7 +108,8 @@ void SPI_CloseReception(SPI_Handle_t* pSPIHandle){
 	pSPIHandle->RxState = SPI_READY;
  }
  
-/*********************************************************************
+
+ /*********************************************************************
  * @fn      		  - SPI_PerCLKControl
  *
  * @brief             -
@@ -157,6 +158,7 @@ void SPI_PerCLKControl( SPI_RegDef_t *pSPIx, uint8_t Enable_Disable ){
 	}
 	
 }
+
 
 
 
@@ -242,6 +244,7 @@ void SPI_DeInit( SPI_Handle_t *pSPIHandle ){
 		RESET_SPI4();
 	}
 }
+
 
 
 /*
@@ -357,6 +360,7 @@ void SPI_ReadIT(SPI_Handle_t *pSPIHandle,uint8_t *pRxBuffer,uint32_t Len){
 		//4. Data Transmission will be handled by the ISR code.
 	}
 }
+
 
 /*
  * IRQ Configuration and ISR handling

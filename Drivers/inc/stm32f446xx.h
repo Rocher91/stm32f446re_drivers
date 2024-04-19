@@ -966,21 +966,21 @@ typedef struct{
 
 
 #define ADC_N_CONVERSION( x ) 		(	( x == 1 )? ADC_1_CONVERSION :\
-										( x == 2 )? ADC_2_CONVERSION :\
-										( x == 3 )? ADC_3_CONVERSION :\
-										( x == 4 )? ADC_4_CONVERSION :\
-										( x == 5 )? ADC_5_CONVERSION :\
-										( x == 6 )? ADC_6_CONVERSION :\
-										( x == 7 )? ADC_7_CONVERSION :\
-										( x == 8 )? ADC_8_CONVERSION :\
-										( x == 9 )? ADC_9_CONVERSION :\
-										( x == 10 )? ADC_10_CONVERSION :\
-										( x == 11 )? ADC_11_CONVERSION :\
-										( x == 12 )? ADC_12_CONVERSION :\
-										( x == 13 )? ADC_13_CONVERSION :\
-										( x == 14 )? ADC_14_CONVERSION :\
-										( x == 15 )? ADC_15_CONVERSION :\
-										( x == 15 )? ADC_16_CONVERSION :0 )
+																	( x == 2 )? ADC_2_CONVERSION :\
+																	( x == 3 )? ADC_3_CONVERSION :\
+																	( x == 4 )? ADC_4_CONVERSION :\
+																	( x == 5 )? ADC_5_CONVERSION :\
+																	( x == 6 )? ADC_6_CONVERSION :\
+																	( x == 7 )? ADC_7_CONVERSION :\
+																	( x == 8 )? ADC_8_CONVERSION :\
+																	( x == 9 )? ADC_9_CONVERSION :\
+																	( x == 10 )? ADC_10_CONVERSION :\
+																	( x == 11 )? ADC_11_CONVERSION :\
+																	( x == 12 )? ADC_12_CONVERSION :\
+																	( x == 13 )? ADC_13_CONVERSION :\
+																	( x == 14 )? ADC_14_CONVERSION :\
+																	( x == 15 )? ADC_15_CONVERSION :\
+																	( x == 15 )? ADC_16_CONVERSION :0 )
 
 
 /*>>>DAC Common Structure<<<*/
@@ -1031,17 +1031,21 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR;					/**/
+	__vo uint32_t CR[2];					/**/
+	__vo uint32_t SMCR;					/**/
+	__vo uint32_t DIER;					/**/
 	__vo uint32_t SR;					/**/
-	__vo uint32_t RIS;					/**/
-	__vo uint32_t IER;					/**/
-	__vo uint32_t MIS;					/**/
-	__vo uint32_t ICR;					/**/
-	__vo uint32_t ESCR;					/**/
-	__vo uint32_t ESUR;					/**/
-	__vo uint32_t CWSTRT;				/**/
-	__vo uint32_t CWSIZE;				/**/
-	__vo uint32_t DR;					/**/
+	__vo uint32_t EGR;					/**/
+	__vo uint32_t CCMR[2];					/**/
+	__vo uint32_t CCER;					/**/
+	__vo uint32_t CNT;					/**/
+	__vo uint32_t PSC;					/**/
+	__vo uint32_t ARR;					/**/
+	__vo uint32_t RCR;				/**/
+	__vo uint32_t CCR[4];				/**/
+	__vo uint32_t BDTR;					/**/
+	__vo uint32_t DCR;					/**/
+	__vo uint32_t DMAR;					/**/
 
 }Advanced_Control_Timers_RegDef_t;
 
@@ -1086,7 +1090,8 @@ typedef struct{
 	__vo uint32_t DIER;					/**/
 	__vo uint32_t SR;					/**/
 	__vo uint32_t EGR;					/**/
-	__vo uint32_t CCMR[2];				/**/
+	__vo uint32_t CCMR1;				/**/
+	__vo uint32_t RESERVED;				/**/
 	__vo uint32_t CCER;					/**/
 	__vo uint32_t CNT;					/**/
 	__vo uint32_t PSC;					/**/
@@ -1097,8 +1102,10 @@ typedef struct{
 
 }General_Purpose_Timers_9_14_RegDef_t;
 
+#define TIM9	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM9_BASEADDR )
 #define TIM10	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM10_BASEADDR )
 #define TIM11	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM11_BASEADDR )
+#define TIM12	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM12_BASEADDR )
 #define TIM13	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM13_BASEADDR )
 #define TIM14	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM14_BASEADDR )
 
@@ -1107,16 +1114,15 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR1;					/**/
-	__vo uint32_t CR2;					/**/
-	__vo uint32_t RESERVED0;			/**/
-	__vo uint32_t DIER;					/**/
-	__vo uint32_t SR;					/**/
-	__vo uint32_t EGR;					/**/
+	__vo uint32_t CR[2];							/**/
+	__vo uint32_t RESERVED0;				/**/
+	__vo uint32_t DIER;							/**/
+	__vo uint32_t SR;								/**/
+	__vo uint32_t EGR;							/**/
 	__vo uint32_t RESERVED1[3];			/**/
-	__vo uint32_t CNT;					/**/
-	__vo uint32_t PSC;					/**/
-	__vo uint32_t ARR;					/**/
+	__vo uint32_t CNT;							/**/
+	__vo uint32_t PSC;							/**/
+	__vo uint32_t ARR;							/**/
 
 }Basic_Timers_RegDef_t;
 
