@@ -17,19 +17,26 @@ typedef struct{
 	
 }TIM_Basic_Handle_t;
 
+typedef enum{
+	
+}TIM_Event_t;
 
 /*
  * IRQ Configuration and ISR handling
  */
 void TIM_ClearITPendingBit(General_Purpose_Timers_2_5_RegDef_t *pTIMx,uint16_t FlagName);
 uint8_t TIM_GetStatus(General_Purpose_Timers_2_5_RegDef_t *pTIMx,uint16_t FlagName);
-
-void TIM_IRQInterruptConfig( uint8_t IRQNumber, uint8_t Enable_Disable);
-void TIM_IRQConfigPriority( uint8_t IRQNumber, uint32_t IRQPriority );
 void TIM_IRQHandling( TIM_Basic_Handle_t *pTIMHandle );
 
+/* 
+	TIM_CLK_Enable 
+*/
+void TIM_2_5_PerCLKControl( General_Purpose_Timers_2_5_RegDef_t *pTIMx, uint8_t Enable_Disable );
+void TIM_1_8_PerCLKControl( Advanced_Control_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable );
+void TIM_9_14_PerCLKControl( General_Purpose_Timers_9_14_RegDef_t *pTIMx, uint8_t Enable_Disable );
+void TIM_6_7_PerCLKControl( Basic_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable );
 
-void TIM_PerCLKControl( General_Purpose_Timers_2_5_RegDef_t *pTIMx, uint8_t Enable_Disable );
+
 void TIM_Basic_TimeBase(TIM_Basic_Handle_t* pTIMHandle);
 void TIM_Basic_ITConfig(General_Purpose_Timers_2_5_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
 void TIM_Basic_DeInit(General_Purpose_Timers_2_5_RegDef_t* pTIMx);

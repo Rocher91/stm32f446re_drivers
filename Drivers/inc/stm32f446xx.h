@@ -51,6 +51,7 @@
 										( x == 14 )? ADC_CH14 :\
 										( x == 15 )? ADC_CH15 :0 )
 
+
 /* !< MEMORY_peripheral_Bases >*/
 #define FLASH_BASEADDR			0x08000000U
 #define SRAM1_BASEADDR			0x20000000U
@@ -167,46 +168,46 @@
 
 
 /* !< I2C_peripheral_Bases >*/
-#define I2C1_BASEADDR				( APB1_PERIPH_BASE + 0x5400 )
-#define I2C2_BASEADDR				( APB1_PERIPH_BASE + 0x5800 )
-#define I2C3_BASEADDR				( APB1_PERIPH_BASE + 0x5C00 )
+#define I2C1_BASEADDR					( APB1_PERIPH_BASE + 0x5400 )
+#define I2C2_BASEADDR					( APB1_PERIPH_BASE + 0x5800 )
+#define I2C3_BASEADDR					( APB1_PERIPH_BASE + 0x5C00 )
 
 /* !< CAN_peripheral_Bases >*/
-#define CAN1_BASEADDR				( APB1_PERIPH_BASE + 0x6400 )
-#define CAN2_BASEADDR				( APB1_PERIPH_BASE + 0x6800 )
+#define CAN1_BASEADDR					( APB1_PERIPH_BASE + 0x6400 )
+#define CAN2_BASEADDR					( APB1_PERIPH_BASE + 0x6800 )
 
 /* !< HDMI_peripheral_Bases >*/
 #define HDMI_CEC_BASEADDR			( APB1_PERIPH_BASE + 0x6C00 )
 
 /* !< POWER_peripheral_Bases >*/
-#define PWR_BASEADDR				( APB1_PERIPH_BASE + 0x7000 )
+#define PWR_BASEADDR					( APB1_PERIPH_BASE + 0x7000 )
 
 /* !< DAC_peripheral_Bases >*/
-#define DAC_BASEADDR				( APB1_PERIPH_BASE + 0x7400 )
+#define DAC_BASEADDR					( APB1_PERIPH_BASE + 0x7400 )
 
 /* !< ADC_peripheral_Bases >*/
-#define ADC1_BASEADDR				( APB2_PERIPH_BASE + 0x2000 )
-#define ADC2_BASEADDR				( ADC1_BASEADDR + 0x0100 )
-#define ADC3_BASEADDR				( ADC1_BASEADDR + 0x0200 )
-#define ADC_COMMON_BASEADDR			( ADC1_BASEADDR + 0x0300 )
+#define ADC1_BASEADDR					( APB2_PERIPH_BASE + 0x2000 )
+#define ADC2_BASEADDR					( ADC1_BASEADDR + 0x0100 )
+#define ADC3_BASEADDR					( ADC1_BASEADDR + 0x0200 )
+#define ADC_COMMON_BASEADDR		( ADC1_BASEADDR + 0x0300 )
 
 
 /* !< SDMMC_peripheral_Bases >*/
 #define SDMMC_BASEADDR				( APB2_PERIPH_BASE + 0x2C00 )
 
 /* !< SPI_peripheral_Bases >*/
-#define SPI1_BASEADDR				( APB2_PERIPH_BASE + 0x3000 )
-#define SPI4_BASEADDR				( APB2_PERIPH_BASE + 0x3400 )
+#define SPI1_BASEADDR					( APB2_PERIPH_BASE + 0x3000 )
+#define SPI4_BASEADDR					( APB2_PERIPH_BASE + 0x3400 )
 
 /* !< SYSTEM_peripheral_Bases >*/
 #define SYSCFG_BASEADDR				( APB2_PERIPH_BASE + 0x3800 )
 
 /* !< EXTI_peripheral_Bases >*/
-#define EXTI_BASEADDR				( APB2_PERIPH_BASE + 0x3C00 )
+#define EXTI_BASEADDR					( APB2_PERIPH_BASE + 0x3C00 )
 
 /* !< SERIAL_AUDIO_peripheral_Bases >*/
-#define SAI1_BASEADDR				( APB2_PERIPH_BASE + 0x5800 )
-#define SAI2_BASEADDR				( APB2_PERIPH_BASE + 0x5C00 )
+#define SAI1_BASEADDR					( APB2_PERIPH_BASE + 0x5800 )
+#define SAI2_BASEADDR					( APB2_PERIPH_BASE + 0x5C00 )
 
 /* !< GPIO_peripheral_Bases >*/
 #define GPIOA_BASEADDR				( AHB1_PERIPH_BASE + 0x0000 )
@@ -219,33 +220,33 @@
 #define GPIOH_BASEADDR				( AHB1_PERIPH_BASE + 0x1C00 )
 
 /* !< CRC_peripheral_Bases >*/
-#define CRC_BASEADDR				( AHB1_PERIPH_BASE + 0x3000 )
+#define CRC_BASEADDR							( AHB1_PERIPH_BASE + 0x3000 )
 
 /* !< RCC_peripheral_Bases >*/
-#define RCC_BASEADDR				( AHB1_PERIPH_BASE + 0x3800 )
+#define RCC_BASEADDR							( AHB1_PERIPH_BASE + 0x3800 )
 
 /* !< FLASH_peripheral_Bases >*/
 #define FLASH_INTERFACE_BASEADDR	( AHB1_PERIPH_BASE + 0x3C00 )
 
 /* !< ADDR_peripheral_Bases >*/
-#define BKPSRAM_BASEADDR			( AHB1_PERIPH_BASE + 0x4000 )
+#define BKPSRAM_BASEADDR					( AHB1_PERIPH_BASE + 0x4000 )
 
 /* !< DMA_peripheral_Bases >*/
-#define DMA1_BASEADDR				( AHB1_PERIPH_BASE + 0x0000 )
-#define DMA2_BASEADDR				( AHB1_PERIPH_BASE + 0x0000 )
+#define DMA1_BASEADDR							( AHB1_PERIPH_BASE + 0x0000 )
+#define DMA2_BASEADDR							( AHB1_PERIPH_BASE + 0x0000 )
 
 /* !< USB_peripheral_Bases >*/
-#define USB_OTG_HS_BASEADDR			( AHB1_PERIPH_BASE + 0x0000 )
-#define USB_OTG_FS_BASEADDR			( AHB2_PERIPH_BASE + 0x0000 )
+#define USB_OTG_HS_BASEADDR				( AHB1_PERIPH_BASE + 0x0000 )
+#define USB_OTG_FS_BASEADDR				( AHB2_PERIPH_BASE + 0x0000 )
 
 /* !< DIGITAL_CAMERA_peripheral_Bases >*/
-#define DCMI_BASEADDR				( AHB2_PERIPH_BASE + 0x00050000 )
+#define DCMI_BASEADDR							( AHB2_PERIPH_BASE + 0x00050000 )
 
 /* !< QUADSPI_peripheral_Bases >*/
-#define QUADSPI_BASEADDR			( AHB3_PERIPH_BASE + 0x1000 )
+#define QUADSPI_BASEADDR					( AHB3_PERIPH_BASE + 0x1000 )
 
 /* !< FLEXIBLE_MEMORY_peripheral_Bases >*/
-#define FMC_BASEADDR				( AHB3_PERIPH_BASE + 0x0000 )
+#define FMC_BASEADDR							( AHB3_PERIPH_BASE + 0x0000 )
 
 
 /**************************************************Peripheral Register Definition Structures***************************************************/
@@ -255,15 +256,15 @@
 
 typedef struct{
 
-	__vo uint32_t MODER;		/**/
-	__vo uint32_t OTYPER;		/**/
+	__vo uint32_t MODER;			/**/
+	__vo uint32_t OTYPER;			/**/
 	__vo uint32_t OSPEEDER;		/**/
-	__vo uint32_t PUPDR;		/**/
-	__vo uint32_t IDR;			/**/
-	__vo uint32_t ODR;			/**/
-	__vo uint32_t BSRR;			/**/
-	__vo uint32_t LCKR;			/**/
-	__vo uint32_t AFR[2];		/**/
+	__vo uint32_t PUPDR;			/**/
+	__vo uint32_t IDR;				/**/
+	__vo uint32_t ODR;				/**/
+	__vo uint32_t BSRR;				/**/
+	__vo uint32_t LCKR;				/**/
+	__vo uint32_t AFR[2];			/**/
 
 }GPIO_RegDef_t;
 
@@ -280,40 +281,40 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR;			/**/
-	__vo uint32_t PLLCFGR;		/**/
-	__vo uint32_t CFGR;			/**/
-	__vo uint32_t CIR;			/**/
-	__vo uint32_t AHB1RSTR;		/**/
-	__vo uint32_t AHB2RSTR;		/**/
-	__vo uint32_t AHB3RSTR;		/**/
-	__vo uint32_t RESERVED0;	/**/
-	__vo uint32_t APB1RSTR;		/**/
-	__vo uint32_t APB2RSTR;		/**/
+	__vo uint32_t CR;						/**/
+	__vo uint32_t PLLCFGR;			/**/
+	__vo uint32_t CFGR;					/**/
+	__vo uint32_t CIR;					/**/
+	__vo uint32_t AHB1RSTR;			/**/
+	__vo uint32_t AHB2RSTR;			/**/
+	__vo uint32_t AHB3RSTR;			/**/
+	__vo uint32_t RESERVED0;		/**/
+	__vo uint32_t APB1RSTR;			/**/
+	__vo uint32_t APB2RSTR;			/**/
 	__vo uint32_t RESERVED1[2];	/**/
-	__vo uint32_t AHB1ENR;		/**/
-	__vo uint32_t AHB2ENR;		/**/
-	__vo uint32_t AHB3ENR;		/**/
-	__vo uint32_t RESERVE2;		/**/
-	__vo uint32_t APB1ENR;		/**/
-	__vo uint32_t APB2ENR;		/**/
+	__vo uint32_t AHB1ENR;			/**/
+	__vo uint32_t AHB2ENR;			/**/
+	__vo uint32_t AHB3ENR;			/**/
+	__vo uint32_t RESERVE2;			/**/
+	__vo uint32_t APB1ENR;			/**/
+	__vo uint32_t APB2ENR;			/**/
 	__vo uint32_t RESERVED3[2];	/**/
-	__vo uint32_t AHB1LPENR;	/**/
-	__vo uint32_t AHB2LPENR;	/**/
-	__vo uint32_t AHB3LPENR;	/**/
-	__vo uint32_t RESERVED4;	/**/
-	__vo uint32_t APB1LPENR;	/**/
-	__vo uint32_t APB2LPENR;	/**/
+	__vo uint32_t AHB1LPENR;		/**/
+	__vo uint32_t AHB2LPENR;		/**/
+	__vo uint32_t AHB3LPENR;		/**/
+	__vo uint32_t RESERVED4;		/**/
+	__vo uint32_t APB1LPENR;		/**/
+	__vo uint32_t APB2LPENR;		/**/
 	__vo uint32_t RESERVED5[2];	/**/
-	__vo uint32_t BDCR;			/**/
-	__vo uint32_t CSR;			/**/
+	__vo uint32_t BDCR;					/**/
+	__vo uint32_t CSR;					/**/
 	__vo uint32_t RESERVED6[2];	/**/
-	__vo uint32_t SSCGR;		/**/
-	__vo uint32_t PLLI2SCFG;	/**/
-	__vo uint32_t PLLSAICFGR;	/**/
-	__vo uint32_t DCKCFGR;		/**/
-	__vo uint32_t CKGATENR;		/**/
-	__vo uint32_t DCKCFGR2;		/**/
+	__vo uint32_t SSCGR;				/**/
+	__vo uint32_t PLLI2SCFG;		/**/
+	__vo uint32_t PLLSAICFGR;		/**/
+	__vo uint32_t DCKCFGR;			/**/
+	__vo uint32_t CKGATENR;			/**/
+	__vo uint32_t DCKCFGR2;			/**/
 
 
 }RCC_RegDef_t;
@@ -658,7 +659,7 @@ typedef struct{
 #define RESET_OTGFS()			RCC->AHB2RSTR |= (0x01 << 7)
 
 #define RESET_FMC()				RCC->AHB3RSTR |= (0x01 << 0)
-#define RESET_QSPIRST()			RCC->AHB3RSTR |= (0x01 << 1)
+#define RESET_QSPIRST()		RCC->AHB3RSTR |= (0x01 << 1)
 
 
 #define RESET_TIM2()			RCC->APB1RSTR |= (0x01 << 0)
@@ -676,7 +677,7 @@ typedef struct{
 #define RESET_SPI2()			RCC->APB1RSTR |= (0x01 << 14)
 #define RESET_SPI3()			RCC->APB1RSTR |= (0x01 << 15)
 
-#define RESET_SPDIFRX()			RCC->APB1RSTR |= (0x01 << 16)
+#define RESET_SPDIFRX()		RCC->APB1RSTR |= (0x01 << 16)
 
 
 #define RESET_UART2()			RCC->APB1RSTR |= (0x01 << 17)
@@ -688,7 +689,7 @@ typedef struct{
 #define RESET_I2C2()			RCC->APB1RSTR |= (0x01 << 22)
 #define RESET_I2C3()			RCC->APB1RSTR |= (0x01 << 23)
 
-#define RESET_FMPI2C1()			RCC->APB1RSTR |= (0x01 << 24)
+#define RESET_FMPI2C1()		RCC->APB1RSTR |= (0x01 << 24)
 
 #define RESET_CAN1()			RCC->APB1RSTR |= (0x01 << 25)
 #define RESET_CAN2()			RCC->APB1RSTR |= (0x01 << 26)
@@ -702,8 +703,8 @@ typedef struct{
 #define RESET_TIM1()			RCC->APB2RSTR |= (0x01 << 0)
 #define RESET_TIM8()			RCC->APB2RSTR |= (0x01 << 1)
 
-#define RESET_USART1()			RCC->APB2RSTR |= (0x01 << 4)
-#define RESET_USART6()			RCC->APB2RSTR |= (0x01 << 5)
+#define RESET_USART1()		RCC->APB2RSTR |= (0x01 << 4)
+#define RESET_USART6()		RCC->APB2RSTR |= (0x01 << 5)
 
 #define RESET_ADC()				RCC->APB2RSTR |= (0x01 << 8)
 
@@ -712,7 +713,7 @@ typedef struct{
 #define RESET_SPI1()			RCC->APB2RSTR |= (0x01 << 12)
 #define RESET_SPI4()			RCC->APB2RSTR |= (0x01 << 13)
 
-#define RESET_SYSCFG()			RCC->APB2RSTR |= (0x01 << 14)
+#define RESET_SYSCFG()		RCC->APB2RSTR |= (0x01 << 14)
 
 #define RESET_TIM9()			RCC->APB2RSTR |= (0x01 << 16)
 #define RESET_TIM10()			RCC->APB2RSTR |= (0x01 << 17)
@@ -726,9 +727,9 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t DR;	/**/
+	__vo uint32_t DR;		/**/
 	__vo uint32_t IDR;	/**/
-	__vo uint32_t CR;	/**/
+	__vo uint32_t CR;		/**/
 
 }CRC_RegDef_t;
 
@@ -753,8 +754,8 @@ typedef struct{
 #define IRQ_NO_EXTI2			8
 #define IRQ_NO_EXTI3			9
 #define IRQ_NO_EXTI4			10
-#define IRQ_NO_EXTI9_5			23
-#define IRQ_NO_EXTI15_10		40
+#define IRQ_NO_EXTI9_5		23
+#define IRQ_NO_EXTI15_10	40
 
 #define NVIC_IRQ_PRIORITY_0		0
 #define NVIC_IRQ_PRIORITY_15	15
@@ -762,13 +763,13 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t MEMRMP;		/**/
-	__vo uint32_t PMC;			/**/
-	__vo uint32_t EXTICR[4];	/**/
+	__vo uint32_t MEMRMP;				/**/
+	__vo uint32_t PMC;					/**/
+	__vo uint32_t EXTICR[4];		/**/
 	__vo uint32_t RESERVED0[2];	/**/
-	__vo uint32_t CMPCR;		/**/
+	__vo uint32_t CMPCR;				/**/
 	__vo uint32_t RESERVED1[2];	/**/
-	__vo uint32_t CFGR;			/**/
+	__vo uint32_t CFGR;					/**/
 
 }SYSCFGR_RegDef_t;
 
@@ -832,7 +833,7 @@ typedef struct{
 	__vo uint32_t RTSR;				/**/
 	__vo uint32_t FTSR;				/**/
 	__vo uint32_t SWIER;			/**/
-	__vo uint32_t PR;				/**/
+	__vo uint32_t PR;					/**/
 
 
 }EXTI_RegDef_t;
@@ -856,7 +857,7 @@ typedef struct{
 	__vo uint32_t BWTR3;			/**/
 	__vo uint32_t BWTR4;			/**/
 	__vo uint32_t PCR;				/**/
-	__vo uint32_t SR;				/**/
+	__vo uint32_t SR;					/**/
 	__vo uint32_t PMEM;				/**/
 	__vo uint32_t PATT;				/**/
 	__vo uint32_t ECCR;				/**/
@@ -877,15 +878,15 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR;				/**/
+	__vo uint32_t CR;					/**/
 	__vo uint32_t DCR;				/**/
-	__vo uint32_t SR;				/**/
+	__vo uint32_t SR;					/**/
 	__vo uint32_t FCR;				/**/
 	__vo uint32_t DLR;				/**/
 	__vo uint32_t CCR;				/**/
-	__vo uint32_t AR;				/**/
+	__vo uint32_t AR;					/**/
 	__vo uint32_t ABR;				/**/
-	__vo uint32_t DR;				/**/
+	__vo uint32_t DR;					/**/
 	__vo uint32_t PSMKR;			/**/
 	__vo uint32_t PSMAR;			/**/
 	__vo uint32_t PIR;				/**/
@@ -913,9 +914,9 @@ typedef struct{
 
 }ADC_RegDef_t;
 
-#define ADC1		( ( ADC_RegDef_t*) ADC1_BASEADDR )
-#define ADC2		( ( ADC_RegDef_t*) ADC2_BASEADDR )
-#define ADC3		( ( ADC_RegDef_t*) ADC3_BASEADDR )
+#define ADC1				( ( ADC_RegDef_t*) ADC1_BASEADDR )
+#define ADC2				( ( ADC_RegDef_t*) ADC2_BASEADDR )
+#define ADC3				( ( ADC_RegDef_t*) ADC3_BASEADDR )
 #define ADC_Commons	( ( ADC_RegDef_t*) ADC_COMMON_BASEADDR )
 
 /*>>>ADC Common Structure<<<*/
@@ -930,32 +931,32 @@ typedef struct{
 
 #define ADC_COMMON	( ( ADC_RegDef_t*) ADC_COMMON_BASEADDR )
 
-#define ADC_CH0		( 0x00 << 0 )
-#define ADC_CH1		( 0x01 << 1 )
-#define ADC_CH2		( 0x01 << 2 )
-#define ADC_CH3		( 0x01 << 3 )
-#define ADC_CH4		( 0x01 << 4 )
-#define ADC_CH5		( 0x01 << 5 )
-#define ADC_CH6		( 0x01 << 6 )
-#define ADC_CH7		( 0x01 << 7 )
-#define ADC_CH8		( 0x01 << 8 )
-#define ADC_CH9		( 0x01 << 9 )
-#define ADC_CH10	( 0x01 << 10 )
-#define ADC_CH11	( 0x01 << 11 )
-#define ADC_CH12	( 0x01 << 12 )
-#define ADC_CH13	( 0x01 << 13 )
-#define ADC_CH14	( 0x01 << 14 )
-#define ADC_CH15	( 0x01 << 15 )
+#define ADC_CH0							( 0x00 << 0 )
+#define ADC_CH1							( 0x01 << 1 )
+#define ADC_CH2							( 0x01 << 2 )
+#define ADC_CH3							( 0x01 << 3 )
+#define ADC_CH4							( 0x01 << 4 )
+#define ADC_CH5							( 0x01 << 5 )
+#define ADC_CH6							( 0x01 << 6 )
+#define ADC_CH7							( 0x01 << 7 )
+#define ADC_CH8							( 0x01 << 8 )
+#define ADC_CH9							( 0x01 << 9 )
+#define ADC_CH10						( 0x01 << 10 )
+#define ADC_CH11						( 0x01 << 11 )
+#define ADC_CH12						( 0x01 << 12 )
+#define ADC_CH13						( 0x01 << 13 )
+#define ADC_CH14						( 0x01 << 14 )
+#define ADC_CH15						( 0x01 << 15 )
 
-#define ADC_1_CONVERSION 	( 	0x00	)
-#define ADC_2_CONVERSION 	( 	0x01	)
-#define ADC_3_CONVERSION 	( 	0x02	)
-#define ADC_4_CONVERSION 	( 	0x03	)
-#define ADC_5_CONVERSION 	( 	0x04	)
-#define ADC_6_CONVERSION 	( 	0x05	)
-#define ADC_7_CONVERSION 	( 	0x06	)
-#define ADC_8_CONVERSION 	( 	0x07	)
-#define ADC_9_CONVERSION 	( 	0x08	)
+#define ADC_1_CONVERSION 		( 	0x00	)
+#define ADC_2_CONVERSION 		( 	0x01	)
+#define ADC_3_CONVERSION 		( 	0x02	)
+#define ADC_4_CONVERSION 		( 	0x03	)
+#define ADC_5_CONVERSION 		( 	0x04	)
+#define ADC_6_CONVERSION 		( 	0x05	)
+#define ADC_7_CONVERSION 		( 	0x06	)
+#define ADC_8_CONVERSION 		( 	0x07	)
+#define ADC_9_CONVERSION 		( 	0x08	)
 #define ADC_10_CONVERSION 	( 	0x09	)
 #define ADC_11_CONVERSION 	( 	0x0A	)
 #define ADC_12_CONVERSION 	( 	0x0B	)
@@ -1011,8 +1012,8 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR;					/**/
-	__vo uint32_t SR;					/**/
+	__vo uint32_t CR;						/**/
+	__vo uint32_t SR;						/**/
 	__vo uint32_t RIS;					/**/
 	__vo uint32_t IER;					/**/
 	__vo uint32_t MIS;					/**/
@@ -1021,7 +1022,7 @@ typedef struct{
 	__vo uint32_t ESUR;					/**/
 	__vo uint32_t CWSTRT;				/**/
 	__vo uint32_t CWSIZE;				/**/
-	__vo uint32_t DR;					/**/
+	__vo uint32_t DR;						/**/
 
 }DCMI_RegDef_t;
 
@@ -1060,21 +1061,23 @@ typedef struct{
 	__vo uint32_t CR[2];				/**/
 	__vo uint32_t SMCR;					/**/
 	__vo uint32_t DIER;					/**/
-	__vo uint32_t SR;					/**/
+	__vo uint32_t SR;						/**/
 	__vo uint32_t EGR;					/**/
-	__vo uint32_t CCMR[2];				/**/
+	__vo uint32_t CCMR[2];			/**/
 	__vo uint32_t CCER;					/**/
 	__vo uint32_t CNT;					/**/
 	__vo uint32_t PSC;					/**/
 	__vo uint32_t ARR;					/**/
 	__vo uint32_t CCR[4];				/**/
-	__vo uint32_t RESERVED;				/**/
+	__vo uint32_t RESERVED;			/**/
 	__vo uint32_t DCR;					/**/
 	__vo uint32_t DMAR;					/**/
-	__vo uint32_t TIM2_OR;				/**/
-	__vo uint32_t TIM5_OR;				/**/
+	__vo uint32_t TIM2_OR;			/**/
+	__vo uint32_t TIM5_OR;			/**/
 
 }General_Purpose_Timers_2_5_RegDef_t;
+
+
 
 #define TIM2	( ( General_Purpose_Timers_2_5_RegDef_t*) TIM2_BASEADDR )
 #define TIM3	( ( General_Purpose_Timers_2_5_RegDef_t*) TIM3_BASEADDR )
@@ -1088,19 +1091,20 @@ typedef struct{
 	__vo uint32_t CR1;					/**/
 	__vo uint32_t SMCR;					/**/
 	__vo uint32_t DIER;					/**/
-	__vo uint32_t SR;					/**/
+	__vo uint32_t SR;						/**/
 	__vo uint32_t EGR;					/**/
 	__vo uint32_t CCMR1;				/**/
-	__vo uint32_t RESERVED;				/**/
+	__vo uint32_t RESERVED;			/**/
 	__vo uint32_t CCER;					/**/
 	__vo uint32_t CNT;					/**/
 	__vo uint32_t PSC;					/**/
 	__vo uint32_t ARR;					/**/
 	__vo uint32_t CCR1;					/**/
-	__vo uint32_t OR;					/**/
+	__vo uint32_t OR;						/**/
 
 
 }General_Purpose_Timers_9_14_RegDef_t;
+
 
 #define TIM9	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM9_BASEADDR )
 #define TIM10	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM10_BASEADDR )
@@ -1125,6 +1129,7 @@ typedef struct{
 	__vo uint32_t ARR;							/**/
 
 }Basic_Timers_RegDef_t;
+
 
 #define TIM6	( ( Basic_Timers_RegDef_t*) TIM6_BASEADDR )
 #define TIM7	( ( Basic_Timers_RegDef_t*) TIM7_BASEADDR )
