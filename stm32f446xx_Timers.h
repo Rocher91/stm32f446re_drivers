@@ -12,14 +12,18 @@ typedef struct{
 
 typedef struct{
 	
-	General_Purpose_Timers_2_5_RegDef_t* pTIMx;
+	Basic_Timers_RegDef_t* pTIMx;
 	TIM_TimeBase_t TIM_TimeBase;
 	
 }TIM_Basic_Handle_t;
 
 typedef enum{
 	
-}TIM_Event_t;
+	TIM_EVENT_UI,
+	TIM_EVENT_CC1I
+	
+	}TIM_Event_t;
+
 
 /*
  * IRQ Configuration and ISR handling
@@ -40,7 +44,7 @@ void TIM_6_7_PerCLKControl( Basic_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable
 void TIM_Basic_TimeBase(TIM_Basic_Handle_t* pTIMHandle);
 void TIM_Basic_ITConfig(General_Purpose_Timers_2_5_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
 void TIM_Basic_DeInit(General_Purpose_Timers_2_5_RegDef_t* pTIMx);
-void TIM_Basic_Init(General_Purpose_Timers_2_5_RegDef_t* pTIMx,uint8_t enable);
+void TIM_Basic_Init(Basic_Timers_RegDef_t* pTIMx,uint8_t enable);
 
 /*
 * @Advance_Timers_

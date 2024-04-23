@@ -160,11 +160,11 @@ void TIM_Basic_TimeBase(TIM_Basic_Handle_t* pTIMHandle){
 	
 	pTIMHandle->pTIMx->ARR = pTIMHandle->TIM_TimeBase.TIM_Period;
 	pTIMHandle->pTIMx->PSC = pTIMHandle->TIM_TimeBase.TIM_Preescaler;
-	pTIMHandle->pTIMx->EGR |= (0x01<<0);
+	pTIMHandle->pTIMx->EGR |= (0x01);
 	
 }
 
-void TIM_Basic_Init(General_Purpose_Timers_2_5_RegDef_t* pTIMx,uint8_t enable){
+void TIM_Basic_Init(Basic_Timers_RegDef_t* pTIMx,uint8_t enable){
 
 	if (enable == ENABLE){
 		
@@ -172,9 +172,9 @@ void TIM_Basic_Init(General_Purpose_Timers_2_5_RegDef_t* pTIMx,uint8_t enable){
 		
 
 	}
-	else if (enable == ENABLE){
+	else if (enable == DISABLE){
 		
-		pTIMx->CR[0] &= ~(1 << TIMx_CR1_CEN);
+		pTIMx->CR[0] &= (uint32_t)~(1 << TIMx_CR1_CEN);
 		
 	}
 }

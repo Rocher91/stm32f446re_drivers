@@ -1,0 +1,72 @@
+/**
+ ******************************************************************************
+ * @file           : main.c
+ * @author         : Xavier Rocher
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c)
+ * All rights reserved.
+ *
+ ******************************************************************************
+ */
+
+#include "stm32f446xx.h"
+#include "stm32f446xx_Gpio_Driver.h"
+#include "stm32f446xx_Timers.h"
+
+
+/* Peripheral user definitions*/
+
+GPIO_Handle_t 			LED 				= { 0 };
+TIM_Basic_Handle_t 	htim_led		= { 0 };
+
+void GPIO_configurations(void);
+void TIM_setup(void);
+
+void GPIO_configurations(){
+
+		LED.pGPIOx 																= NUCLEO_PORT_LED;
+		LED.GPIO_PinConfig.GPIO_PinNumber 				= NUCLEO_PIN_LED;
+		LED.GPIO_PinConfig.GPIO_PinMode 					= GPIO_MODE_OUTPUT;
+		LED.GPIO_PinConfig.GPIO_PinOPType 				= GPIO_PUSH_PULL;
+		LED.GPIO_PinConfig.GPIO_PinPupdControl 		= GPIO_NPUPD;
+		LED.GPIO_PinConfig.GPIO_PinSpeed 					= GPIO_HIGH_SPEED;
+		
+		GPIO_Init(&LED);
+}
+
+void TIM_setup(){
+	
+	htim_led.pTIMx 												= TIM6;
+	htim_led.TIM_TimeBase.TIM_Period 			= 63999;
+	htim_led.TIM_TimeBase.TIM_Preescaler 	= 24;
+
+	TIM_Basic_TimeBase(&htim_led);
+
+}
+
+
+int main(void)
+{
+
+	GPIO_configurations();
+	TIM_setup();
+	
+	TIM_Basic_Init(htim_led.pTIMx,ENABLE);
+
+	
+	while(1){
+			
+			if(TIM6->SR & (0x01<<TIMx_SR_UIF)){
+			
+				TIM6->SR &= (uint32_t)~(0x01<<TIMx_SR_UIF);
+				GPIO_ToggleOutputPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED);
+			}
+		
+		}
+
+}
+
+

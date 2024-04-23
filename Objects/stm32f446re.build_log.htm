@@ -22,214 +22,40 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\xavier.rocher\Documents\Projects\FW\stm32f446re_drivers\stm32f446re.uvprojx
-Project File Date:  04/22/2024
+Project File Date:  04/23/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-stm32f446xx_Timers.c(5): warning: In file included from...
-./stm32f446xx_Timers.h(214): warning: no newline at end of file [-Wnewline-eof]
+TIM_BasicTimer.c(18): warning: In file included from...
+./stm32f446xx_Timers.h(221): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-stm32f446xx_Timers.c(6): warning: In file included from...
-./stm32f446xx_NVIC.h(10): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-stm32f446xx_Timers.c(30): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM2_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(537): note: expanded from macro 'TIM2_PCLCK_DIS'
-#define TIM2_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 0)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(33): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM3_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(538): note: expanded from macro 'TIM3_PCLCK_DIS'
-#define TIM3_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 1)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(36): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM4_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(539): note: expanded from macro 'TIM4_PCLCK_DIS'
-#define TIM4_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 2)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(39): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM5_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(540): note: expanded from macro 'TIM5_PCLCK_DIS'
-#define TIM5_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 3)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(59): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM1_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(601): note: expanded from macro 'TIM1_PCLCK_DIS'
-#define TIM1_PCLCK_DIS()                RCC->APB2ENR &= ~(0x01 << 0)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(62): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM8_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(602): note: expanded from macro 'TIM8_PCLCK_DIS'
-#define TIM8_PCLCK_DIS()                RCC->APB2ENR &= ~(0x01 << 1)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(95): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM9_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(603): note: expanded from macro 'TIM9_PCLCK_DIS'
-#define TIM9_PCLCK_DIS()                RCC->APB2ENR &= ~(0x01 << 16)
-                                                     ~~ ^~~~~~~~~~~~~
-stm32f446xx_Timers.c(98): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM10_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(604): note: expanded from macro 'TIM10_PCLCK_DIS'
-#define TIM10_PCLCK_DIS()               RCC->APB2ENR &= ~(0x01 << 17)
-                                                     ~~ ^~~~~~~~~~~~~
-stm32f446xx_Timers.c(101): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM11_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(605): note: expanded from macro 'TIM11_PCLCK_DIS'
-#define TIM11_PCLCK_DIS()               RCC->APB2ENR &= ~(0x01 << 18)
-                                                     ~~ ^~~~~~~~~~~~~
-stm32f446xx_Timers.c(104): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM12_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(543): note: expanded from macro 'TIM12_PCLCK_DIS'
-#define TIM12_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 6)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(107): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM13_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(544): note: expanded from macro 'TIM13_PCLCK_DIS'
-#define TIM13_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 7)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(110): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM14_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(545): note: expanded from macro 'TIM14_PCLCK_DIS'
-#define TIM14_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 8)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(130): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM6_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(541): note: expanded from macro 'TIM6_PCLCK_DIS'
-#define TIM6_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 4)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(133): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM7_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc\stm32f446xx.h(542): note: expanded from macro 'TIM7_PCLCK_DIS'
-#define TIM7_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 5)
-                                                     ~~ ^~~~~~~~~~~~
-stm32f446xx_Timers.c(148): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'Basic_Timers_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM6 || pTIMHandle->pTIMx == TIM7){
-                 ~~~~~~~~~~~~~~~~~ ^  ~~~~
-stm32f446xx_Timers.c(148): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'Basic_Timers_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM6 || pTIMHandle->pTIMx == TIM7){
-                                              ~~~~~~~~~~~~~~~~~ ^  ~~~~
-stm32f446xx_Timers.c(149): warning: incompatible pointer types passing 'General_Purpose_Timers_2_5_RegDef_t *' to parameter of type 'Basic_Timers_RegDef_t *' [-Wincompatible-pointer-types]
-                TIM_6_7_PerCLKControl( pTIMHandle->pTIMx, ENABLE );
-                                       ^~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(116): note: passing argument to parameter 'pTIMx' here
-void TIM_6_7_PerCLKControl( Basic_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable ){
-                                                   ^
-stm32f446xx_Timers.c(151): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'Advanced_Control_Timers_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM1 || pTIMHandle->pTIMx == TIM8){
-                 ~~~~~~~~~~~~~~~~~ ^  ~~~~
-stm32f446xx_Timers.c(151): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'Advanced_Control_Timers_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM1 || pTIMHandle->pTIMx == TIM8){
-                                              ~~~~~~~~~~~~~~~~~ ^  ~~~~
-stm32f446xx_Timers.c(152): warning: incompatible pointer types passing 'General_Purpose_Timers_2_5_RegDef_t *' to parameter of type 'Advanced_Control_Timers_RegDef_t *' [-Wincompatible-pointer-types]
-                TIM_1_8_PerCLKControl( pTIMHandle->pTIMx, ENABLE );
-                                       ^~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(44): note: passing argument to parameter 'pTIMx' here
-void TIM_1_8_PerCLKControl( Advanced_Control_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable ){
-                                                              ^
-stm32f446xx_Timers.c(154): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'General_Purpose_Timers_9_14_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM9 || pTIMHandle->pTIMx == TIM10 || pTIMHandle->pTIMx == TIM11 || pTIMHandle->pTIMx == TIM12 || pTIMHandle->pTIMx == TIM13  || pTIMHandle->pTIMx == TIM14 ){
-                 ~~~~~~~~~~~~~~~~~ ^  ~~~~
-stm32f446xx_Timers.c(154): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'General_Purpose_Timers_9_14_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM9 || pTIMHandle->pTIMx == TIM10 || pTIMHandle->pTIMx == TIM11 || pTIMHandle->pTIMx == TIM12 || pTIMHandle->pTIMx == TIM13  || pTIMHandle->pTIMx == TIM14 ){
-                                              ~~~~~~~~~~~~~~~~~ ^  ~~~~~
-stm32f446xx_Timers.c(154): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'General_Purpose_Timers_9_14_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM9 || pTIMHandle->pTIMx == TIM10 || pTIMHandle->pTIMx == TIM11 || pTIMHandle->pTIMx == TIM12 || pTIMHandle->pTIMx == TIM13  || pTIMHandle->pTIMx == TIM14 ){
-                                                                            ~~~~~~~~~~~~~~~~~ ^  ~~~~~
-stm32f446xx_Timers.c(154): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'General_Purpose_Timers_9_14_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM9 || pTIMHandle->pTIMx == TIM10 || pTIMHandle->pTIMx == TIM11 || pTIMHandle->pTIMx == TIM12 || pTIMHandle->pTIMx == TIM13  || pTIMHandle->pTIMx == TIM14 ){
-                                                                                                          ~~~~~~~~~~~~~~~~~ ^  ~~~~~
-stm32f446xx_Timers.c(154): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'General_Purpose_Timers_9_14_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM9 || pTIMHandle->pTIMx == TIM10 || pTIMHandle->pTIMx == TIM11 || pTIMHandle->pTIMx == TIM12 || pTIMHandle->pTIMx == TIM13  || pTIMHandle->pTIMx == TIM14 ){
-                                                                                                                                        ~~~~~~~~~~~~~~~~~ ^  ~~~~~
-stm32f446xx_Timers.c(154): warning: comparison of distinct pointer types ('General_Purpose_Timers_2_5_RegDef_t *' and 'General_Purpose_Timers_9_14_RegDef_t *') [-Wcompare-distinct-pointer-types]
-        else if (pTIMHandle->pTIMx == TIM9 || pTIMHandle->pTIMx == TIM10 || pTIMHandle->pTIMx == TIM11 || pTIMHandle->pTIMx == TIM12 || pTIMHandle->pTIMx == TIM13  || pTIMHandle->pTIMx == TIM14 ){
-                                                                                                                                                                       ~~~~~~~~~~~~~~~~~ ^  ~~~~~
-stm32f446xx_Timers.c(155): warning: incompatible pointer types passing 'General_Purpose_Timers_2_5_RegDef_t *' to parameter of type 'General_Purpose_Timers_9_14_RegDef_t *' [-Wincompatible-pointer-types]
-                TIM_9_14_PerCLKControl( pTIMHandle->pTIMx, ENABLE );
-                                        ^~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(68): note: passing argument to parameter 'pTIMx' here
-void TIM_9_14_PerCLKControl( General_Purpose_Timers_9_14_RegDef_t *pTIMx, uint8_t Enable_Disable ){
-                                                                   ^
-stm32f446xx_Timers.c(5): warning: In file included from...
+TIM_BasicTimer.c(23): warning: no previous extern declaration for non-static variable 'LED' [-Wmissing-variable-declarations]
+GPIO_Handle_t                   LED                             = { 0 };
+                                ^
+TIM_BasicTimer.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+GPIO_Handle_t                   LED                             = { 0 };
+^
+TIM_BasicTimer.c(16): warning: In file included from...
+./Drivers/inc/stm32f446xx_Gpio_Driver.h(27): warning: padding size of 'GPIO_Handle_t' with 2 bytes to alignment boundary [-Wpadded]
+typedef struct{
+        ^
+TIM_BasicTimer.c(24): warning: no previous extern declaration for non-static variable 'htim_led' [-Wmissing-variable-declarations]
+TIM_Basic_Handle_t      htim_led                = { 0 };
+                        ^
+TIM_BasicTimer.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+TIM_Basic_Handle_t      htim_led                = { 0 };
+^
+TIM_BasicTimer.c(18): warning: In file included from...
 ./stm32f446xx_Timers.h(9): warning: padding struct 'TIM_TimeBase_t' with 2 bytes to align 'TIM_Period' [-Wpadded]
         uint32_t                TIM_Period;
                                 ^
-stm32f446xx_Timers.c(177): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                pTIMx->CR[0] &= ~(1 << TIMx_CR1_CEN);
-                             ~~ ^~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(253): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_UIE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(257): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC1IE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(261): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC2IE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(265): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC3IE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(269): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC4IE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(273): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_COMIE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(277): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_TIE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(281): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_BIE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(285): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_UDE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(289): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC1DE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(293): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC2DE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(297): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC3DE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(301): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_CC4DE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(305): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_COMDE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(309): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        pTIMx->DIER &= ~(0x01 << TIMx_DIER_TDE);
-                                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
-stm32f446xx_Timers.c(323): warning: unused variable 'interrupt_event' [-Wunused-variable]
-        uint32_t interrupt_event = 0x00;
-                 ^
-stm32f446xx_Timers.c(325): warning: unused variable 'list' [-Wunused-variable]
-        uint8_t list[] = { TIMx_DIER_UIE ,TIMx_DIER_CC1IE , TIMx_DIER_CC2IE , TIMx_DIER_CC3IE , TIMx_DIER_CC4IE , TIMx_DIER_COMIE , 
-                ^
-48 warnings generated.
-compiling stm32f446xx_Timers.c...
+5 warnings generated.
+compiling TIM_BasicTimer.c...
 linking...
-Program Size: Code=3992 RO-data=512 RW-data=0 ZI-data=1632  
-".\Objects\stm32f446re.axf" - 0 Error(s), 48 Warning(s).
+Program Size: Code=4068 RO-data=468 RW-data=0 ZI-data=1656  
+".\Objects\stm32f446re.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -255,12 +81,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
-      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
-      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
