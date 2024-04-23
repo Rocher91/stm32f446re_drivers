@@ -399,24 +399,24 @@
               <FilePath>.\Drivers\src\stm32f446xx_SPI_Driver.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f446xx_Timers.h</FileName>
+              <FileName>stm32f446xx_Timers_Driver.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\stm32f446xx_Timers.h</FilePath>
+              <FilePath>.\Drivers\inc\stm32f446xx_Timers_Driver.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f446xx_Timers.c</FileName>
+              <FileName>stm32f446xx_Timers_Driver.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\stm32f446xx_Timers.c</FilePath>
+              <FilePath>.\Drivers\src\stm32f446xx_Timers_Driver.c</FilePath>
             </File>
             <File>
               <FileName>stm32f446xx_NVIC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\stm32f446xx_NVIC.c</FilePath>
+              <FilePath>.\Drivers\src\stm32f446xx_NVIC.c</FilePath>
             </File>
             <File>
               <FileName>stm32f446xx_NVIC.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\stm32f446xx_NVIC.h</FilePath>
+              <FilePath>.\Drivers\inc\stm32f446xx_NVIC.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -536,9 +536,9 @@
               </FileOption>
             </File>
             <File>
-              <FileName>SPI_TXOnly_Arduino.c</FileName>
+              <FileName>SPI_CMD_Handling.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\SPI_TXOnly_Arduino.c</FilePath>
+              <FilePath>.\User\src\SPI_CMD_Handling.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -592,9 +592,9 @@
               </FileOption>
             </File>
             <File>
-              <FileName>SPI_CMD_Handling.c</FileName>
+              <FileName>SPI_TXOnly_Arduino.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\SPI_CMD_Handling.c</FilePath>
+              <FilePath>.\User\src\SPI_TXOnly_Arduino.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -650,7 +650,7 @@
             <File>
               <FileName>TIM_BasicTimer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TIM_BasicTimer.c</FilePath>
+              <FilePath>.\User\src\TIM_BasicTimer.c</FilePath>
             </File>
           </Files>
         </Group>

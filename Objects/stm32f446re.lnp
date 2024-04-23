@@ -2,7 +2,7 @@
 ".\objects\stm32f446xx_adc_driver.o"
 ".\objects\stm32f446xx_gpio_driver.o"
 ".\objects\stm32f446xx_spi_driver.o"
-".\objects\stm32f446xx_timers.o"
+".\objects\stm32f446xx_timers_driver.o"
 ".\objects\stm32f446xx_nvic.o"
 ".\objects\tim_basictimer.o"
 ".\objects\startup_stm32f446xx.o"

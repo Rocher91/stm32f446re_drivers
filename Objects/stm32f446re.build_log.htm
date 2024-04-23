@@ -27,35 +27,42 @@ Project File Date:  04/23/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-TIM_BasicTimer.c(18): warning: In file included from...
-./stm32f446xx_Timers.h(221): warning: no newline at end of file [-Wnewline-eof]
+Drivers/src/stm32f446xx_NVIC.c(2): warning: In file included from...
+./Drivers/inc\stm32f446xx_NVIC.h(10): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-TIM_BasicTimer.c(23): warning: no previous extern declaration for non-static variable 'LED' [-Wmissing-variable-declarations]
-GPIO_Handle_t                   LED                             = { 0 };
-                                ^
-TIM_BasicTimer.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-GPIO_Handle_t                   LED                             = { 0 };
+1 warning generated.
+compiling stm32f446xx_NVIC.c...
+User/src/TIM_BasicTimer.c(17): warning: In file included from...
+./Drivers/inc\stm32f446xx_Timers_Driver.h(215): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+User/src/TIM_BasicTimer.c(22): warning: no previous extern declaration for non-static variable 'LED' [-Wmissing-variable-declarations]
+GPIO_Handle_t LED                               = { 0 };
+              ^
+User/src/TIM_BasicTimer.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+GPIO_Handle_t LED                               = { 0 };
 ^
-TIM_BasicTimer.c(16): warning: In file included from...
-./Drivers/inc/stm32f446xx_Gpio_Driver.h(27): warning: padding size of 'GPIO_Handle_t' with 2 bytes to alignment boundary [-Wpadded]
+User/src/TIM_BasicTimer.c(16): warning: In file included from...
+./Drivers/inc\stm32f446xx_Gpio_Driver.h(27): warning: padding size of 'GPIO_Handle_t' with 2 bytes to alignment boundary [-Wpadded]
 typedef struct{
         ^
-TIM_BasicTimer.c(24): warning: no previous extern declaration for non-static variable 'htim_led' [-Wmissing-variable-declarations]
-TIM_Basic_Handle_t      htim_led                = { 0 };
-                        ^
-TIM_BasicTimer.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-TIM_Basic_Handle_t      htim_led                = { 0 };
+User/src/TIM_BasicTimer.c(23): warning: no previous extern declaration for non-static variable 'htim_led' [-Wmissing-variable-declarations]
+TIM_handle_t    htim_led                = { 0 };
+                ^
+User/src/TIM_BasicTimer.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+TIM_handle_t    htim_led                = { 0 };
 ^
-TIM_BasicTimer.c(18): warning: In file included from...
-./stm32f446xx_Timers.h(9): warning: padding struct 'TIM_TimeBase_t' with 2 bytes to align 'TIM_Period' [-Wpadded]
-        uint32_t                TIM_Period;
-                                ^
+User/src/TIM_BasicTimer.c(17): warning: In file included from...
+./Drivers/inc\stm32f446xx_Timers_Driver.h(8): warning: padding struct 'TIM_TimeBase_t' with 2 bytes to align 'TIM_Period' [-Wpadded]
+        uint32_t TIM_Period;
+                 ^
 5 warnings generated.
 compiling TIM_BasicTimer.c...
+compiling system_stm32f4xx.c...
 linking...
-Program Size: Code=4068 RO-data=468 RW-data=0 ZI-data=1656  
-".\Objects\stm32f446re.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=3676 RO-data=468 RW-data=0 ZI-data=1656  
+".\Objects\stm32f446re.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -81,11 +88,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
-      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

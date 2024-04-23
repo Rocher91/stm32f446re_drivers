@@ -1,54 +1,50 @@
-#ifndef INC_STM32F446XX_TIM_DRIVER_H_
-#define INC_STM32F446XX_TIM_DRIVER_H_
+#ifndef INC_STM32F446XX_TIMS_DRIVER_H_
+#define INC_STM32F446XX_TIMS_DRIVER_H_
 
 #include "stm32f446xx.h"
 
 typedef struct{
-	
-	uint16_t 		TIM_Preescaler;
-	uint32_t 		TIM_Period;
-	
+	uint16_t TIM_Preescaler;
+	uint32_t TIM_Period;
+
 }TIM_TimeBase_t;
 
 typedef struct{
-	
-	Basic_Timers_RegDef_t* pTIMx;
+	TIM_RegDef_t* pTIMx;
 	TIM_TimeBase_t TIM_TimeBase;
-	
-}TIM_Basic_Handle_t;
+}TIM_handle_t;
 
 typedef enum{
 	
 	TIM_EVENT_UI,
-	TIM_EVENT_CC1I
-	
-	}TIM_Event_t;
+	TIM_EVENT_CC1I,
+	TIM_EVENT_CC2I,
+	TIM_EVENT_CC3I,
+	TIM_EVENT_CC4I,
+	TIM_EVENT_COMI,
+	TIM_EVENT_TI,
+	TIM_EVENT_BI,
+	TIM_EVENT_CC10,
+	TIM_EVENT_CC20,
+	TIM_EVENT_CC30,
+	TIM_EVENT_CC40
+
+}TIM_Event_t;
+
+/************APIS************/
+
+void TIM_ClockController(TIM_RegDef_t* pTIMx,uint8_t enable);
+void TIM_TimeBase_Init(TIM_handle_t* pTIM_Handle);
+void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t FlagName);
+uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t FlagName);
+void TIM_IRQHandling( TIM_handle_t *pTIMHandle );
 
 
-/*
- * IRQ Configuration and ISR handling
- */
-void TIM_ClearITPendingBit(General_Purpose_Timers_2_5_RegDef_t *pTIMx,uint16_t FlagName);
-uint8_t TIM_GetStatus(General_Purpose_Timers_2_5_RegDef_t *pTIMx,uint16_t FlagName);
-void TIM_IRQHandling( TIM_Basic_Handle_t *pTIMHandle );
+void TIM_Basic_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
+void TIM_Basic_DeInit(TIM_RegDef_t* pTIMx);
+void TIM_Basic_Init(TIM_RegDef_t* pTIMx,uint8_t enable);
+__attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
 
-/* 
-	TIM_CLK_Enable 
-*/
-void TIM_2_5_PerCLKControl( General_Purpose_Timers_2_5_RegDef_t *pTIMx, uint8_t Enable_Disable );
-void TIM_1_8_PerCLKControl( Advanced_Control_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable );
-void TIM_9_14_PerCLKControl( General_Purpose_Timers_9_14_RegDef_t *pTIMx, uint8_t Enable_Disable );
-void TIM_6_7_PerCLKControl( Basic_Timers_RegDef_t *pTIMx, uint8_t Enable_Disable );
-
-
-void TIM_Basic_TimeBase(TIM_Basic_Handle_t* pTIMHandle);
-void TIM_Basic_ITConfig(General_Purpose_Timers_2_5_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
-void TIM_Basic_DeInit(General_Purpose_Timers_2_5_RegDef_t* pTIMx);
-void TIM_Basic_Init(Basic_Timers_RegDef_t* pTIMx,uint8_t enable);
-
-/*
-* @Advance_Timers_
-*/
 
 //.. TIMx_CR1
 #define TIMx_CR1_CEN 	0
@@ -215,7 +211,5 @@ void TIM_Basic_Init(Basic_Timers_RegDef_t* pTIMx,uint8_t enable);
 #define CAPTURE_COMPARE2_INTERRUPT_FLAG			2
 #define CAPTURE_COMPARE1_INTERRUPT_FLAG			1
 #define UPDATE_INTERRUPT_FLAG								0
-
-
 
 #endif

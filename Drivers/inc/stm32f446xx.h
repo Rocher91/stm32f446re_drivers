@@ -598,11 +598,11 @@ typedef struct{
 
 // Clock Enable Macros for TIMERS peripherals
 
-#define TIM1_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 0)
-#define TIM8_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 1)
-#define TIM9_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 16)
-#define TIM10_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 17)
-#define TIM11_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 18)
+#define TIM1_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t)~(0x01 << 0)
+#define TIM8_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t)~(0x01 << 1)
+#define TIM9_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t)~(0x01 << 16)
+#define TIM10_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t)~(0x01 << 17)
+#define TIM11_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t)~(0x01 << 18)
 
 
 // Clock Disable Macros for TIMERS peripherals
@@ -638,14 +638,14 @@ typedef struct{
 
 // Reset Macros peripherals
 
-#define RESET_GPIOA()			do{ RCC->AHB1RSTR |= (0x01 << 0);   RCC->AHB1RSTR &= ~(0x01 << 0); }while(0)
-#define RESET_GPIOB()			do{ RCC->AHB1RSTR |= (0x01 << 1);   RCC->AHB1RSTR &= ~(0x01 << 1); }while(0)
-#define RESET_GPIOC()			do{ RCC->AHB1RSTR |= (0x01 << 2);   RCC->AHB1RSTR &= ~(0x01 << 2); }while(0)
-#define RESET_GPIOD()			do{ RCC->AHB1RSTR |= (0x01 << 3);   RCC->AHB1RSTR &= ~(0x01 << 3); }while(0)
-#define RESET_GPIOE()			do{ RCC->AHB1RSTR |= (0x01 << 4);   RCC->AHB1RSTR &= ~(0x01 << 4); }while(0)
-#define RESET_GPIOF()			do{ RCC->AHB1RSTR |= (0x01 << 5);   RCC->AHB1RSTR &= ~(0x01 << 5); }while(0)
-#define RESET_GPIOG()			do{ RCC->AHB1RSTR |= (0x01 << 6);   RCC->AHB1RSTR &= ~(0x01 << 6); }while(0)
-#define RESET_GPIOH()			do{ RCC->AHB1RSTR |= (0x01 << 7);   RCC->AHB1RSTR &= ~(0x01 << 7); }while(0)
+#define RESET_GPIOA()			do{ RCC->AHB1RSTR |= (0x01 << 0);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 0); }while(0)
+#define RESET_GPIOB()			do{ RCC->AHB1RSTR |= (0x01 << 1);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 1); }while(0)
+#define RESET_GPIOC()			do{ RCC->AHB1RSTR |= (0x01 << 2);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 2); }while(0)
+#define RESET_GPIOD()			do{ RCC->AHB1RSTR |= (0x01 << 3);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 3); }while(0)
+#define RESET_GPIOE()			do{ RCC->AHB1RSTR |= (0x01 << 4);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 4); }while(0)
+#define RESET_GPIOF()			do{ RCC->AHB1RSTR |= (0x01 << 5);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 5); }while(0)
+#define RESET_GPIOG()			do{ RCC->AHB1RSTR |= (0x01 << 6);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 6); }while(0)
+#define RESET_GPIOH()			do{ RCC->AHB1RSTR |= (0x01 << 7);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 7); }while(0)
 
 #define RESET_CRC()				RCC->AHB1RSTR |= (0x01 << 12)
 
@@ -1028,111 +1028,52 @@ typedef struct{
 
 #define DCMI	( ( DCMI_RegDef_t*) DCMI_BASEADDR )
 
-/*>>>Advanced Control timers Structure<<<*/
-
 typedef struct{
 
 	__vo uint32_t CR[2];					/**/
-	__vo uint32_t SMCR;					/**/
-	__vo uint32_t DIER;					/**/
-	__vo uint32_t SR;					/**/
-	__vo uint32_t EGR;					/**/
-	__vo uint32_t CCMR[2];					/**/
-	__vo uint32_t CCER;					/**/
-	__vo uint32_t CNT;					/**/
-	__vo uint32_t PSC;					/**/
-	__vo uint32_t ARR;					/**/
-	__vo uint32_t RCR;				/**/
-	__vo uint32_t CCR[4];				/**/
-	__vo uint32_t BDTR;					/**/
-	__vo uint32_t DCR;					/**/
-	__vo uint32_t DMAR;					/**/
+	__vo uint32_t SMCR;						/**/
+	__vo uint32_t DIER;						/**/
+	__vo uint32_t SR;							/**/
+	__vo uint32_t EGR;						/**/
+	__vo uint32_t CCMR[2];				/**/
+	__vo uint32_t CCER;						/**/
+	__vo uint32_t CNT;						/**/
+	__vo uint32_t PSC;						/**/
+	__vo uint32_t ARR;						/**/
+	__vo uint32_t RCR;						/**/
+	__vo uint32_t CCR[4];					/**/
+	__vo uint32_t BDTR;						/**/
+	__vo uint32_t DCR;						/**/
+	__vo uint32_t DMAR;						/**/
+	__vo uint32_t OR;							/**/
 
-}Advanced_Control_Timers_RegDef_t;
+}TIM_RegDef_t;
 
-#define TIM1	( ( Advanced_Control_Timers_RegDef_t*) TIM1_BASEADDR )
-#define TIM8	( ( Advanced_Control_Timers_RegDef_t*) TIM8_BASEADDR )
+/*>>>Advanced Control timers Structure<<<*/
 
-
-/*>>>General Purpose Timers Structure<<<*/
-
-typedef struct{
-
-	__vo uint32_t CR[2];				/**/
-	__vo uint32_t SMCR;					/**/
-	__vo uint32_t DIER;					/**/
-	__vo uint32_t SR;						/**/
-	__vo uint32_t EGR;					/**/
-	__vo uint32_t CCMR[2];			/**/
-	__vo uint32_t CCER;					/**/
-	__vo uint32_t CNT;					/**/
-	__vo uint32_t PSC;					/**/
-	__vo uint32_t ARR;					/**/
-	__vo uint32_t CCR[4];				/**/
-	__vo uint32_t RESERVED;			/**/
-	__vo uint32_t DCR;					/**/
-	__vo uint32_t DMAR;					/**/
-	__vo uint32_t TIM2_OR;			/**/
-	__vo uint32_t TIM5_OR;			/**/
-
-}General_Purpose_Timers_2_5_RegDef_t;
-
-
-
-#define TIM2	( ( General_Purpose_Timers_2_5_RegDef_t*) TIM2_BASEADDR )
-#define TIM3	( ( General_Purpose_Timers_2_5_RegDef_t*) TIM3_BASEADDR )
-#define TIM4	( ( General_Purpose_Timers_2_5_RegDef_t*) TIM4_BASEADDR )
-#define TIM5	( ( General_Purpose_Timers_2_5_RegDef_t*) TIM5_BASEADDR )
+#define TIM1	( ( TIM_RegDef_t*) TIM1_BASEADDR )
+#define TIM8	( ( TIM_RegDef_t*) TIM8_BASEADDR )
 
 /*>>>General Purpose Timers Structure<<<*/
 
-typedef struct{
+#define TIM2	( ( TIM_RegDef_t*) TIM2_BASEADDR )
+#define TIM3	( ( TIM_RegDef_t*) TIM3_BASEADDR )
+#define TIM4	( ( TIM_RegDef_t*) TIM4_BASEADDR )
+#define TIM5	( ( TIM_RegDef_t*) TIM5_BASEADDR )
 
-	__vo uint32_t CR1;					/**/
-	__vo uint32_t SMCR;					/**/
-	__vo uint32_t DIER;					/**/
-	__vo uint32_t SR;						/**/
-	__vo uint32_t EGR;					/**/
-	__vo uint32_t CCMR1;				/**/
-	__vo uint32_t RESERVED;			/**/
-	__vo uint32_t CCER;					/**/
-	__vo uint32_t CNT;					/**/
-	__vo uint32_t PSC;					/**/
-	__vo uint32_t ARR;					/**/
-	__vo uint32_t CCR1;					/**/
-	__vo uint32_t OR;						/**/
+/*>>>General Purpose Timers Structure<<<*/
 
-
-}General_Purpose_Timers_9_14_RegDef_t;
-
-
-#define TIM9	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM9_BASEADDR )
-#define TIM10	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM10_BASEADDR )
-#define TIM11	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM11_BASEADDR )
-#define TIM12	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM12_BASEADDR )
-#define TIM13	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM13_BASEADDR )
-#define TIM14	( ( General_Purpose_Timers_9_14_RegDef_t*) TIM14_BASEADDR )
+#define TIM9	( ( TIM_RegDef_t*) TIM9_BASEADDR )
+#define TIM10	( ( TIM_RegDef_t*) TIM10_BASEADDR )
+#define TIM11	( ( TIM_RegDef_t*) TIM11_BASEADDR )
+#define TIM12	( ( TIM_RegDef_t*) TIM12_BASEADDR )
+#define TIM13	( ( TIM_RegDef_t*) TIM13_BASEADDR )
+#define TIM14	( ( TIM_RegDef_t*) TIM14_BASEADDR )
 
 
 /*>>>Basic Timers Structure<<<*/
-
-typedef struct{
-
-	__vo uint32_t CR[2];							/**/
-	__vo uint32_t RESERVED0;				/**/
-	__vo uint32_t DIER;							/**/
-	__vo uint32_t SR;								/**/
-	__vo uint32_t EGR;							/**/
-	__vo uint32_t RESERVED1[3];			/**/
-	__vo uint32_t CNT;							/**/
-	__vo uint32_t PSC;							/**/
-	__vo uint32_t ARR;							/**/
-
-}Basic_Timers_RegDef_t;
-
-
-#define TIM6	( ( Basic_Timers_RegDef_t*) TIM6_BASEADDR )
-#define TIM7	( ( Basic_Timers_RegDef_t*) TIM7_BASEADDR )
+#define TIM6	( ( TIM_RegDef_t*) TIM6_BASEADDR )
+#define TIM7	( ( TIM_RegDef_t*) TIM7_BASEADDR )
 
 /*>>>Independent Watchdog Structure<<<*/
 

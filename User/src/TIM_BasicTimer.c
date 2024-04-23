@@ -14,19 +14,20 @@
 
 #include "stm32f446xx.h"
 #include "stm32f446xx_Gpio_Driver.h"
-#include "stm32f446xx_Timers.h"
+#include "stm32f446xx_Timers_Driver.h"
 
 
 /* Peripheral user definitions*/
 
-GPIO_Handle_t 			LED 				= { 0 };
-TIM_Basic_Handle_t 	htim_led		= { 0 };
+GPIO_Handle_t LED 				= { 0 };
+TIM_handle_t 	htim_led		= { 0 };
 
 void GPIO_configurations(void);
 void TIM_setup(void);
 
 void GPIO_configurations(){
-
+		
+	
 		LED.pGPIOx 																= NUCLEO_PORT_LED;
 		LED.GPIO_PinConfig.GPIO_PinNumber 				= NUCLEO_PIN_LED;
 		LED.GPIO_PinConfig.GPIO_PinMode 					= GPIO_MODE_OUTPUT;
@@ -40,18 +41,20 @@ void GPIO_configurations(){
 void TIM_setup(){
 	
 	htim_led.pTIMx 												= TIM6;
-	htim_led.TIM_TimeBase.TIM_Period 			= 63999;
+	htim_led.TIM_TimeBase.TIM_Period 			= 31890;
 	htim_led.TIM_TimeBase.TIM_Preescaler 	= 24;
 
-	TIM_Basic_TimeBase(&htim_led);
+	TIM_TimeBase_Init(&htim_led);
 
 }
 
 
 int main(void)
 {
-
+	
+	
 	GPIO_configurations();
+	
 	TIM_setup();
 	
 	TIM_Basic_Init(htim_led.pTIMx,ENABLE);

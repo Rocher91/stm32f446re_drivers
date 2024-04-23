@@ -59,9 +59,9 @@ void GPIO_configurations(){
 		Button.GPIO_PinConfig.GPIO_PinSpeed 			= GPIO_HIGH_SPEED;
 
 
-		GPIO_PerCLKControl( GPIOA , ENABLE);
-		GPIO_PerCLKControl( GPIOB , ENABLE);
-		GPIO_PerCLKControl( GPIOC , ENABLE);
+		//GPIO_PerCLKControl( GPIOA , ENABLE);
+		//GPIO_PerCLKControl( GPIOB , ENABLE);
+		//GPIO_PerCLKControl( GPIOC , ENABLE);
 
 		GPIO_Init( &PA5 );
 		GPIO_Init( &UserButton );
