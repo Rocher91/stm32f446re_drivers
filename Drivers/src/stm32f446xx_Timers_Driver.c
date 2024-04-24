@@ -129,182 +129,31 @@ void TIM_Basic_Init(TIM_RegDef_t* pTIMx,uint8_t enable){
 	}
 }
 
-void TIM_Basic_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable){
+void TIM_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable){
 
 	if(enable == ENABLE){
-		
-		if (IT_type == 1){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_UIE);
-		}
-		else if (IT_type == 2){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC1IE);
-		}
-		else if (IT_type == 3){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC2IE);
-		}
-		else if (IT_type == 4){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC3IE);
-		}
-		else if (IT_type == 5){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC4IE);
-		}
-		else if (IT_type == 6){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_COMIE);
-		}
-		else if (IT_type == 7){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_TIE);
-		}
-		else if (IT_type == 8){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_BIE);
-		}
-		else if (IT_type == 8){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_UDE);
-		}
-		else if (IT_type == 9){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC1DE);
-		}
-		else if (IT_type == 10){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC2DE);
-		}
-		else if (IT_type == 11){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC3DE);
-		}
-		else if (IT_type == 12){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_CC4DE);
-		}
-		else if (IT_type == 13){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_COMDE);
-		}
-		else if (IT_type == 14){
-			
-			pTIMx->DIER |= (0x01 << TIMx_DIER_TDE);
-		}
-		
-		
+			pTIMx->DIER |= (IT_type);
 	}
 	else if ( enable == DISABLE){
-		
-		if (IT_type == 1){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_UIE);
-		}
-		else if (IT_type == 2){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC1IE);
-		}
-		else if (IT_type == 3){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC2IE);
-		}
-		else if (IT_type == 4){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC3IE);
-		}
-		else if (IT_type == 5){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC4IE);
-		}
-		else if (IT_type == 6){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_COMIE);
-		}
-		else if (IT_type == 7){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_TIE);
-		}
-		else if (IT_type == 8){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_BIE);
-		}
-		else if (IT_type == 8){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_UDE);
-		}
-		else if (IT_type == 9){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC1DE);
-		}
-		else if (IT_type == 10){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC2DE);
-		}
-		else if (IT_type == 11){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC3DE);
-		}
-		else if (IT_type == 12){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_CC4DE);
-		}
-		else if (IT_type == 13){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_COMDE);
-		}
-		else if (IT_type == 14){
-			
-			pTIMx->DIER &= (uint32_t)~(0x01 << TIMx_DIER_TDE);
-		}
-		
+			pTIMx->DIER &= (uint32_t)~(IT_type);
 	}
+
 }
-
-
-
-
-
 
 
 void TIM_IRQHandling( TIM_handle_t *pTIMHandle ){
-	
-	uint8_t i =0;
-	
-	uint8_t list[] = { 	
-											TIMx_DIER_UIE ,TIMx_DIER_CC1IE , TIMx_DIER_CC2IE , TIMx_DIER_CC3IE , TIMx_DIER_CC4IE , TIMx_DIER_COMIE , 
-											TIMx_DIER_TIE , TIMx_DIER_BIE , TIMx_DIER_UDE , TIMx_DIER_CC1DE , TIMx_DIER_CC2DE , TIMx_DIER_CC3DE , 
-											TIMx_DIER_CC4DE , TIMx_DIER_COMDE , TIMx_DIER_TDE 
-										};
-	
-	for (i=0;i<15;i++){
-			
-		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << list[i])) ){
+
+		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << TIMx_DIER_UIE)) ){
 			TIM_ClearITPendingBit( pTIMHandle->pTIMx, TIMx_DIER_UIE);
-			
+			TIM_EventCallback( pTIMHandle, TIM_EVENT_UI);
 		}
-	}
 	
 }
 
-void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t FlagName){
-	
-	uint8_t i =0;
-	
-	uint8_t list[] = { 	
-											TIMx_SR_UIF ,TIMx_SR_CC1IF , TIMx_SR_CC2IF , TIMx_SR_CC3IF , TIMx_SR_CC4IF , TIMx_SR_COMIF , 
-											TIMx_SR_TIF , TIMx_SR_BIF , TIMx_SR_CC1OF , TIMx_SR_CC2OF , TIMx_SR_CC3OF , TIMx_SR_CC4OF  
-										};
-	
-	for (i=0;i<12;i++){
-			
-		if ( FlagName == (0x01 << list[i]) ){
-			pTIMx->SR &= (uint32_t)~( 0X01 << list[i]);
-		}						
-	}								
-										
-		
+void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t TIM_IT){
+
+	pTIMx->SR &= (uint16_t)~( TIM_IT );
+							
 }
 uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t IT_type){
 	
@@ -324,7 +173,7 @@ uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t IT_type){
 
 
 
-__attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
+__attribute__((weak)) void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
 
 }
 
