@@ -54,7 +54,7 @@ Section Cross References
     stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_ClockController) refers to stm32f446xx_timers_driver.o(.text.TIM_ClockController) for [Anonymous Symbol]
     stm32f446xx_timers_driver.o(.text.TIM_TimeBase_Init) refers to stm32f446xx_timers_driver.o(.text.TIM_ClockController) for TIM_ClockController
     stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_TimeBase_Init) refers to stm32f446xx_timers_driver.o(.text.TIM_TimeBase_Init) for [Anonymous Symbol]
-    stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_Basic_Init) refers to stm32f446xx_timers_driver.o(.text.TIM_Basic_Init) for [Anonymous Symbol]
+    stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_Init) refers to stm32f446xx_timers_driver.o(.text.TIM_Init) for [Anonymous Symbol]
     stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_ITConfig) refers to stm32f446xx_timers_driver.o(.text.TIM_ITConfig) for [Anonymous Symbol]
     stm32f446xx_timers_driver.o(.text.TIM_IRQHandling) refers to stm32f446xx_timers_driver.o(.text.TIM_GetStatus) for TIM_GetStatus
     stm32f446xx_timers_driver.o(.text.TIM_IRQHandling) refers to stm32f446xx_timers_driver.o(.text.TIM_ClearITPendingBit) for TIM_ClearITPendingBit
@@ -76,11 +76,13 @@ Section Cross References
     tim_basictimerit.o(.text.main) refers to tim_basictimerit.o(.text.TIM_setup) for TIM_setup
     tim_basictimerit.o(.text.main) refers to tim_basictimerit.o(.bss.htim_led) for htim_led
     tim_basictimerit.o(.text.main) refers to stm32f446xx_timers_driver.o(.text.TIM_ITConfig) for TIM_ITConfig
-    tim_basictimerit.o(.text.main) refers to stm32f446xx_timers_driver.o(.text.TIM_Basic_Init) for TIM_Basic_Init
+    tim_basictimerit.o(.text.main) refers to stm32f446xx_timers_driver.o(.text.TIM_Init) for TIM_Init
     tim_basictimerit.o(.text.main) refers to stm32f446xx_nvic.o(.text.IRQInterruptConfig) for IRQInterruptConfig
     tim_basictimerit.o(.ARM.exidx.text.main) refers to tim_basictimerit.o(.text.main) for [Anonymous Symbol]
     tim_basictimerit.o(.text.TIM6_DAC_IRQHandler) refers to tim_basictimerit.o(.bss.htim_led) for htim_led
     tim_basictimerit.o(.text.TIM6_DAC_IRQHandler) refers to stm32f446xx_timers_driver.o(.text.TIM_IRQHandling) for TIM_IRQHandling
+    tim_basictimerit.o(.text.TIM6_DAC_IRQHandler) refers to tim_basictimerit.o(.bss.LED) for LED
+    tim_basictimerit.o(.text.TIM6_DAC_IRQHandler) refers to stm32f446xx_gpio_driver.o(.text.GPIO_ToggleOutputPin) for GPIO_ToggleOutputPin
     tim_basictimerit.o(.ARM.exidx.text.TIM6_DAC_IRQHandler) refers to tim_basictimerit.o(.text.TIM6_DAC_IRQHandler) for [Anonymous Symbol]
     tim_basictimerit.o(.text.TIM_EventCallback) refers to tim_basictimerit.o(.bss.LED) for LED
     tim_basictimerit.o(.text.TIM_EventCallback) refers to stm32f446xx_gpio_driver.o(.text.GPIO_ToggleOutputPin) for GPIO_ToggleOutputPin
@@ -231,7 +233,6 @@ Removing Unused input sections from the image.
     Removing stm32f446xx_gpio_driver.o(.ARM.exidx.text.GPIO_WriteTouOutPutPin), (8 bytes).
     Removing stm32f446xx_gpio_driver.o(.text.GPIO_WriteTouOutPutPort), (22 bytes).
     Removing stm32f446xx_gpio_driver.o(.ARM.exidx.text.GPIO_WriteTouOutPutPort), (8 bytes).
-    Removing stm32f446xx_gpio_driver.o(.text.GPIO_ToggleOutputPin), (32 bytes).
     Removing stm32f446xx_gpio_driver.o(.ARM.exidx.text.GPIO_ToggleOutputPin), (8 bytes).
     Removing stm32f446xx_gpio_driver.o(.text.GPIO_IRQInterruptConfig), (312 bytes).
     Removing stm32f446xx_gpio_driver.o(.ARM.exidx.text.GPIO_IRQInterruptConfig), (8 bytes).
@@ -285,7 +286,7 @@ Removing Unused input sections from the image.
     Removing stm32f446xx_timers_driver.o(.text), (0 bytes).
     Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_ClockController), (8 bytes).
     Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_TimeBase_Init), (8 bytes).
-    Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_Basic_Init), (8 bytes).
+    Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_Init), (8 bytes).
     Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_ITConfig), (8 bytes).
     Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_IRQHandling), (8 bytes).
     Removing stm32f446xx_timers_driver.o(.ARM.exidx.text.TIM_GetStatus), (8 bytes).
@@ -312,7 +313,7 @@ Removing Unused input sections from the image.
     Removing system_stm32f4xx.o(.rodata.AHBPrescTable), (16 bytes).
     Removing system_stm32f4xx.o(.rodata.APBPrescTable), (8 bytes).
 
-100 unused section(s) (total 5350 bytes) removed from the image.
+99 unused section(s) (total 5318 bytes) removed from the image.
 
 ==============================================================================
 
@@ -446,22 +447,23 @@ Image Symbol Table
     .text                                    0x080004f2   Section        0  sys_wrch.o(.text)
     [Anonymous Symbol]                       0x08000500   Section        0  stm32f446xx_gpio_driver.o(.text.GPIO_Init)
     [Anonymous Symbol]                       0x08000854   Section        0  stm32f446xx_gpio_driver.o(.text.GPIO_PerCLKControl)
-    [Anonymous Symbol]                       0x08000ab8   Section        0  tim_basictimerit.o(.text.GPIO_configurations)
-    [Anonymous Symbol]                       0x08000ae4   Section        0  stm32f446xx_nvic.o(.text.IRQInterruptConfig)
-    [Anonymous Symbol]                       0x08000c1c   Section        0  system_stm32f4xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000c30   Section        0  tim_basictimerit.o(.text.TIM6_DAC_IRQHandler)
-    [Anonymous Symbol]                       0x08000c40   Section        0  stm32f446xx_timers_driver.o(.text.TIM_Basic_Init)
-    [Anonymous Symbol]                       0x08000c7c   Section        0  stm32f446xx_timers_driver.o(.text.TIM_ClearITPendingBit)
-    [Anonymous Symbol]                       0x08000c9c   Section        0  stm32f446xx_timers_driver.o(.text.TIM_ClockController)
-    [Anonymous Symbol]                       0x080010a4   Section        0  stm32f446xx_timers_driver.o(.text.TIM_EventCallback)
-    [Anonymous Symbol]                       0x080010b4   Section        0  stm32f446xx_timers_driver.o(.text.TIM_GetStatus)
-    [Anonymous Symbol]                       0x08001110   Section        0  stm32f446xx_timers_driver.o(.text.TIM_IRQHandling)
-    [Anonymous Symbol]                       0x08001140   Section        0  stm32f446xx_timers_driver.o(.text.TIM_ITConfig)
-    [Anonymous Symbol]                       0x08001188   Section        0  stm32f446xx_timers_driver.o(.text.TIM_TimeBase_Init)
-    [Anonymous Symbol]                       0x080011b8   Section        0  tim_basictimerit.o(.text.TIM_setup)
-    [Anonymous Symbol]                       0x080011dc   Section        0  tim_basictimerit.o(.text.main)
-    $v0                                      0x0800121c   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x0800121c   Section       26  fpinit.o(x$fpl$fpinit)
+    [Anonymous Symbol]                       0x08000ab8   Section        0  stm32f446xx_gpio_driver.o(.text.GPIO_ToggleOutputPin)
+    [Anonymous Symbol]                       0x08000ad8   Section        0  tim_basictimerit.o(.text.GPIO_configurations)
+    [Anonymous Symbol]                       0x08000b04   Section        0  stm32f446xx_nvic.o(.text.IRQInterruptConfig)
+    [Anonymous Symbol]                       0x08000c3c   Section        0  system_stm32f4xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000c50   Section        0  tim_basictimerit.o(.text.TIM6_DAC_IRQHandler)
+    [Anonymous Symbol]                       0x08000c70   Section        0  stm32f446xx_timers_driver.o(.text.TIM_ClearITPendingBit)
+    [Anonymous Symbol]                       0x08000c90   Section        0  stm32f446xx_timers_driver.o(.text.TIM_ClockController)
+    [Anonymous Symbol]                       0x08001098   Section        0  stm32f446xx_timers_driver.o(.text.TIM_EventCallback)
+    [Anonymous Symbol]                       0x080010a8   Section        0  stm32f446xx_timers_driver.o(.text.TIM_GetStatus)
+    [Anonymous Symbol]                       0x08001104   Section        0  stm32f446xx_timers_driver.o(.text.TIM_IRQHandling)
+    [Anonymous Symbol]                       0x08001134   Section        0  stm32f446xx_timers_driver.o(.text.TIM_ITConfig)
+    [Anonymous Symbol]                       0x08001188   Section        0  stm32f446xx_timers_driver.o(.text.TIM_Init)
+    [Anonymous Symbol]                       0x080011c4   Section        0  stm32f446xx_timers_driver.o(.text.TIM_TimeBase_Init)
+    [Anonymous Symbol]                       0x080011f4   Section        0  tim_basictimerit.o(.text.TIM_setup)
+    [Anonymous Symbol]                       0x08001218   Section        0  tim_basictimerit.o(.text.main)
+    $v0                                      0x08001258   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08001258   Section       26  fpinit.o(x$fpl$fpinit)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
     Heap_Mem                                 0x20000078   Data         512  startup_stm32f446xx.o(HEAP)
     HEAP                                     0x20000078   Section      512  startup_stm32f446xx.o(HEAP)
@@ -674,25 +676,26 @@ Image Symbol Table
     _ttywrch                                 0x080004f3   Thumb Code    14  sys_wrch.o(.text)
     GPIO_Init                                0x08000501   Thumb Code   852  stm32f446xx_gpio_driver.o(.text.GPIO_Init)
     GPIO_PerCLKControl                       0x08000855   Thumb Code   612  stm32f446xx_gpio_driver.o(.text.GPIO_PerCLKControl)
-    GPIO_configurations                      0x08000ab9   Thumb Code    42  tim_basictimerit.o(.text.GPIO_configurations)
-    IRQInterruptConfig                       0x08000ae5   Thumb Code   312  stm32f446xx_nvic.o(.text.IRQInterruptConfig)
-    SystemInit                               0x08000c1d   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
-    TIM6_DAC_IRQHandler                      0x08000c31   Thumb Code    16  tim_basictimerit.o(.text.TIM6_DAC_IRQHandler)
-    TIM_Basic_Init                           0x08000c41   Thumb Code    60  stm32f446xx_timers_driver.o(.text.TIM_Basic_Init)
-    TIM_ClearITPendingBit                    0x08000c7d   Thumb Code    30  stm32f446xx_timers_driver.o(.text.TIM_ClearITPendingBit)
-    TIM_ClockController                      0x08000c9d   Thumb Code  1032  stm32f446xx_timers_driver.o(.text.TIM_ClockController)
-    TIM_EventCallback                        0x080010a5   Thumb Code    14  stm32f446xx_timers_driver.o(.text.TIM_EventCallback)
-    TIM_GetStatus                            0x080010b5   Thumb Code    92  stm32f446xx_timers_driver.o(.text.TIM_GetStatus)
-    TIM_IRQHandling                          0x08001111   Thumb Code    48  stm32f446xx_timers_driver.o(.text.TIM_IRQHandling)
-    TIM_ITConfig                             0x08001141   Thumb Code    72  stm32f446xx_timers_driver.o(.text.TIM_ITConfig)
-    TIM_TimeBase_Init                        0x08001189   Thumb Code    48  stm32f446xx_timers_driver.o(.text.TIM_TimeBase_Init)
-    TIM_setup                                0x080011b9   Thumb Code    36  tim_basictimerit.o(.text.TIM_setup)
-    main                                     0x080011dd   Thumb Code    64  tim_basictimerit.o(.text.main)
-    _fp_init                                 0x0800121d   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08001235   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08001235   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x08001238   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001248   Number         0  anon$$obj.o(Region$$Table)
+    GPIO_ToggleOutputPin                     0x08000ab9   Thumb Code    32  stm32f446xx_gpio_driver.o(.text.GPIO_ToggleOutputPin)
+    GPIO_configurations                      0x08000ad9   Thumb Code    42  tim_basictimerit.o(.text.GPIO_configurations)
+    IRQInterruptConfig                       0x08000b05   Thumb Code   312  stm32f446xx_nvic.o(.text.IRQInterruptConfig)
+    SystemInit                               0x08000c3d   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
+    TIM6_DAC_IRQHandler                      0x08000c51   Thumb Code    32  tim_basictimerit.o(.text.TIM6_DAC_IRQHandler)
+    TIM_ClearITPendingBit                    0x08000c71   Thumb Code    30  stm32f446xx_timers_driver.o(.text.TIM_ClearITPendingBit)
+    TIM_ClockController                      0x08000c91   Thumb Code  1032  stm32f446xx_timers_driver.o(.text.TIM_ClockController)
+    TIM_EventCallback                        0x08001099   Thumb Code    14  stm32f446xx_timers_driver.o(.text.TIM_EventCallback)
+    TIM_GetStatus                            0x080010a9   Thumb Code    92  stm32f446xx_timers_driver.o(.text.TIM_GetStatus)
+    TIM_IRQHandling                          0x08001105   Thumb Code    46  stm32f446xx_timers_driver.o(.text.TIM_IRQHandling)
+    TIM_ITConfig                             0x08001135   Thumb Code    84  stm32f446xx_timers_driver.o(.text.TIM_ITConfig)
+    TIM_Init                                 0x08001189   Thumb Code    60  stm32f446xx_timers_driver.o(.text.TIM_Init)
+    TIM_TimeBase_Init                        0x080011c5   Thumb Code    48  stm32f446xx_timers_driver.o(.text.TIM_TimeBase_Init)
+    TIM_setup                                0x080011f5   Thumb Code    36  tim_basictimerit.o(.text.TIM_setup)
+    main                                     0x08001219   Thumb Code    64  tim_basictimerit.o(.text.main)
+    _fp_init                                 0x08001259   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08001271   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08001271   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x08001274   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001284   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     LED                                      0x20000060   Data          12  tim_basictimerit.o(.bss.LED)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
@@ -706,9 +709,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000255
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00001248, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00001284, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001248, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001284, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -778,35 +781,37 @@ Memory Map of the image
     0x080004f2   0x080004f2   0x0000000e   Code   RO          313    .text               c_w.l(sys_wrch.o)
     0x08000500   0x08000500   0x00000354   Code   RO           17    .text.GPIO_Init     stm32f446xx_gpio_driver.o
     0x08000854   0x08000854   0x00000264   Code   RO           15    .text.GPIO_PerCLKControl  stm32f446xx_gpio_driver.o
-    0x08000ab8   0x08000ab8   0x0000002a   Code   RO          129    .text.GPIO_configurations  tim_basictimerit.o
-    0x08000ae2   0x08000ae2   0x00000002   PAD
-    0x08000ae4   0x08000ae4   0x00000138   Code   RO          116    .text.IRQInterruptConfig  stm32f446xx_nvic.o
-    0x08000c1c   0x08000c1c   0x00000012   Code   RO          157    .text.SystemInit    system_stm32f4xx.o
-    0x08000c2e   0x08000c2e   0x00000002   PAD
-    0x08000c30   0x08000c30   0x00000010   Code   RO          135    .text.TIM6_DAC_IRQHandler  tim_basictimerit.o
-    0x08000c40   0x08000c40   0x0000003c   Code   RO           97    .text.TIM_Basic_Init  stm32f446xx_timers_driver.o
-    0x08000c7c   0x08000c7c   0x0000001e   Code   RO          105    .text.TIM_ClearITPendingBit  stm32f446xx_timers_driver.o
-    0x08000c9a   0x08000c9a   0x00000002   PAD
-    0x08000c9c   0x08000c9c   0x00000408   Code   RO           93    .text.TIM_ClockController  stm32f446xx_timers_driver.o
-    0x080010a4   0x080010a4   0x0000000e   Code   RO          107    .text.TIM_EventCallback  stm32f446xx_timers_driver.o
-    0x080010b2   0x080010b2   0x00000002   PAD
-    0x080010b4   0x080010b4   0x0000005c   Code   RO          103    .text.TIM_GetStatus  stm32f446xx_timers_driver.o
-    0x08001110   0x08001110   0x00000030   Code   RO          101    .text.TIM_IRQHandling  stm32f446xx_timers_driver.o
-    0x08001140   0x08001140   0x00000048   Code   RO           99    .text.TIM_ITConfig  stm32f446xx_timers_driver.o
-    0x08001188   0x08001188   0x00000030   Code   RO           95    .text.TIM_TimeBase_Init  stm32f446xx_timers_driver.o
-    0x080011b8   0x080011b8   0x00000024   Code   RO          131    .text.TIM_setup     tim_basictimerit.o
-    0x080011dc   0x080011dc   0x00000040   Code   RO          133    .text.main          tim_basictimerit.o
-    0x0800121c   0x0800121c   0x0000001a   Code   RO          261    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08001236   0x08001236   0x00000002   PAD
-    0x08001238   0x08001238   0x00000010   Data   RO          336    Region$$Table       anon$$obj.o
+    0x08000ab8   0x08000ab8   0x00000020   Code   RO           29    .text.GPIO_ToggleOutputPin  stm32f446xx_gpio_driver.o
+    0x08000ad8   0x08000ad8   0x0000002a   Code   RO          129    .text.GPIO_configurations  tim_basictimerit.o
+    0x08000b02   0x08000b02   0x00000002   PAD
+    0x08000b04   0x08000b04   0x00000138   Code   RO          116    .text.IRQInterruptConfig  stm32f446xx_nvic.o
+    0x08000c3c   0x08000c3c   0x00000012   Code   RO          157    .text.SystemInit    system_stm32f4xx.o
+    0x08000c4e   0x08000c4e   0x00000002   PAD
+    0x08000c50   0x08000c50   0x00000020   Code   RO          135    .text.TIM6_DAC_IRQHandler  tim_basictimerit.o
+    0x08000c70   0x08000c70   0x0000001e   Code   RO          105    .text.TIM_ClearITPendingBit  stm32f446xx_timers_driver.o
+    0x08000c8e   0x08000c8e   0x00000002   PAD
+    0x08000c90   0x08000c90   0x00000408   Code   RO           93    .text.TIM_ClockController  stm32f446xx_timers_driver.o
+    0x08001098   0x08001098   0x0000000e   Code   RO          107    .text.TIM_EventCallback  stm32f446xx_timers_driver.o
+    0x080010a6   0x080010a6   0x00000002   PAD
+    0x080010a8   0x080010a8   0x0000005c   Code   RO          103    .text.TIM_GetStatus  stm32f446xx_timers_driver.o
+    0x08001104   0x08001104   0x0000002e   Code   RO          101    .text.TIM_IRQHandling  stm32f446xx_timers_driver.o
+    0x08001132   0x08001132   0x00000002   PAD
+    0x08001134   0x08001134   0x00000054   Code   RO           99    .text.TIM_ITConfig  stm32f446xx_timers_driver.o
+    0x08001188   0x08001188   0x0000003c   Code   RO           97    .text.TIM_Init      stm32f446xx_timers_driver.o
+    0x080011c4   0x080011c4   0x00000030   Code   RO           95    .text.TIM_TimeBase_Init  stm32f446xx_timers_driver.o
+    0x080011f4   0x080011f4   0x00000024   Code   RO          131    .text.TIM_setup     tim_basictimerit.o
+    0x08001218   0x08001218   0x00000040   Code   RO          133    .text.main          tim_basictimerit.o
+    0x08001258   0x08001258   0x0000001a   Code   RO          261    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08001272   0x08001272   0x00000002   PAD
+    0x08001274   0x08001274   0x00000010   Data   RO          336    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08001248, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08001284, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x08001248, Size: 0x00000678, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x08001284, Size: 0x00000678, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -825,16 +830,16 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         64         26        452          0       1536        896   startup_stm32f446xx.o
-      1464          0          0          0          0       5576   stm32f446xx_gpio_driver.o
+      1496          0          0          0          0       5576   stm32f446xx_gpio_driver.o
        312          0          0          0          0       1450   stm32f446xx_nvic.o
-      1396          0          0          0          0       4175   stm32f446xx_timers_driver.o
+      1406          0          0          0          0       4175   stm32f446xx_timers_driver.o
         18          0          0          0          0       2762   system_stm32f4xx.o
-       158          0          0          0         24       2699   tim_basictimerit.o
+       174          0          0          0         24       2707   tim_basictimerit.o
 
     ----------------------------------------------------------------------
-      3420         26        468          0       1560      17558   Object Totals
+      3480         26        468          0       1560      17566   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-         8          0          0          0          0          0   (incl. Padding)
+        10          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -891,15 +896,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4212        100        468          0       1656      18286   Grand Totals
-      4212        100        468          0       1656      18286   ELF Image Totals
-      4212        100        468          0          0          0   ROM Totals
+      4272        100        468          0       1656      18294   Grand Totals
+      4272        100        468          0       1656      18294   ELF Image Totals
+      4272        100        468          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4680 (   4.57kB)
+    Total RO  Size (Code + RO Data)                 4740 (   4.63kB)
     Total RW  Size (RW Data + ZI Data)              1656 (   1.62kB)
-    Total ROM Size (Code + RO Data + RW Data)       4680 (   4.57kB)
+    Total ROM Size (Code + RO Data + RW Data)       4740 (   4.63kB)
 
 ==============================================================================
 

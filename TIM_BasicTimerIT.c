@@ -55,13 +55,12 @@ void TIM_setup(){
 int main(void)
 {
 	
-	
 	GPIO_configurations();
 	
 	TIM_setup();
 	
 	TIM_ITConfig(htim_led.pTIMx,TIM_EVENT_UI,ENABLE);
-	TIM_Basic_Init(htim_led.pTIMx,ENABLE);
+	TIM_Init(htim_led.pTIMx,ENABLE);
 	
 	IRQInterruptConfig(IRQ_TIM6_DAC,ENABLE);
 	
@@ -72,6 +71,7 @@ int main(void)
 void TIM6_DAC_IRQHandler(void){
 	
 	TIM_IRQHandling(&htim_led);
+	GPIO_ToggleOutputPin(LED.pGPIOx,NUCLEO_PIN_LED);
 }
 
 void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){

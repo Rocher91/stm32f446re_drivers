@@ -102,8 +102,6 @@ void TIM_ClockController( TIM_RegDef_t *pTIMx, uint8_t Enable_Disable ){
 
 
 
-
-
 void TIM_TimeBase_Init(TIM_handle_t* pTIMHandle){
 
 	
@@ -115,7 +113,7 @@ void TIM_TimeBase_Init(TIM_handle_t* pTIMHandle){
 	
 }
 
-void TIM_Basic_Init(TIM_RegDef_t* pTIMx,uint8_t enable){
+void TIM_Init(TIM_RegDef_t* pTIMx,uint8_t enable){
 
 	if (enable == ENABLE){
 		
@@ -132,10 +130,10 @@ void TIM_Basic_Init(TIM_RegDef_t* pTIMx,uint8_t enable){
 void TIM_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable){
 
 	if(enable == ENABLE){
-			pTIMx->DIER |= (IT_type);
+			pTIMx->DIER |= (0x01 << IT_type);
 	}
 	else if ( enable == DISABLE){
-			pTIMx->DIER &= (uint32_t)~(IT_type);
+			pTIMx->DIER &= (uint32_t)~(0x01 << IT_type);
 	}
 
 }
@@ -144,7 +142,7 @@ void TIM_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable){
 void TIM_IRQHandling( TIM_handle_t *pTIMHandle ){
 
 		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << TIMx_DIER_UIE)) ){
-			TIM_ClearITPendingBit( pTIMHandle->pTIMx, TIMx_DIER_UIE);
+			TIM_ClearITPendingBit( pTIMHandle->pTIMx, (uint16_t)(0x01 << TIMx_DIER_UIE));
 			TIM_EventCallback( pTIMHandle, TIM_EVENT_UI);
 		}
 	
@@ -155,13 +153,13 @@ void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t TIM_IT){
 	pTIMx->SR &= (uint16_t)~( TIM_IT );
 							
 }
-uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t IT_type){
+uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT){
 	
 	uint16_t IT_STatus = 0;
 	uint16_t IT_Enable = 0;
 	
-	IT_STatus = ( pTIMx->SR & IT_type );
-	IT_Enable = ( pTIMx->DIER & IT_type );
+	IT_STatus = ( pTIMx->SR & TIM_IT );
+	IT_Enable = ( pTIMx->DIER & TIM_IT );
 	
 	
 	if (IT_STatus != (uint16_t)0x00 && IT_Enable != (uint16_t)0x00 )
@@ -173,7 +171,10 @@ uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t IT_type){
 
 
 
-__attribute__((weak)) void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
+
+
+__attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
+
 
 }
 
