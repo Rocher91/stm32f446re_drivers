@@ -418,6 +418,16 @@
               <FileType>5</FileType>
               <FilePath>.\Drivers\inc\stm32f446xx_NVIC.h</FilePath>
             </File>
+            <File>
+              <FileName>stm32f446xx_I2C_Driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f446xx_I2C_Driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f446xx_I2C_Driver.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\stm32f446xx_I2C_Driver.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

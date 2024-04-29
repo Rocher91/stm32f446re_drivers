@@ -22,56 +22,83 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\xavier.rocher\Documents\Projects\FW\stm32f446re_drivers\stm32f446re.uvprojx
-Project File Date:  04/24/2024
+Project File Date:  04/29/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-TIM_BasicTimerIT.c(16): warning: In file included from...
-./Drivers/inc\stm32f446xx_NVIC.h(10): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-TIM_BasicTimerIT.c(18): warning: In file included from...
+compiling stm32f446xx_I2C_Driver.c...
+Drivers/src/stm32f446xx_Timers_Driver.c(3): warning: In file included from...
 ./Drivers/inc\stm32f446xx_Timers_Driver.h(215): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-TIM_BasicTimerIT.c(24): warning: no previous extern declaration for non-static variable 'LED' [-Wmissing-variable-declarations]
-GPIO_Handle_t LED                               = { 0 };
-              ^
-TIM_BasicTimerIT.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-GPIO_Handle_t LED                               = { 0 };
-^
-TIM_BasicTimerIT.c(17): warning: In file included from...
-./Drivers/inc\stm32f446xx_Gpio_Driver.h(27): warning: padding size of 'GPIO_Handle_t' with 2 bytes to alignment boundary [-Wpadded]
-typedef struct{
-        ^
-TIM_BasicTimerIT.c(25): warning: no previous extern declaration for non-static variable 'htim_led' [-Wmissing-variable-declarations]
-TIM_handle_t    htim_led                = { 0 };
-                ^
-TIM_BasicTimerIT.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-TIM_handle_t    htim_led                = { 0 };
-^
-TIM_BasicTimerIT.c(18): warning: In file included from...
+Drivers/src/stm32f446xx_Timers_Driver.c(4): warning: In file included from...
+./Drivers/inc\stm32f446xx_NVIC.h(10): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+Drivers/src/stm32f446xx_Timers_Driver.c(60): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM2_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(537): note: expanded from macro 'TIM2_PCLCK_DIS'
+#define TIM2_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 0)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(63): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM3_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(538): note: expanded from macro 'TIM3_PCLCK_DIS'
+#define TIM3_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 1)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(66): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM4_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(539): note: expanded from macro 'TIM4_PCLCK_DIS'
+#define TIM4_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 2)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(69): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM5_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(540): note: expanded from macro 'TIM5_PCLCK_DIS'
+#define TIM5_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 3)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(72): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM6_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(541): note: expanded from macro 'TIM6_PCLCK_DIS'
+#define TIM6_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 4)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(75): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM7_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(542): note: expanded from macro 'TIM7_PCLCK_DIS'
+#define TIM7_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 5)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(90): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM12_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(543): note: expanded from macro 'TIM12_PCLCK_DIS'
+#define TIM12_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 6)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(93): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM13_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(544): note: expanded from macro 'TIM13_PCLCK_DIS'
+#define TIM13_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 7)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(96): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                        TIM14_PCLCK_DIS();
+                        ^~~~~~~~~~~~~~~~~
+./Drivers/inc/stm32f446xx.h(545): note: expanded from macro 'TIM14_PCLCK_DIS'
+#define TIM14_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 8)
+                                                     ~~ ^~~~~~~~~~~~
+Drivers/src/stm32f446xx_Timers_Driver.c(3): warning: In file included from...
 ./Drivers/inc\stm32f446xx_Timers_Driver.h(8): warning: padding struct 'TIM_TimeBase_t' with 2 bytes to align 'TIM_Period' [-Wpadded]
         uint32_t TIM_Period;
                  ^
-TIM_BasicTimerIT.c(71): warning: no previous prototype for function 'TIM6_DAC_IRQHandler' [-Wmissing-prototypes]
-void TIM6_DAC_IRQHandler(void){
-     ^
-TIM_BasicTimerIT.c(71): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void TIM6_DAC_IRQHandler(void){
-^
-static 
-TIM_BasicTimerIT.c(77): warning: unused parameter 'pTIMHandle' [-Wunused-parameter]
-void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
-                                     ^
-8 warnings generated.
-compiling TIM_BasicTimerIT.c...
+12 warnings generated.
+compiling stm32f446xx_Timers_Driver.c...
 linking...
-.\Objects\stm32f446re.axf: Warning: L6439W: Multiply defined Global Symbol TIM_EventCallback defined in .text.TIM_EventCallback(tim_basictimerit.o) rejected in favor of Symbol defined in .text.TIM_EventCallback(stm32f446xx_timers_driver.o).
-Program Size: Code=4272 RO-data=468 RW-data=0 ZI-data=1656  
-Finished: 0 information, 1 warning and 0 error messages.
-".\Objects\stm32f446re.axf" - 0 Error(s), 9 Warning(s).
+Program Size: Code=4208 RO-data=468 RW-data=0 ZI-data=1656  
+".\Objects\stm32f446re.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -97,12 +124,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-      Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -1,6 +1,4 @@
 
-#ifndef INC_STM32F446XX_TIMERS_DRIVER_H_
-#define INC_STM32F446XX_TIMERS_DRIVER_H_
 
 #include "stm32f446xx_Timers_Driver.h"
 #include "stm32f446xx_NVIC.h"
@@ -173,10 +171,7 @@ uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT){
 
 
 
-__attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
 
 
-}
 
-#endif
 

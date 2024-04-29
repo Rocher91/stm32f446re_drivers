@@ -71,7 +71,7 @@ int main(void)
 void TIM6_DAC_IRQHandler(void){
 	
 	TIM_IRQHandling(&htim_led);
-	GPIO_ToggleOutputPin(LED.pGPIOx,NUCLEO_PIN_LED);
+
 }
 
 void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
