@@ -35,14 +35,14 @@ typedef enum{
 
 void TIM_ClockController(TIM_RegDef_t* pTIMx,uint8_t enable);
 void TIM_TimeBase_Init(TIM_handle_t* pTIM_Handle);
-void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t FlagName);
-uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t FlagName);
+void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t TIM_IT);
+uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT);
 void TIM_IRQHandling( TIM_handle_t *pTIMHandle );
 
 
-void TIM_Basic_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
-void TIM_Basic_DeInit(TIM_RegDef_t* pTIMx);
-void TIM_Basic_Init(TIM_RegDef_t* pTIMx,uint8_t enable);
+void TIM_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
+void TIM_DeInit(TIM_RegDef_t* pTIMx);
+void TIM_Init(TIM_RegDef_t* pTIMx,uint8_t enable);
 __attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
 
 
