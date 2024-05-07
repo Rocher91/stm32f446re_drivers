@@ -22,83 +22,112 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\xavier.rocher\Documents\Projects\FW\stm32f446re_drivers\stm32f446re.uvprojx
-Project File Date:  04/29/2024
+Project File Date:  05/07/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-compiling stm32f446xx_I2C_Driver.c...
-Drivers/src/stm32f446xx_Timers_Driver.c(3): warning: In file included from...
-./Drivers/inc\stm32f446xx_Timers_Driver.h(215): warning: no newline at end of file [-Wnewline-eof]
+stm32f446xx_Clocks.c(1): warning: In file included from...
+./stm32f446xx_Clocks.h(117): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-Drivers/src/stm32f446xx_Timers_Driver.c(4): warning: In file included from...
-./Drivers/inc\stm32f446xx_NVIC.h(10): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-Drivers/src/stm32f446xx_Timers_Driver.c(60): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM2_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(537): note: expanded from macro 'TIM2_PCLCK_DIS'
-#define TIM2_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 0)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(63): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM3_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(538): note: expanded from macro 'TIM3_PCLCK_DIS'
-#define TIM3_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 1)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(66): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM4_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(539): note: expanded from macro 'TIM4_PCLCK_DIS'
-#define TIM4_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 2)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(69): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM5_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(540): note: expanded from macro 'TIM5_PCLCK_DIS'
-#define TIM5_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 3)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(72): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM6_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(541): note: expanded from macro 'TIM6_PCLCK_DIS'
-#define TIM6_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 4)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(75): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM7_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(542): note: expanded from macro 'TIM7_PCLCK_DIS'
-#define TIM7_PCLCK_DIS()                RCC->APB1ENR &= ~(0x01 << 5)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(90): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM12_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(543): note: expanded from macro 'TIM12_PCLCK_DIS'
-#define TIM12_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 6)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(93): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM13_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(544): note: expanded from macro 'TIM13_PCLCK_DIS'
-#define TIM13_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 7)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(96): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-                        TIM14_PCLCK_DIS();
-                        ^~~~~~~~~~~~~~~~~
-./Drivers/inc/stm32f446xx.h(545): note: expanded from macro 'TIM14_PCLCK_DIS'
-#define TIM14_PCLCK_DIS()               RCC->APB1ENR &= ~(0x01 << 8)
-                                                     ~~ ^~~~~~~~~~~~
-Drivers/src/stm32f446xx_Timers_Driver.c(3): warning: In file included from...
-./Drivers/inc\stm32f446xx_Timers_Driver.h(8): warning: padding struct 'TIM_TimeBase_t' with 2 bytes to align 'TIM_Period' [-Wpadded]
-        uint32_t TIM_Period;
-                 ^
-12 warnings generated.
-compiling stm32f446xx_Timers_Driver.c...
+stm32f446xx_Clocks.c(26): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        RCC->CR &= ~( (1 << RCC_CR_HSEON) | (1 << RCC_HSE_BYP)| (1 << RCC_CR_CSSON) );
+                ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(45): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        RCC->BDCR &= ~( (1 << RCC_BDCR_LSEBYP) | (1 << RCC_BDCR_LSEON)| (1 << RCC_BDCR_LSEMOD) );
+                  ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(69): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_PLLCFGR = ( PLLM | ( PLLN<<RCC_PLLCFGR_PLLN )| (((PLLP>>1)-1)<<RCC_PLLCFGR_PLLP) | ( PLL_Source << RCC_PLLCFGR_PLLSRC) |(PLLQ<<RCC_PLLCFGR_PLLQ)|(PLLR<<RCC_PLLCFGR_PLLR) );
+                                                                                                  ~   ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(80): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                RCC->CR &= ~(1<<RCC_CR_HSION);
+                        ~~ ^~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(88): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                RCC->CR &= ~(1<<RCC_CSR_LSION);
+                        ~~ ^~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(97): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                RCC->CR &= ~(1<<RCC_CR_PLLON);
+                        ~~ ^~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(107): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR &= ~( 0x03 << RCC_CFGR_MCO1);
+                      ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(110): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR |= ( MCO1_Source << RCC_CFGR_MCO1);
+                      ~~   ~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(113): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR &= ~( 0x07 << RCC_CFGR_MCO1PRE);
+                      ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(116): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR |= ( MCO1_Prescaler << RCC_CFGR_MCO1PRE);
+                      ~~   ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(126): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
+        temp_RCC_CFGR &= ~( 0x03 << RCC_CFGR_MC02);
+                            ~~~~ ^  ~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(129): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR |= ( MCO2_Source << RCC_CFGR_MC02);
+                      ~~   ~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(132): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR &= ~( 0x07 << RCC_CFGR_MCO1PRE);
+                      ~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(135): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR |= ( MCO2_Prescaler << RCC_CFGR_MCO2PRE);
+                      ~~   ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(143): warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+                while(!RCC->CR & (1 << RCC_CR_HSIRDY));
+                      ^        ~
+stm32f446xx_Clocks.c(143): note: add parentheses after the '!' to evaluate the bitwise operator first
+                while(!RCC->CR & (1 << RCC_CR_HSIRDY));
+                      ^
+                       (                             )
+stm32f446xx_Clocks.c(143): note: add parentheses around left hand side expression to silence this warning
+                while(!RCC->CR & (1 << RCC_CR_HSIRDY));
+                      ^
+                      (       )
+stm32f446xx_Clocks.c(146): warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+                while(!RCC->CR & (1 << RCC_CR_HSERDY));
+                      ^        ~
+stm32f446xx_Clocks.c(146): note: add parentheses after the '!' to evaluate the bitwise operator first
+                while(!RCC->CR & (1 << RCC_CR_HSERDY));
+                      ^
+                       (                             )
+stm32f446xx_Clocks.c(146): note: add parentheses around left hand side expression to silence this warning
+                while(!RCC->CR & (1 << RCC_CR_HSERDY));
+                      ^
+                      (       )
+stm32f446xx_Clocks.c(149): warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+                while(!RCC->CR & (1 << RCC_CR_PLLRDY));
+                      ^        ~
+stm32f446xx_Clocks.c(149): note: add parentheses after the '!' to evaluate the bitwise operator first
+                while(!RCC->CR & (1 << RCC_CR_PLLRDY));
+                      ^
+                       (                             )
+stm32f446xx_Clocks.c(149): note: add parentheses around left hand side expression to silence this warning
+                while(!RCC->CR & (1 << RCC_CR_PLLRDY));
+                      ^
+                      (       )
+stm32f446xx_Clocks.c(156): warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+                while(!RCC->BDCR & (1 << RCC_BDCR_LSERDY));
+                      ^          ~
+stm32f446xx_Clocks.c(156): note: add parentheses after the '!' to evaluate the bitwise operator first
+                while(!RCC->BDCR & (1 << RCC_BDCR_LSERDY));
+                      ^
+                       (                                 )
+stm32f446xx_Clocks.c(156): note: add parentheses around left hand side expression to silence this warning
+                while(!RCC->BDCR & (1 << RCC_BDCR_LSERDY));
+                      ^
+                      (         )
+stm32f446xx_Clocks.c(165): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        temp_RCC_CFGR &= ~(0x03 << RCC_CFGR_SW);
+                      ~~ ^~~~~~~~~~~~~~~~~~~~~~
+stm32f446xx_Clocks.c(159): warning: unused parameter 'Sysclk_Src' [-Wunused-parameter]
+void RCC_SysclkConfig(RCC_SysClk_Source_t Sysclk_Src){
+                                          ^
+21 warnings generated.
+compiling stm32f446xx_Clocks.c...
 linking...
 Program Size: Code=4208 RO-data=468 RW-data=0 ZI-data=1656  
-".\Objects\stm32f446re.axf" - 0 Error(s), 12 Warning(s).
+".\Objects\stm32f446re.axf" - 0 Error(s), 21 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -124,12 +153,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
-      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

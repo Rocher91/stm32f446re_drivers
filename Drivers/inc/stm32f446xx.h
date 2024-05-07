@@ -25,6 +25,11 @@
 #define FLAG_RESET 	DISABLE
 
 
+__weak void assert_failed(uint8_t* file, uint32_t line);
+
+#define ASSERT_TRUE(expr)  	( (expr)? (void)0 : assert_failed((uint8_t*)__FILE__,__LINE__) )
+#define ASSERT_FALSE(expr)  ( (!expr)? (void)0 : assert_failed((uint8_t*)__FILE__,__LINE__) )
+
 #define GPIO_BASEADDR_TO_CODE( x ) 	(	( x == GPIOA )? 0 :\
 										( x == GPIOB )? 1 :\
 										( x == GPIOC )? 2 :\
@@ -322,6 +327,88 @@ typedef struct{
 #define RCC	( ( RCC_RegDef_t*) RCC_BASEADDR )
 
 
+#define RCC_CR_HSION			0
+#define RCC_CR_HSIRDY			1
+#define RCC_CR_HSITRIM		3
+#define RCC_CR_HSICAL			8
+#define RCC_CR_HSEON			16
+#define RCC_CR_HSERDY			17
+#define RCC_CR_HSEBYP			18
+#define RCC_CR_CSSON			19
+#define RCC_CR_PLLON			24
+#define RCC_CR_PLLRDY			25
+#define RCC_CR_PLLI2SON		26
+#define RCC_CR_PLLI2SRDY	27
+#define RCC_CR_PLLSAION		28
+#define RCC_CR_PLLSAIRDY	29
+
+
+#define RCC_CSR_LSION			0
+#define RCC_CSR_LSIRDY		1
+#define RCC_CSR_RMVF			24
+#define RCC_CSR_BORRSTF		25
+#define RCC_CSR_PINRSTF		26
+#define RCC_CSR_PORRSTF		27
+#define RCC_CSR_SFTRSTF		28
+#define RCC_CSR_IWDGRSTF	29
+#define RCC_CSR_WWDGRSTF	30
+#define RCC_CSR_LPWRRSTF	31
+
+
+#define RCC_PLLCFGR_PLLM		0
+#define RCC_PLLCFGR_PLLN		6
+#define RCC_PLLCFGR_PLLP		16
+#define RCC_PLLCFGR_PLLSRC	22
+#define RCC_PLLCFGR_PLLQ		24
+#define RCC_PLLCFGR_PLLR		28
+
+#define RCC_CFGR_SW					0
+#define RCC_CFGR_SWS				2
+#define RCC_CFGR_HPRE				4
+#define RCC_CFGR_PPRE1			10
+#define RCC_CFGR_PPRE2			13
+#define RCC_CFGR_RTCPRE			16
+#define RCC_CFGR_MCO1				21
+#define RCC_CFGR_MCO1PRE		24
+#define RCC_CFGR_MCO2PRE		27
+#define RCC_CFGR_MC02				30
+
+#define RCC_CIR_LSI_RDYF			0
+#define RCC_CIR_LSE_RDYF			1
+#define RCC_CIR_HSI_RDYF			2
+#define RCC_CIR_HSE_RDYF			3
+#define RCC_CIR_PLL_RDYF			4
+#define RCC_CIR_PLLI2S_RDYF		5
+#define RCC_CIR_PLLSAI_RDYF		6
+#define RCC_CIR_CSSF					7
+#define RCC_CIR_LSI_RDYIE			8
+#define RCC_CIR_LSE_RDYIE			9
+#define RCC_CIR_HSI_RDYIE			10
+#define RCC_CIR_HSE_RDYIE			11
+#define RCC_CIR_PLL_RDYIE			12
+#define RCC_CIR_PLLI2S_RDYIE	13
+#define RCC_CIR_PLLSAI_RDYIE	14
+#define RCC_CIR_LSI_RDYIC			16
+#define RCC_CIR_LSE_RDYIC			17
+#define RCC_CIR_HSI_RDYIC			18
+#define RCC_CIR_HSE_RDYIC			19
+#define RCC_CIR_PLL_RDYIC			20
+#define RCC_CIR_PLLI2S_RDYIC	21
+#define RCC_CIR_PLLSAI_RDYIC	22
+#define RCC_CIR_CSSC_RDYIC		23
+
+#define RCC_BDCR_LSEON				0
+#define RCC_BDCR_LSERDY				1
+#define RCC_BDCR_LSEBYP				2
+#define RCC_BDCR_LSEMOD				3
+#define RCC_BDCR_RTCSEL				8
+#define RCC_BDCR_RTCEN				15
+#define RCC_BDCR_BDRST				16
+
+
+
+
+
 // Clock Enable Macros for GPIOx peripherals
 
 #define GPIOA_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 0)
@@ -428,6 +515,25 @@ typedef struct{
 // Clock Enable Macros for PWR peripherals
 
 #define PWR_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 28)
+
+#define PWR_CR_LPDS			0
+#define PWR_CR_PDDS			1
+#define PWR_CR_CWUF			2
+#define PWR_CR_CSBF			3
+#define PWR_CR_PVDE			4
+#define PWR_CR_PLS			5
+#define PWR_CR_DBP			8
+#define PWR_CR_FPDS			9
+#define PWR_CR_LPUDS		10
+#define PWR_CR_MRUDS		11
+#define PWR_CR_ADCDC1		13
+#define PWR_CR_VOS			14
+#define PWR_CR_ODEN			16
+#define PWR_CR_ODSWEN		17
+#define PWR_CR_UDEN			18
+#define PWR_CR_FMSSR		20
+#define PWR_CR_FISSR		21
+
 
 // Clock Enable Macros for DAC peripherals
 

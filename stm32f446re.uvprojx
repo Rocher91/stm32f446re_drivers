@@ -399,11 +399,6 @@
               <FilePath>.\Drivers\src\stm32f446xx_SPI_Driver.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f446xx_Timers_Driver.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Drivers\inc\stm32f446xx_Timers_Driver.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f446xx_Timers_Driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Drivers\src\stm32f446xx_Timers_Driver.c</FilePath>
@@ -414,19 +409,19 @@
               <FilePath>.\Drivers\src\stm32f446xx_NVIC.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f446xx_NVIC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Drivers\inc\stm32f446xx_NVIC.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f446xx_I2C_Driver.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\stm32f446xx_I2C_Driver.c</FilePath>
+              <FilePath>.\Drivers\src\stm32f446xx_I2C_Driver.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f446xx_I2C_Driver.h</FileName>
+              <FileName>stm32f446xx_Clocks.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\stm32f446xx_I2C_Driver.h</FilePath>
+              <FilePath>.\stm32f446xx_Clocks.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f446xx_Clocks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f446xx_Clocks.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -716,7 +711,7 @@
             <File>
               <FileName>TIM_BasicTimerIT.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TIM_BasicTimerIT.c</FilePath>
+              <FilePath>.\User\src\TIM_BasicTimerIT.c</FilePath>
             </File>
           </Files>
         </Group>

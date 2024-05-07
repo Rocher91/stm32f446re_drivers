@@ -5,6 +5,7 @@
 ".\objects\stm32f446xx_timers_driver.o"
 ".\objects\stm32f446xx_nvic.o"
 ".\objects\stm32f446xx_i2c_driver.o"
+".\objects\stm32f446xx_clocks.o"
 ".\objects\tim_basictimerit.o"
 ".\objects\startup_stm32f446xx.o"
 ".\objects\system_stm32f4xx.o"

@@ -2,38 +2,42 @@ Dependencies for Project 'stm32f446re', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6140000::V6.14::ARMCLANG
 F (.\Drivers\src\stm32f446xx_ADC_Driver.c)(0x65FD9D24)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_adc_driver.o -MD)
 I (Drivers\inc\stm32f446xx_ADC_Driver.h)(0x65FD9D24)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
 I (Drivers\inc\stm32f446xx_Gpio_Driver.h)(0x6614D7FB)
 F (.\Drivers\src\stm32f446xx_Gpio_Driver.c)(0x660D1301)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_gpio_driver.o -MD)
 I (Drivers\inc\stm32f446xx_Gpio_Driver.h)(0x6614D7FB)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
 F (.\Drivers\src\stm32f446xx_SPI_Driver.c)(0x6620C6C8)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_spi_driver.o -MD)
 I (Drivers\inc\stm32f446xx_SPI_Driver.h)(0x6619374C)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
-F (.\Drivers\inc\stm32f446xx_Timers_Driver.h)(0x6629F6BD)()
 F (.\Drivers\src\stm32f446xx_Timers_Driver.c)(0x662F9283)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_timers_driver.o -MD)
 I (Drivers\inc\stm32f446xx_Timers_Driver.h)(0x6629F6BD)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
 I (Drivers\inc\stm32f446xx_NVIC.h)(0x662627A6)
 F (.\Drivers\src\stm32f446xx_NVIC.c)(0x66262814)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_nvic.o -MD)
 I (Drivers\inc\stm32f446xx_NVIC.h)(0x662627A6)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
-F (.\Drivers\inc\stm32f446xx_NVIC.h)(0x662627A6)()
-F (.\stm32f446xx_I2C_Driver.c)(0x662F9283)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_i2c_driver.o -MD)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+F (.\Drivers\src\stm32f446xx_I2C_Driver.c)(0x662FA44D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_i2c_driver.o -MD)
+I (Drivers\inc\stm32f446xx_I2C_Driver.h)(0x662F922C)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
-F (.\stm32f446xx_I2C_Driver.h)(0x662F922C)()
+F (.\stm32f446xx_Clocks.h)(0x663A3DA5)()
+F (.\stm32f446xx_Clocks.c)(0x663A3E3B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/stm32f446xx_clocks.o -MD)
+I (stm32f446xx_Clocks.h)(0x663A3DA5)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
 F (.\User\src\main.c)(0x6627ADBC)()
 F (.\User\src\SPI_TX_Testing.c)(0x660E4254)()
 F (.\User\src\SPI_CMD_Handling.c)(0x66138F5E)()
@@ -44,8 +48,8 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
 I (Drivers\inc\stm32f446xx_Gpio_Driver.h)(0x6614D7FB)
 I (Drivers\inc\stm32f446xx_Timers_Driver.h)(0x6627BE91)
-F (.\TIM_BasicTimerIT.c)(0x662A4DBB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/tim_basictimerit.o -MD)
-I (Drivers\inc\stm32f446xx.h)(0x66290BC8)
+F (.\User\src\TIM_BasicTimerIT.c)(0x662A4DBB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-3 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Drivers/inc -I ./Drivers/src -I ./User/inc -I ./User/src-I./RTE/_Target_1-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/xavier.rocher/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F446xx -D_RTE_-o ./objects/tim_basictimerit.o -MD)
+I (Drivers\inc\stm32f446xx.h)(0x663A2EE2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x5ED66E54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x5ED66E54)
 I (Drivers\inc\stm32f446xx_NVIC.h)(0x662627A6)
