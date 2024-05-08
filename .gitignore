@@ -2,7 +2,8 @@ DebugConfig/*.dbgconf
 Listings/*
 Objects/*
 RTE/*
-*.Xavi
-*.Xavier.Rocher
+stm32f446re.uvguix.Xavi
+stm32f446re.uvguix.Xavier.Rocher
 *.uvoptx
+*.uvprojx
 *.scvd
