@@ -24,6 +24,8 @@
 #define FLAG_SET 		ENABLE
 #define FLAG_RESET 	DISABLE
 
+#define HSE_FREQ ( (uint32_t) 8000000 )
+#define HSI_FREQ ( (uint32_t) 16000000 )
 
 __weak void assert_failed(uint8_t* file, uint32_t line);
 
@@ -255,6 +257,19 @@ __weak void assert_failed(uint8_t* file, uint32_t line);
 
 
 /**************************************************Peripheral Register Definition Structures***************************************************/
+
+typedef struct{
+
+	__vo uint32_t ACR;					/**/
+	__vo uint32_t KEYR;					/**/
+	__vo uint32_t OPTKEYR;			/**/
+	__vo uint32_t SR;						/**/
+	__vo uint32_t CR;						/**/
+	__vo uint32_t OPTCR;				/**/
+
+}Flash_RegDef_t;
+
+#define FLASH	( ( Flash_RegDef_t*) FLASH_INTERFACE_BASEADDR )
 
 
 /*>>>GPIO Structure<<<*/

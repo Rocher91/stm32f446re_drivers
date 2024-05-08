@@ -4,6 +4,6 @@ Objects/*
 RTE/*
 stm32f446re.uvguix.Xavi
 stm32f446re.uvguix.Xavier.Rocher
-*.uvoptx
-*.uvprojx
+stm32f446re.uvoptx
+stm32f446re.uvprojx
 *.scvd

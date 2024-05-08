@@ -87,6 +87,31 @@ typedef enum{
 	
 }RCC_SysClk_Source_t;
 
+typedef enum{
+	
+	RCC_AHB_Prescaler_None 	= 0,
+	RCC_AHB_Prescaler_2 		= 8,
+	RCC_AHB_Prescaler_4 		= 9,
+	RCC_AHB_Prescaler_8 		= 10,
+	RCC_AHB_Prescaler_16 		= 11,
+	RCC_AHB_Prescaler_64 		= 12,
+	RCC_AHB_Prescaler_128 	= 13,
+	RCC_AHB_Prescaler_256 	= 14,
+	RCC_AHB_Prescaler_512 	= 15,
+	
+}RCC_AHB_Prescaler_t;
+
+typedef enum{
+
+	RCC_APB_Prescaler_None 	= 0,
+	RCC_APB_Prescaler_2 		= 4,
+	RCC_APB_Prescaler_4 		= 5,
+	RCC_APB_Prescaler_8 		= 6,
+	RCC_APB_Prescaler_16 		= 7,
+	
+}RCC_APB_Prescaler_t;
+
+
 void RCC_HSEConfig(RCC_HSE_Status_t HSE_Status);
 void RCC_LSEConfig(RCC_LSE_Status_t LSE_Status);
 
@@ -107,11 +132,15 @@ void RCC_WaitForClkRdy(RCC_Clock_t clk);
 
 void RCC_SysclkConfig(RCC_SysClk_Source_t AHB_Prescaler);
 RCC_SysClk_Source_t RCC_getSysclkSorce(void);
-//void RCC_SysclkConfig(RCC_APB_Prescaler_t APB2_Prescaler);
 
-//uint32_t RCC_GetSysClk(void);
-//uint32_t RCC_GetAHBClk(void);
-//uint32_t RCC_GetAPB1Clk(void);
-//uint32_t RCC_GetAPB2Clk(void);
+void RCC_AHB1CkConfig(RCC_AHB_Prescaler_t AHB_Prescaler);
+void RCC_APBlCkConfig(RCC_APB_Prescaler_t AHB_Prescaler);
+void RCC_APB2CkConfig(RCC_APB_Prescaler_t AHB_Prescaler);
 
+uint32_t RCC_getSysClk(void);
+uint32_t RCC_GetAHBClk(void);
+uint32_t RCC_GetAPB1Clk(void);
+uint32_t RCC_GetAPB2Clk(void);
+
+void setLatencyFlash(uint8_t latency);
 #endif

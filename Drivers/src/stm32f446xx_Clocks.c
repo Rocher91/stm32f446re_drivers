@@ -158,17 +158,16 @@ void RCC_WaitForClkRdy(RCC_Clock_t clk){
 }
 void RCC_SysclkConfig(RCC_SysClk_Source_t Sysclk_Src){
 	
-	uint32_t temp_RCC_CFGR = 0;
+	uint32_t temp_RCC_CFGR = RCC->CFGR;
 	temp_RCC_CFGR = RCC->CFGR;
 	
 	//Limpiar bits de source
 	temp_RCC_CFGR &= ~(0x03 << RCC_CFGR_SW);
 	
 	//Setear bits de source
-	temp_RCC_CFGR |= (0x03 << RCC_CFGR_SW);
+	temp_RCC_CFGR |= (Sysclk_Src << RCC_CFGR_SW);
 	
 	RCC->CFGR = temp_RCC_CFGR;
-	
 	
 }
 
@@ -181,6 +180,158 @@ RCC_SysClk_Source_t RCC_getSysclkSorce(void){
 	return (RCC_SysClk_Source_t)SWS;
 }
 
+void RCC_AHB1CkConfig(RCC_AHB_Prescaler_t AHB_Prescaler){
+	
+	uint32_t temp_RCC_CFGR = RCC->CFGR;
+	temp_RCC_CFGR = RCC->CFGR;
+	
+	//Limpiar bits de source
+	temp_RCC_CFGR &= ~(0x0F << RCC_CFGR_HPRE);
+	
+	//Setear bits de source
+	temp_RCC_CFGR |= (AHB_Prescaler << RCC_CFGR_HPRE);
+	
+	RCC->CFGR = temp_RCC_CFGR;
+}
+void RCC_APBlCkConfig(RCC_APB_Prescaler_t APB_Prescaler){
+	
+	uint32_t temp_RCC_CFGR = RCC->CFGR;
+	temp_RCC_CFGR = RCC->CFGR;
+	
+	//Limpiar bits de source
+	temp_RCC_CFGR &= ~(0x07 << RCC_CFGR_PPRE1);
+	
+	//Setear bits de source
+	temp_RCC_CFGR |= (APB_Prescaler << RCC_CFGR_PPRE1);
+	
+	RCC->CFGR = temp_RCC_CFGR;
+}
+void RCC_APB2CkConfig(RCC_APB_Prescaler_t APB_Prescaler){
+	
+	uint32_t temp_RCC_CFGR = RCC->CFGR;
+	temp_RCC_CFGR = RCC->CFGR;
+	
+	//Limpiar bits de source
+	temp_RCC_CFGR &= ~(0x07 << RCC_CFGR_PPRE2);
+	
+	//Setear bits de source
+	temp_RCC_CFGR |= (APB_Prescaler << RCC_CFGR_PPRE2);
+	
+	RCC->CFGR = temp_RCC_CFGR;
+}
+
+
+uint32_t RCC_getSysClk(void){
+	
+	uint32_t PLL_src 			= 0;
+	uint32_t PLL_M 				= 0;
+	uint32_t PLL_N 				= 0;
+	uint32_t PLL_VCO 			= 0;
+	uint32_t PLL_P 				= 0;
+	uint32_t PLL_R 				= 0;
+	uint32_t freq 				= 0;
+	uint32_t rcc_cfgr_sws = 0;
+	
+	rcc_cfgr_sws = (RCC->CFGR) & 0x03;
+	
+	if( rcc_cfgr_sws == 0 ){
+	
+		//HSI 
+		freq = HSI_FREQ;
+	}
+	else if( rcc_cfgr_sws == 1 ){
+		//HSE
+		freq = HSE_FREQ;
+	}
+	else if( rcc_cfgr_sws == 2 ){
+		
+		/*****************PLL_P********************
+					PLL_VCO = (PLL_src / PLLM)* PLLN
+					SYSCLK 	=  PLL_VCO / PLLP
+		*******************************************/
+		
+		PLL_src = ( RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC )& 0x01;
+		PLL_M 	= ( RCC->PLLCFGR & 0x3F);
+		PLL_M 	= ( (RCC->PLLCFGR<< RCC_PLLCFGR_PLLN) & 0x1FF);
+		
+		if( PLL_src){
+			//HSE es la fuente de reloj del PLL
+			PLL_VCO = ( HSE_FREQ / PLL_M ) * PLL_N;
+		}
+		else{
+			//HSI es la fuente de reloj del PLL
+			PLL_VCO = ( HSI_FREQ / PLL_M ) * PLL_N;
+		}
+		
+		
+		PLL_P 	= ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLP ) & 0x03 +1)*  2;
+		
+		freq = PLL_VCO / PLL_P;
+	}
+	else if( rcc_cfgr_sws == 3 ){
+		
+		freq = PLL_VCO / PLL_P;
+		
+		PLL_src = ( RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC )& 0x01;
+		PLL_M 	= ( RCC->PLLCFGR & 0x3F);
+		PLL_M 	= ( (RCC->PLLCFGR<< RCC_PLLCFGR_PLLN) & 0x1FF);
+		
+		if( PLL_src){
+			PLL_VCO = (HSE_FREQ/PLL_M)*PLL_N;
+		}
+		else{
+			PLL_VCO = (HSI_FREQ/PLL_M)*PLL_N;
+		}
+		
+		PLL_R = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLR ) & 0x07);
+		
+		freq 	= PLL_VCO / PLL_R;
+	}
+	
+	
+	return freq;
+}
+
+
+static uint16_t AHB_Prescaler[16] = { 1,1,1,1,1,1,1,1,2,4,8,16,64,128,256,512 };
+static uint8_t APB_Prescaler[8] 	= { 1,1,1,1,2,4,8,16 };	
+
+uint32_t RCC_GetAHBClk(void){
+	
+	uint32_t rcc_cfgr_hpre 	= 0;
+	uint16_t prescaler 			= 0;
+	
+	rcc_cfgr_hpre = ( RCC->CFGR >> RCC_CFGR_HPRE ) & 0x0F;
+	prescaler = AHB_Prescaler[rcc_cfgr_hpre];
+	
+	return  ( RCC_getSysClk() / prescaler );
+}
+uint32_t RCC_GetAPB1Clk(void){
+	
+	uint32_t rcc_cfgr_ppre1 	= 0;
+	uint16_t prescaler 			= 0;
+	
+	rcc_cfgr_ppre1 = ( RCC->CFGR >> RCC_CFGR_PPRE1 ) & 0x07;
+	prescaler = APB_Prescaler[rcc_cfgr_ppre1];
+	
+	return  ( RCC_getSysClk() / prescaler );
+}
+uint32_t RCC_GetAPB2Clk(void){
+	
+	uint32_t rcc_cfgr_ppre2 	= 0;
+	uint16_t prescaler 			= 0;
+	
+	rcc_cfgr_ppre2 = ( RCC->CFGR >> RCC_CFGR_PPRE2 ) & 0x07;
+	prescaler = APB_Prescaler[rcc_cfgr_ppre2];
+	
+	return  ( RCC_getSysClk() / prescaler );
+	
+}
+
+void setLatencyFlash(uint8_t latency){
+
+	FLASH->ACR |= (latency << 0) ;
+}
 
 
 
