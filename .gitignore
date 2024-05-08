@@ -1,8 +1,8 @@
-DebugConfig/
-Listings/
-Objects/
-RTE/
-stm32f446re.uvguix.Xavi
-stm32f446re.uvguix.Xavier.Rocher
-stm32f446re.uvoptx
-EventRecorderStub.scvd
+DebugConfig/*
+Listings/*
+Objects/*
+RTE/*
+*.Xavi
+*.Xavier.Rocher
+*.uvoptx
+*.scvd
