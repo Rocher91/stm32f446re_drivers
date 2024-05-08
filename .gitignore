@@ -1,7 +1,7 @@
-/DebugConfig
-/Listings
-/Objects
-/RTE
+DebugConfig/
+Listings/
+Objects/
+RTE/
 stm32f446re.uvguix.Xavi
 stm32f446re.uvguix.Xavier.Rocher
 stm32f446re.uvoptx
