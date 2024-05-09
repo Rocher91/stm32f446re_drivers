@@ -42,6 +42,9 @@ void SYSClk_HSI_Setup(void){
 
 void SYSClk_PLL_Setup(void){
 	
+	
+	// SYSCLK = 168 MHz
+	
 	uint32_t 	PLLM = 8,
 						PLLN = 336,
 						PLLP = 2,
@@ -63,15 +66,13 @@ void SYSClk_PLL_Setup(void){
 	// Esperar a que PLL este OK.
 	RCC_WaitForClkRdy(RCC_Clock_PLL);
 	
-	//Flash Latency
+	//Flash Latency  pag RM 66.
 	setLatencyFlash(5);
 	
 	//Seleccionar PLL_P como fuente de reloj del sistema.
 	RCC_SysclkConfig(RCC_Sysclk_Src_PLL_P);
 	
 }
-
-
 
 void delay(uint32_t cnt){
 
@@ -95,8 +96,7 @@ void GPIO_Setup(void){
 	PA5.GPIO_PinConfig.GPIO_PinSpeed 					= GPIO_HIGH_SPEED;
 	
 	GPIO_Init(&PA5);
-	
-	
+
 }
 
 

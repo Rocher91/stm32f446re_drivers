@@ -5,6 +5,12 @@
 
 //Config Externla Clocks (ON,OFF Bypass)
 
+#define PLL_SRC_HSI 0
+#define PLL_SRC_HSE 1
+
+static uint16_t AHB_Prescaler[16] = { 1,1,1,1,1,1,1,1,2,4,8,16,64,128,256,512 };
+static uint8_t APB_Prescaler[8] 	= { 1,1,1,1,2,4,8,16 };	
+
 typedef enum{
 	 RCC_HSE_OFF,
 	 RCC_HSE_ON,
