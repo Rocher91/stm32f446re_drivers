@@ -41,22 +41,22 @@ __weak void assert_failed(uint8_t* file, uint32_t line);
 										( x == GPIOG )? 6 :\
 										( x == GPIOH )? 7 :0 )
 
-#define ADC_CHANNEL_VALUE( x ) 		(	( x == 0 )? ADC_CH0 :\
-										( x == 1 )? ADC_CH1 :\
-										( x == 2 )? ADC_CH2 :\
-										( x == 3 )? ADC_CH3 :\
-										( x == 4 )? ADC_CH4 :\
-										( x == 5 )? ADC_CH5 :\
-										( x == 6 )? ADC_CH6 :\
-										( x == 7 )? ADC_CH7 :\
-										( x == 8 )? ADC_CH8 :\
-										( x == 9 )? ADC_CH9 :\
-										( x == 10 )? ADC_CH10 :\
-										( x == 11 )? ADC_CH11 :\
-										( x == 12 )? ADC_CH12 :\
-										( x == 13 )? ADC_CH13 :\
-										( x == 14 )? ADC_CH14 :\
-										( x == 15 )? ADC_CH15 :0 )
+#define ADC_CHANNEL_VALUE( x ) 			(	 (x == 0 )? ADC_CH0 :\
+																		( x == 1 )? ADC_CH1 :\
+																		( x == 2 )? ADC_CH2 :\
+																		( x == 3 )? ADC_CH3 :\
+																		( x == 4 )? ADC_CH4 :\
+																		( x == 5 )? ADC_CH5 :\
+																		( x == 6 )? ADC_CH6 :\
+																		( x == 7 )? ADC_CH7 :\
+																		( x == 8 )? ADC_CH8 :\
+																		( x == 9 )? ADC_CH9 :\
+																		( x == 10 )? ADC_CH10 :\
+																		( x == 11 )? ADC_CH11 :\
+																		( x == 12 )? ADC_CH12 :\
+																		( x == 13 )? ADC_CH13 :\
+																		( x == 14 )? ADC_CH14 :\
+																		( x == 15 )? ADC_CH15 :0 )
 
 
 /* !< MEMORY_peripheral_Bases >*/

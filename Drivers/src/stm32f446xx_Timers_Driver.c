@@ -107,8 +107,29 @@ void TIM_TimeBase_Init(TIM_handle_t* pTIMHandle){
 	
 	pTIMHandle->pTIMx->ARR = pTIMHandle->TIM_TimeBase.TIM_Period;
 	pTIMHandle->pTIMx->PSC = pTIMHandle->TIM_TimeBase.TIM_Preescaler;
-	pTIMHandle->pTIMx->EGR |= (0x01<<TIMx_EGR_UG);
 	
+	if( !TIM_IS_BASIC_TIMER( pTIMHandle->pTIMx ) )
+	{
+		if( pTIMHandle->TIM_TimeBase.TIM_CounterMode == TIM_CounterMode_UP )
+		{
+			pTIMHandle->pTIMx->CR[0] &= ~(0x03 << TIMx_CR1_CMS );
+			pTIMHandle->pTIMx->CR[0] &= ~(0x01 << TIMx_CR1_DIR );
+		}
+		else if( pTIMHandle->TIM_TimeBase.TIM_CounterMode == TIM_CounterMode_DOWN )
+		{
+			pTIMHandle->pTIMx->CR[0] &= ~(0x03 << TIMx_CR1_CMS );
+			pTIMHandle->pTIMx->CR[0] |= (0x01 << TIMx_CR1_DIR );
+		}	
+		else
+		{
+			pTIMHandle->pTIMx->CR[0] &= ~(0x03 << TIMx_CR1_CMS );
+			pTIMHandle->pTIMx->CR[0] |= pTIMHandle->TIM_TimeBase.TIM_CounterMode << TIMx_CR1_CMS;
+			
+		}
+			
+	}
+	
+	pTIMHandle->pTIMx->EGR |= (0x01<<TIMx_EGR_UG);
 }
 
 void TIM_Init(TIM_RegDef_t* pTIMx,uint8_t enable){
@@ -168,10 +189,297 @@ uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT){
 
 
 
+/*Input Capture*/
 
 
+void TIM_ICInit(TIM_handle_t* pTIMHandle){
+	
+	uint32_t temp_CCMRx = 0;
+	uint32_t temp_CCER = 0;
+	
+	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMHandle->pTIMx ) );
+	
+	TIM_TimeBase_Init( pTIMHandle );
+	
+	if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH1 )
+	{
+		
+		//Reset del bit CC1E para desabilitar el canal
+		pTIMHandle->pTIMx->CCER &= ~(1 << TIMx_CCER_CC1E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[0];
+		temp_CCER  = pTIMHandle->pTIMx->CCER;
+		
+		// Configurar entradada en registro CCMR1
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_CC1S);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Selection << TIMx_CCMR1_CC1S);
+		
+		//COnfigurar filtro en registro CCMR1
+		
+		temp_CCMRx &= ~(0x0F << TIMx_CCMR1_IC1F);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Filter << TIMx_CCMR1_IC1F);
+		
+		// COnfigurar Prescaleer
+		
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_IC1PSC);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Prescaler << TIMx_CCMR1_IC1PSC);
+		
+		// Polaridad en registro CCER
+		
+		temp_CCER  &= ~((1 << TIMx_CCER_CC1P)|(1 << TIMx_CCER_CC1NP));
+		
+		if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RE ){
+				
+				// CCN1P = 0 y CC1P = 0
+				// Ya lo estan nada que hacer
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_FE ){
+				
+				// CCN1P = 0 y CC1P = 1
+				
+			temp_CCER |= (1 << TIMx_CCER_CC1P);
+			
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RRE ){
+				
+				// CCN1P = 1 y CC1P = 1
+				temp_CCER |= (1 << TIMx_CCER_CC1P) | (1 << TIMx_CCER_CC1NP);
+				
+		}
+		
+		//Habilitar el canal
+		temp_CCER |= (1 << TIMx_CCER_CC1E);
+		
+		pTIMHandle->pTIMx->CCMR[0] = temp_CCMRx;
+		pTIMHandle->pTIMx->CCER = temp_CCER;
+		
+		
+	}
+	else if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH2 )
+	{
+		ASSERT_TRUE( TIM_HAS_CH2( pTIMHandle->pTIMx ) );
+		
+		//Reset del bit CC1E para desabilitar el canal
+		pTIMHandle->pTIMx->CCER &= ~(1 << TIMx_CCER_CC2E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[0];
+		temp_CCER  = pTIMHandle->pTIMx->CCER;
+		
+		// Configurar entradada en registro CCMR1
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_CC1S);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Selection << TIMx_CCMR1_CC2S);
+		
+		//COnfigurar filtro en registro CCMR1
+		
+		temp_CCMRx &= ~(0x0F << TIMx_CCMR1_IC1F);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Filter << TIMx_CCMR1_IC2F);
+		
+		// COnfigurar Prescaleer
+		
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_IC1PSC);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Prescaler << TIMx_CCMR1_IC2PSC);
+		
+		// Polaridad en registro CCER
+		
+		temp_CCER  &= ~((1 << TIMx_CCER_CC1P)|(1 << TIMx_CCER_CC2NP));
+		
+		if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RE ){
+				
+				// CCN1P = 0 y CC1P = 0
+				// Ya lo estan nada que hacer
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_FE ){
+				
+				// CCN1P = 0 y CC1P = 1
+				
+			temp_CCER |= (1 << TIMx_CCER_CC2P);
+			
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RRE ){
+				
+				// CCN1P = 1 y CC1P = 1
+				temp_CCER |= (1 << TIMx_CCER_CC2P) | (1 << TIMx_CCER_CC2NP);
+				
+		}
+		
+		//Habilitar el canal
+		temp_CCER |= (1 << TIMx_CCER_CC2E);
+		
+		pTIMHandle->pTIMx->CCMR[0] = temp_CCMRx;
+		pTIMHandle->pTIMx->CCER = temp_CCER;
+		
+	}
+	else if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH3 )
+	{
+		ASSERT_TRUE( TIM_HAS_CH2( pTIMHandle->pTIMx ) );
+		
+			//Reset del bit CC1E para desabilitar el canal
+		pTIMHandle->pTIMx->CCER &= ~(1 << TIMx_CCER_CC3E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[1];
+		temp_CCER  = pTIMHandle->pTIMx->CCER;
+		
+		// Configurar entradada en registro CCMR1
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_CC1S);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Selection << TIMx_CCMR2_CC3S);
+		
+		//COnfigurar filtro en registro CCMR1
+		
+		temp_CCMRx &= ~(0x0F << TIMx_CCMR1_IC1F);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Filter << TIMx_CCMR2_IC3F);
+		
+		// COnfigurar Prescaleer
+		
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_IC1PSC);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Prescaler << TIMx_CCMR2_IC3PSC);
+		
+		// Polaridad en registro CCER
+		
+		temp_CCER  &= ~((1 << TIMx_CCER_CC1P)|(1 << TIMx_CCER_CC2NP));
+		
+		if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RE ){
+				
+				// CCN1P = 0 y CC1P = 0
+				// Ya lo estan nada que hacer
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_FE ){
+				
+				// CCN1P = 0 y CC1P = 1
+				
+			temp_CCER |= (1 << TIMx_CCER_CC2P);
+			
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RRE ){
+				
+				// CCN1P = 1 y CC1P = 1
+				temp_CCER |= (1 << TIMx_CCER_CC3P) | (1 << TIMx_CCER_CC3NP);
+				
+		}
+		
+		//Habilitar el canal
+		temp_CCER |= (1 << TIMx_CCER_CC2E);
+		
+		pTIMHandle->pTIMx->CCMR[1] = temp_CCMRx;
+		pTIMHandle->pTIMx->CCER = temp_CCER;
+	}
+	else if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH4 )
+	{
+		ASSERT_TRUE( TIM_HAS_CH2( pTIMHandle->pTIMx ) );
+		
+		//Reset del bit CC1E para desabilitar el canal
+		pTIMHandle->pTIMx->CCER &= ~(1 << TIMx_CCER_CC4E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[1];
+		temp_CCER  = pTIMHandle->pTIMx->CCER;
+		
+		// Configurar entradada en registro CCMR1
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_CC1S);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Selection << TIMx_CCMR2_CC4S);
+		
+		//COnfigurar filtro en registro CCMR1
+		
+		temp_CCMRx &= ~(0x0F << TIMx_CCMR1_IC1F);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Filter << TIMx_CCMR2_IC4F);
+		
+		// COnfigurar Prescaleer
+		
+		temp_CCMRx &= ~(0x03 << TIMx_CCMR1_IC1PSC);
+		temp_CCMRx |= (pTIMHandle->TIM_InputCapture.TIM_IC_Prescaler << TIMx_CCMR2_IC4PSC);
+		
+		// Polaridad en registro CCER
+		
+		temp_CCER  &= ~((1 << TIMx_CCER_CC4P)|(1 << TIMx_CCER_CC4NP));
+		
+		if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RE ){
+				
+				// CCN1P = 0 y CC1P = 0
+				// Ya lo estan nada que hacer
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_FE ){
+				
+				// CCN1P = 0 y CC1P = 1
+				
+			temp_CCER |= (1 << TIMx_CCER_CC4P);
+			
+		}
+		else if( pTIMHandle->TIM_InputCapture.TIM_IC_Polarity == TIM_ICPolarity_RRE ){
+				
+				// CCN1P = 1 y CC1P = 1
+				temp_CCER |= (1 << TIMx_CCER_CC4P) | (1 << TIMx_CCER_CC4NP);
+				
+		}
+		
+		//Habilitar el canal
+		temp_CCER |= (1 << TIMx_CCER_CC4E);
+		
+		pTIMHandle->pTIMx->CCMR[1] = temp_CCMRx;
+		pTIMHandle->pTIMx->CCER = temp_CCER;
+	}
+	
+	
+	
+
+}
 
 
+uint32_t TIM_GetCounter(TIM_RegDef_t* pTIMx){
+	return pTIMx->CNT;
+}
+
+void TIM_SetCounter(TIM_RegDef_t* pTIMx,uint32_t counter){
+ pTIMx->CNT = counter;
+}
+uint32_t TIM_GetCapture(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel){
+	
+	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMx ) );
+	
+	if ( TIM_Channel == TIM_CH1){
+		
+		return pTIMx->CCR[0];
+	}
+	else if ( TIM_Channel == TIM_CH2){
+		
+		ASSERT_TRUE(TIM_HAS_CH2(pTIMx));
+		return pTIMx->CCR[1];
+	}
+	else if ( TIM_Channel == TIM_CH3){
+		
+		ASSERT_TRUE(TIM_HAS_CH3(pTIMx));
+		return pTIMx->CCR[2];
+	}
+	else if ( TIM_Channel == TIM_CH4){
+		
+		ASSERT_TRUE(TIM_HAS_CH4(pTIMx));
+		return pTIMx->CCR[3];
+	}
+		
+}
+
+uint32_t TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t value){
+	
+	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMx ) );
+	
+	if ( TIM_Channel == TIM_CH1){
+		
+		pTIMx->CCR[0]= value;
+	}
+	else if ( TIM_Channel == TIM_CH2){
+		
+		ASSERT_TRUE(TIM_HAS_CH2(pTIMx));
+		pTIMx->CCR[1]= value;
+	}
+	else if ( TIM_Channel == TIM_CH3){
+		
+		ASSERT_TRUE(TIM_HAS_CH3(pTIMx));
+		pTIMx->CCR[2]= value;
+	}
+	else if ( TIM_Channel == TIM_CH4){
+		
+		ASSERT_TRUE(TIM_HAS_CH4(pTIMx));
+		pTIMx->CCR[3]= value;
+	}
+		
+}
 
 
 

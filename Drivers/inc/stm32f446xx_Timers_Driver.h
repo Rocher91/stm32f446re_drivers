@@ -3,15 +3,134 @@
 
 #include "stm32f446xx.h"
 
+#define TIM_IS_ADV_TIMER(x) ( ( ( x ) == TIM1 ) || ( ( x ) == TIM8 ) )
+
+#define TIM_IS_BASIC_TIMER(x) ( ( ( x ) == TIM6 ) || ( ( x ) == TIM7 ) )
+
+#define TIM_IS_GP_TIMER(x) 		(((x) == TIM2 ) || ( (x) == TIM3 ) || ( (x) == TIM4 ) || ( (x) == TIM5 ) ||\
+															 ((x) == TIM9 ) || ( (x) == TIM10 ) || ( (x) == TIM11 ) || ( (x) == TIM12 ) ||\
+															 ((x) == TIM13 ) || ( (x) == TIM14 ) \
+															)
+
+
+/*
+	**No-channels:
+			- Basic Timers(16 bits)	: TIM10,TIM11,TIM13,TIM14.
+	
+	-> CH1,CH2:
+			- GP Timers (16 bits)	: TIM9 y TIM12 / TIM3 y TIM4.
+			- GP Timers (32 bits)	: TIM2 y TIM5.
+			- ADV Timers (16 bits): TIM1 y TIM8.
+			
+	-> CH2,CH3:
+			- GP Timers (16 bits)	: TIM3 y TIM4.
+			- GP Timers (32 bits)	: TIM2 y TIM5.
+			- ADV Timers (16 bits): TIM1 y TIM8.
+	
+	-> CH1,CH2,CH3,CH4:
+			- GP Timers (16 bits)	: TIM y TIM4.
+			- GP Timers (32 bits)	: TIM2 y TIM5.
+			- ADV Timers (16 bits): TIM1 y TIM8.
+*/
+
+#define TIM_HAS_CH1(x)  ((( x ) != TIM6 ) && ( ( x ) != TIM7 ))
+
+#define TIM_HAS_CH2(x)  ((( x ) == TIM1 ) || ( ( x ) == TIM8 ) ||\
+												 (( x ) == TIM2 ) || ( ( x ) == TIM3 ) || ( ( x ) == TIM4 ) || ( ( x ) == TIM5 ) ||\
+												 (( x ) == TIM9 ) || ( ( x ) == TIM12 ) \
+												)
+
+#define TIM_HAS_CH3(x) ( (( x ) == TIM1 ) || ( ( x ) == TIM8 ) ||\
+												 (( x ) == TIM2 ) || ( ( x ) == TIM3 ) ||\
+												 (( x ) == TIM4 ) || ( ( x ) == TIM5 ) \
+											 )
+															
+#define TIM_HAS_CH4(x) ( (( x ) == TIM1 ) || ( ( x ) == TIM8 ) ||\
+												 (( x ) == TIM2 ) || ( ( x ) == TIM3 ) ||\
+												 (( x ) == TIM4 ) || ( ( x ) == TIM5 ) \
+											 )
+											 
+typedef enum{
+	
+	TIM_CounterMode_CenterAlign1 	= 1,
+	TIM_CounterMode_CenterAlign2 	= 2,
+	TIM_CounterMode_CenterAlign3 	= 3,
+	TIM_CounterMode_UP 						= 4,
+	TIM_CounterMode_DOWN 					= 5
+	
+}TIM_CounterMode_t;
+
+typedef enum{
+	TIM_ICSelection_Direct 		= 1,
+	TIM_ICSelection_Indirect 	= 2,
+	TIM_ICSelection_TRC 			= 3,
+
+}TIM_ICSelection_t;
+
+typedef enum{
+	TIM_CH1,
+	TIM_CH2,
+	TIM_CH3,
+	TIM_CH4
+}TIM_Channels_t;
+
+typedef enum{
+	TIM_ICPolarity_RE,
+	TIM_ICPolarity_FE,
+	TIM_ICPolarity_RRE,
+
+}TIM_ICPolarity_t;
+
+typedef enum{
+	TIM_ICPrescaler_NONE,
+	TIM_ICPrescaler_2,
+	TIM_ICPrescaler_4,
+	TIM_ICPrescaler_8,
+
+}TIM_ICPrescaler_t;
+
+typedef enum{
+	
+	TIM_ICFilter_NONE,
+	TIM_ICFilter_Fck_int_2,
+	TIM_ICFilter_Fck_int_4,
+	TIM_ICFilter_Fck_int_8,
+	TIM_ICFilter_Fdts_div2_6,
+	TIM_ICFilter_Fdts_div2_8,
+	TIM_ICFilter_Fdts_div4_6,
+	TIM_ICFilter_Fdts_div4_8,
+	TIM_ICFilter_Fdts_div8_6,
+	TIM_ICFilter_Fdts_div8_8,
+	TIM_ICFilter_Fdts_div16_5,
+	TIM_ICFilter_Fdts_div16_6,
+	TIM_ICFilter_Fdts_div16_8,
+	TIM_ICFilter_Fdts_div32_5,
+	TIM_ICFilter_Fdts_div32_6,
+	TIM_ICFilter_Fdts_div32_8
+
+}TIM_ICFilter_t;
+
 typedef struct{
 	uint16_t TIM_Preescaler;
 	uint32_t TIM_Period;
-
+	TIM_CounterMode_t TIM_CounterMode;
+	
 }TIM_TimeBase_t;
+
+
+typedef struct{
+	TIM_Channels_t     TIM_Channel;
+	TIM_ICPolarity_t   TIM_IC_Polarity;
+	TIM_ICSelection_t  TIM_IC_Selection;
+	TIM_ICPrescaler_t  TIM_IC_Prescaler;
+	TIM_ICFilter_t     TIM_IC_Filter;
+	
+}TIM_InputCapture_t;
 
 typedef struct{
 	TIM_RegDef_t* pTIMx;
 	TIM_TimeBase_t TIM_TimeBase;
+	TIM_InputCapture_t TIM_InputCapture
 }TIM_handle_t;
 
 typedef enum{
@@ -40,10 +159,22 @@ uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT);
 void TIM_IRQHandling( TIM_handle_t *pTIMHandle );
 
 
+uint32_t TIM_GetCounter(TIM_RegDef_t* pTIMx);
+void TIM_SetCounter(TIM_RegDef_t* pTIMx,uint32_t counter);
+uint32_t TIM_GetCapture(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel);
+uint32_t TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t value);
+
+
+
 void TIM_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
 void TIM_DeInit(TIM_RegDef_t* pTIMx);
 void TIM_Init(TIM_RegDef_t* pTIMx,uint8_t enable);
 __attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
+
+/*Input Capture*/
+
+
+void TIM_ICInit(TIM_handle_t* pTIMHandle);
 
 
 //.. TIMx_CR1
@@ -122,26 +253,34 @@ __attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t
 
 
 //.. TIMx_CCMR1
-#define TIMx_CCMR1_CC1S 	0
-#define TIMx_CCMR1_OC1FE 	2
-#define TIMx_CCMR1_OC1PE 	3
-#define TIMx_CCMR1_OC1M 	4
-#define TIMx_CCMR1_OC1CE 	7
-#define TIMx_CCMR1_CC3S 	8
-#define TIMx_CCMR1_OC2FE 	10
-#define TIMx_CCMR1_OC2PE 	11
-#define TIMx_CCMR1_OC2M 	12
-#define TIMx_CCMR1_OC2CE 	15
+#define TIMx_CCMR1_CC1S 		0
+#define TIMx_CCMR1_IC1PSC 	2
+#define TIMx_CCMR1_OC1FE 		2
+#define TIMx_CCMR1_OC1PE 		3
+#define TIMx_CCMR1_OC1M 		4
+#define TIMx_CCMR1_IC1F 		4
+#define TIMx_CCMR1_OC1CE 		7
+#define TIMx_CCMR1_CC2S 		8
+#define TIMx_CCMR1_IC2PSC 	10
+#define TIMx_CCMR1_OC2FE 		10
+#define TIMx_CCMR1_OC2PE 		11
+#define TIMx_CCMR1_IC2F			12
+#define TIMx_CCMR1_OC2M 		12
+#define TIMx_CCMR1_OC2CE 		15
 
 //.. TIMx_CCMR2
 #define TIMx_CCMR2_CC3S 	0
+#define TIMx_CCMR2_IC3PSC 2
 #define TIMx_CCMR2_OC3FE 	2
 #define TIMx_CCMR2_OC3PE 	3
 #define TIMx_CCMR2_OC3M 	4
+#define TIMx_CCMR2_IC3F 	4
 #define TIMx_CCMR2_OC3CE 	7
 #define TIMx_CCMR2_CC4S 	8
 #define TIMx_CCMR2_OC4FE 	10
+#define TIMx_CCMR2_IC4PSC 10
 #define TIMx_CCMR2_OC4PE 	11
+#define TIMx_CCMR2_IC4F 	12
 #define TIMx_CCMR2_OC4M 	12
 #define TIMx_CCMR2_OC4CE 	15
 	
@@ -161,6 +300,7 @@ __attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t
 #define TIMx_CCER_CC3NP 	11
 #define TIMx_CCER_CC4E 		12
 #define TIMx_CCER_CC4P 		13
+#define TIMx_CCER_CC4NP 	15
 
 
 //.. TIMx_BDTR
