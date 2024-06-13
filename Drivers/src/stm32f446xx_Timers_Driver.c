@@ -164,6 +164,26 @@ void TIM_IRQHandling( TIM_handle_t *pTIMHandle ){
 			TIM_ClearITPendingBit( pTIMHandle->pTIMx, (uint16_t)(0x01 << TIMx_DIER_UIE));
 			TIM_EventCallback( pTIMHandle, TIM_EVENT_UI);
 		}
+		
+		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << TIMx_DIER_CC1IE)) ){
+			TIM_ClearITPendingBit( pTIMHandle->pTIMx, (uint16_t)(0x01 << TIMx_DIER_CC1IE));
+			TIM_EventCallback( pTIMHandle, TIM_EVENT_CC1I);
+		}
+		
+		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << TIMx_DIER_CC2IE)) ){
+			TIM_ClearITPendingBit( pTIMHandle->pTIMx, (uint16_t)(0x01 << TIMx_DIER_CC2IE));
+			TIM_EventCallback( pTIMHandle, TIM_EVENT_CC2I);
+		}
+		
+		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << TIMx_DIER_CC3IE)) ){
+			TIM_ClearITPendingBit( pTIMHandle->pTIMx, (uint16_t)(0x01 << TIMx_DIER_CC3IE));
+			TIM_EventCallback( pTIMHandle, TIM_EVENT_CC3I);
+		}
+		
+		if( TIM_GetStatus( pTIMHandle->pTIMx,(uint16_t)(0x01 << TIMx_DIER_CC4IE)) ){
+			TIM_ClearITPendingBit( pTIMHandle->pTIMx, (uint16_t)(0x01 << TIMx_DIER_CC4IE));
+			TIM_EventCallback( pTIMHandle, TIM_EVENT_CC4I);
+		}
 	
 }
 

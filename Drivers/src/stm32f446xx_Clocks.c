@@ -127,6 +127,28 @@ void RCC_MCO1Config(RCC_MCO1_Source_t MCO1_Source, RCC_MCO1_Prescaler_t MCO1_Pre
 	RCC->CFGR = temp_RCC_CFGR;
 }
 
+uint32_t RCC_GetAPB1_TimerClk(void){
+
+	uint32_t rcc_cfgr_ppre1;
+	rcc_cfgr_ppre1 = (RCC->CFGR >> RCC_CFGR_PPRE1) & 0x07;
+	
+	if(rcc_cfgr_ppre1 == 1){
+		return RCC_GetAPB1Clk();
+	}
+	return RCC_GetAPB1Clk()*2;
+}
+
+uint32_t RCC_GetAPB2_TimerClk(void){
+
+	uint32_t rcc_cfgr_ppre2;
+	rcc_cfgr_ppre2 = (RCC->CFGR >> RCC_CFGR_PPRE2) & 0x07;
+	
+	if(rcc_cfgr_ppre2 == 1){
+		return RCC_GetAPB2Clk();
+	}
+	return RCC_GetAPB2Clk()*2;
+}
+
 void RCC_MCO2Config(RCC_MCO2_Source_t MCO2_Source, RCC_MCO2_Prescaler_t MCO2_Presc){
 	
 	uint32_t temp_RCC_CFGR = RCC->CFGR;

@@ -148,5 +148,8 @@ uint32_t RCC_GetAHBClk(void);
 uint32_t RCC_GetAPB1Clk(void);
 uint32_t RCC_GetAPB2Clk(void);
 
+uint32_t RCC_GetAPB1_TimerClk(void);
+uint32_t RCC_GetAPB2_TimerClk(void);
+
 void setLatencyFlash(uint8_t latency);
 #endif

@@ -870,6 +870,8 @@ typedef struct{
 
 /*>>>SYSCFGR Structure<<<*/
 
+#define IRQ_TIM2					28
+
 #define IRQ_NO_EXTI0			6
 #define IRQ_NO_EXTI1			7
 #define IRQ_NO_EXTI2			8
