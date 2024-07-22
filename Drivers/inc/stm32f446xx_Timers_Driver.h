@@ -128,9 +128,11 @@ typedef struct{
 }TIM_InputCapture_t;
 
 typedef struct{
+	
 	TIM_RegDef_t* pTIMx;
 	TIM_TimeBase_t TIM_TimeBase;
-	TIM_InputCapture_t TIM_InputCapture
+	TIM_InputCapture_t TIM_InputCapture;
+	
 }TIM_handle_t;
 
 typedef enum{
@@ -162,7 +164,7 @@ void TIM_IRQHandling( TIM_handle_t *pTIMHandle );
 uint32_t TIM_GetCounter(TIM_RegDef_t* pTIMx);
 void TIM_SetCounter(TIM_RegDef_t* pTIMx,uint32_t counter);
 uint32_t TIM_GetCapture(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel);
-uint32_t TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t value);
+void TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t value);
 
 
 

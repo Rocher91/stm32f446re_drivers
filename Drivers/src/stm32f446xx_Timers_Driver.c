@@ -475,7 +475,7 @@ uint32_t TIM_GetCapture(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel){
 		
 }
 
-uint32_t TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t value){
+void TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t value){
 	
 	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMx ) );
 	

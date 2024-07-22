@@ -341,6 +341,7 @@ typedef struct{
 
 #define RCC	( ( RCC_RegDef_t*) RCC_BASEADDR )
 
+/*>>> RCC CR Bitfields <<<*/
 
 #define RCC_CR_HSION			0
 #define RCC_CR_HSIRDY			1
@@ -358,17 +359,7 @@ typedef struct{
 #define RCC_CR_PLLSAIRDY	29
 
 
-#define RCC_CSR_LSION			0
-#define RCC_CSR_LSIRDY		1
-#define RCC_CSR_RMVF			24
-#define RCC_CSR_BORRSTF		25
-#define RCC_CSR_PINRSTF		26
-#define RCC_CSR_PORRSTF		27
-#define RCC_CSR_SFTRSTF		28
-#define RCC_CSR_IWDGRSTF	29
-#define RCC_CSR_WWDGRSTF	30
-#define RCC_CSR_LPWRRSTF	31
-
+/*>>> RCC PLLCFGR Bitfields <<<*/
 
 #define RCC_PLLCFGR_PLLM		0
 #define RCC_PLLCFGR_PLLN		6
@@ -376,6 +367,8 @@ typedef struct{
 #define RCC_PLLCFGR_PLLSRC	22
 #define RCC_PLLCFGR_PLLQ		24
 #define RCC_PLLCFGR_PLLR		28
+
+/*>>> RCC CFGR Bitfields <<<*/
 
 #define RCC_CFGR_SW					0
 #define RCC_CFGR_SWS				2
@@ -387,6 +380,8 @@ typedef struct{
 #define RCC_CFGR_MCO1PRE		24
 #define RCC_CFGR_MCO2PRE		27
 #define RCC_CFGR_MC02				30
+
+/*>>> RCC CIR Bitfields <<<*/
 
 #define RCC_CIR_LSI_RDYF			0
 #define RCC_CIR_LSE_RDYF			1
@@ -412,6 +407,183 @@ typedef struct{
 #define RCC_CIR_PLLSAI_RDYIC	22
 #define RCC_CIR_CSSC_RDYIC		23
 
+
+/*>>> RCC AHB1RSTR Bitfields <<<*/
+
+#define RCC_AHB1RSTR_GPIOA	0
+#define RCC_AHB1RSTR_GPIOB	1
+#define RCC_AHB1RSTR_GPIOC	2
+#define RCC_AHB1RSTR_GPIOD	3
+#define RCC_AHB1RSTR_GPIOE	4
+#define RCC_AHB1RSTR_GPIOF	5
+#define RCC_AHB1RSTR_GPIOG	6
+#define RCC_AHB1RSTR_GPIOH	7
+#define RCC_AHB1RSTR_CRC		12
+#define RCC_AHB1RSTR_DMA1		21
+#define RCC_AHB1RSTR_DMA2		22
+#define RCC_AHB1RSTR_OTGHS	29
+
+/*>>> RCC AHB2RSTR Bitfields <<<*/
+
+#define RCC_AHB2RSTR_DCMI		0
+#define RCC_AHB2RSTR_OTGFS	7
+
+/*>>> RCC AHB3RSTR Bitfields <<<*/
+
+#define RCC_AHB3RSTR_FMC		0
+#define RCC_AHB3RSTR_QSPI		1
+
+/*>>> RCC APB1RSTR Bitfields <<<*/
+
+#define RCC_APB1RSTR_TIM2			0
+#define RCC_APB1RSTR_TIM3			1
+#define RCC_APB1RSTR_TIM4			2
+#define RCC_APB1RSTR_TIM5			3
+#define RCC_APB1RSTR_TIM6			4
+#define RCC_APB1RSTR_TIM7			5
+#define RCC_APB1RSTR_TIM12		6
+#define RCC_APB1RSTR_TIM13		7
+#define RCC_APB1RSTR_TIM14		8
+#define RCC_APB1RSTR_WWDG			11
+#define RCC_APB1RSTR_SPI2			14
+#define RCC_APB1RSTR_SPI3			15
+#define RCC_APB1RSTR_SPDIFRX	16
+#define RCC_APB1RSTR_UART2		17
+#define RCC_APB1RSTR_UART3		18
+#define RCC_APB1RSTR_UART4		19
+#define RCC_APB1RSTR_UART5		20
+#define RCC_APB1RSTR_I2C1			21
+#define RCC_APB1RSTR_I2C2			22
+#define RCC_APB1RSTR_I2C3			23
+#define RCC_APB1RSTR_FMPI2C1	24
+#define RCC_APB1RSTR_CAN1			25
+#define RCC_APB1RSTR_CAN2			26
+#define RCC_APB1RSTR_CEC			27
+#define RCC_APB1RSTR_PWR			28
+#define RCC_APB1RSTR_DAC			29
+
+/*>>> RCC APB2RSTR Bitfields <<<*/
+
+#define RCC_APB2RSTR_TIM1			0
+#define RCC_APB2RSTR_TIM8			1
+#define RCC_APB2RSTR_USART1		4
+#define RCC_APB2RSTR_USART6		5
+#define RCC_APB2RSTR_ADC			8
+#define RCC_APB2RSTR_SDIO			11
+#define RCC_APB2RSTR_SPI1			12
+#define RCC_APB2RSTR_SPI4			13
+#define RCC_APB2RSTR_SYSCFG		14
+
+
+/*>>> RCC AHB1ENR Bitfields <<<*/
+
+#define RCC_AHB1ENR_GPIOA				0
+#define RCC_AHB1ENR_GPIOB				1
+#define RCC_AHB1ENR_GPIOC				2
+#define RCC_AHB1ENR_GPIOD				3
+#define RCC_AHB1ENR_GPIOE				4
+#define RCC_AHB1ENR_GPIOF				5
+#define RCC_AHB1ENR_GPIOG				6
+#define RCC_AHB1ENR_GPIOH				7
+#define RCC_AHB1ENR_CRC					12
+#define RCC_AHB1ENR_BKP_SRAM		18
+#define RCC_AHB1ENR_DMA1				21
+#define RCC_AHB1ENR_DMA2				22
+#define RCC_AHB1ENR_OTGHS				29
+#define RCC_AHB1ENR_OTGHS_ULPI	30
+
+/*>>> RCC AHB2ENR Bitfields <<<*/
+
+#define RCC_AHB2ENR_DCMI				0
+#define RCC_AHB2ENR_OTGFS				7
+
+/*>>> RCC AHB3ENR Bitfields <<<*/
+
+#define RCC_AHB3ENR_FMC				0
+#define RCC_AHB3ENR_QSPI			1
+
+/*>>> RCC APB1ENR Bitfields <<<*/
+
+#define RCC_APB1ENR_TIM2		0
+#define RCC_APB1ENR_TIM3		1
+#define RCC_APB1ENR_TIM4		2
+#define RCC_APB1ENR_TIM5		3
+#define RCC_APB1ENR_TIM6		4
+#define RCC_APB1ENR_TIM7		5
+#define RCC_APB1ENR_TIM12		6
+#define RCC_APB1ENR_TIM13		7
+#define RCC_APB1ENR_TIM14		8
+#define RCC_APB1ENR_WWDG		11
+#define RCC_APB1ENR_SPI2		14
+#define RCC_APB1ENR_SPI3		15
+#define RCC_APB1ENR_SPDIFRX	16
+#define RCC_APB1ENR_USART2	17
+#define RCC_APB1ENR_USART3	18
+#define RCC_APB1ENR_UART4		19
+#define RCC_APB1ENR_UART5		20
+#define RCC_APB1ENR_I2C1		21
+#define RCC_APB1ENR_I2C2		22
+#define RCC_APB1ENR_I2C3		23
+#define RCC_APB1ENR_FMPI2C1	24
+#define RCC_APB1ENR_CAN1		25
+#define RCC_APB1ENR_CAN2		26
+#define RCC_APB1ENR_CEC			27
+#define RCC_APB1ENR_PWR			28
+#define RCC_APB1ENR_DAC			29
+
+/*>>> RCC APB2ENR Bitfields <<<*/
+
+#define RCC_APB2ENR_TIM1			0
+#define RCC_APB2ENR_TIM8			1
+#define RCC_APB2ENR_USART1		4
+#define RCC_APB2ENR_USART6		5
+#define RCC_APB2ENR_ADC1			8
+#define RCC_APB2ENR_ADC2			9
+#define RCC_APB2ENR_ADC3			10
+#define RCC_APB2ENR_SDIO			11
+#define RCC_APB2ENR_SPI1			12
+#define RCC_APB2ENR_SPI4			13
+#define RCC_APB2ENR_SYSCFG		14
+#define RCC_APB2ENR_TIM9			16
+#define RCC_APB2ENR_TIM10			17
+#define RCC_APB2ENR_TIM11			18
+#define RCC_APB2ENR_SAI1			22
+#define RCC_APB2ENR_SAI2			23
+
+/*>>> RCC AHB1LPENR Bitfields <<<*/
+
+#define RCC_AHB1LPENR_GPIOA			0
+#define RCC_AHB1LPENR_GPIOB			1
+#define RCC_AHB1LPENR_GPIOC			2
+#define RCC_AHB1LPENR_GPIOD			3
+#define RCC_AHB1LPENR_GPIOE			4
+#define RCC_AHB1LPENR_GPIOF			5
+#define RCC_AHB1LPENR_GPIOG			6
+#define RCC_AHB1LPENR_GPIOH			7
+#define RCC_AHB1LPENR_CRC				8
+#define RCC_AHB1LPENR_FLITF			15
+#define RCC_AHB1LPENR_SRAM1			16
+#define RCC_AHB1LPENR_SRAM2			17
+#define RCC_AHB1LPENR_BKP_SRAM	18
+#define RCC_AHB1LPENR_DMA1			21
+#define RCC_AHB1LPENR_DMA2			22
+#define RCC_AHB1LPENR_OTGHS			29
+#define RCC_AHB1LPENR_OTGHS_ULPI	30
+
+/*>>> RCC AHB2LPENR Bitfields <<<*/
+
+#define RCC_AHB2LPENR_DCMI			0
+#define RCC_AHB2LPENR_OTGFS			7
+
+/*>>> RCC AHB3LPENR Bitfields <<<*/
+
+#define RCC_AHB3LPENR_FMC			0
+#define RCC_AHB3LPENR_QSPI		1
+
+#define RCC_APB2ENR_TIM1			0
+
+/*>>> RCC BDCR Bitfields <<<*/
+
 #define RCC_BDCR_LSEON				0
 #define RCC_BDCR_LSERDY				1
 #define RCC_BDCR_LSEBYP				2
@@ -420,97 +592,109 @@ typedef struct{
 #define RCC_BDCR_RTCEN				15
 #define RCC_BDCR_BDRST				16
 
+/*>>> RCC CSR Bitfields <<<*/
+
+#define RCC_CSR_LSION			0
+#define RCC_CSR_LSIRDY		1
+#define RCC_CSR_RMVF			24
+#define RCC_CSR_BORRSTF		25
+#define RCC_CSR_PINRSTF		26
+#define RCC_CSR_PORRSTF		27
+#define RCC_CSR_SFTRSTF		28
+#define RCC_CSR_IWDGRSTF	29
+#define RCC_CSR_WWDGRSTF	30
+#define RCC_CSR_LPWRRSTF	31
 
 
 
 
 // Clock Enable Macros for GPIOx peripherals
 
-#define GPIOA_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 0)
-#define GPIOB_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 1)
-#define GPIOC_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 2)
-#define GPIOD_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 3)
-#define GPIOE_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 4)
-#define GPIOF_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 5)
-#define GPIOG_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 6)
-#define GPIOH_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 7)
+#define GPIOA_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 0)
+#define GPIOB_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 1)
+#define GPIOC_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 2)
+#define GPIOD_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 3)
+#define GPIOE_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 4)
+#define GPIOF_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 5)
+#define GPIOG_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 6)
+#define GPIOH_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 7)
 
 // Clock Enable Macros for CRC peripheral
 
-#define CRC_PCLCK_EN()			RCC->AHB1ENR |= (0x01 << 12)
+#define CRC_PCLCK_EN()			RCC->AHB1ENR |= (uint32_t)(0x01 << 12)
 
 
 // Clock Enable Macros for BKPSRAM peripheral
 
-#define BKPSRAM_PCLCK_EN()		RCC->AHB1ENR |= (0x01 << 18)
+#define BKPSRAM_PCLCK_EN()		RCC->AHB1ENR |= (uint32_t)(0x01 << 18)
 
 // Clock Enable Macros for DMA peripherals
 
-#define DMA1_PCLCK_EN()			RCC->AHB1ENR |= (0x01 << 21)
-#define DMA2_PCLCK_EN()			RCC->AHB1ENR |= (0x01 << 22)
+#define DMA1_PCLCK_EN()			RCC->AHB1ENR |= (uint32_t)(0x01 << 21)
+#define DMA2_PCLCK_EN()			RCC->AHB1ENR |= (uint32_t)(0x01 << 22)
 
 // Clock Enable Macros for USB peripherals
 
-#define OTGHS_ULPI_PCLCK_EN()	RCC->AHB1ENR |= (0x01 << 30)
-#define OTGHS_PCLCK_EN()		RCC->AHB1ENR |= (0x01 << 29)
+#define OTGHS_ULPI_PCLCK_EN()	RCC->AHB1ENR |= (uint32_t)(0x01 << 30)
+#define OTGHS_PCLCK_EN()		RCC->AHB1ENR |= (uint32_t)(0x01 << 29)
 
 
 // Clock Enable Macros for DMI peripheral
 
-#define DCMI_PCLCK_EN()			RCC->AHB2ENR |= (0x01 << 0)
+#define DCMI_PCLCK_EN()			RCC->AHB2ENR |= (uint32_t)(0x01 << 0)
 
 // Clock Enable Macros for OTGFS peripheral
 
-#define OTGFS_PCLCK_EN()		RCC->AHB2ENR |= (0x01 << 7)
+#define OTGFS_PCLCK_EN()		RCC->AHB2ENR |= (uint32_t)(0x01 << 7)
 
 // Clock Enable Macros for FMC peripheral
 
-#define FMC_PCLCK_EN()			RCC->AHB3ENR |= (0x01 << 0)
+#define FMC_PCLCK_EN()			RCC->AHB3ENR |= (uint32_t)(0x01 << 0)
 
 // Clock Enable Macros for FMC peripheral
 
-#define QSPI_PCLCK_EN()			RCC->AHB3ENR |= (0x01 << 1)
+#define QSPI_PCLCK_EN()			RCC->AHB3ENR |= (uint32_t)(0x01 << 1)
 
 
 // Clock Enable Macros for Timers peripherals
 
-#define TIM2_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 0)
-#define TIM3_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 1)
-#define TIM4_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 2)
-#define TIM5_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 3)
-#define TIM6_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 4)
-#define TIM7_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 5)
-#define TIM12_PCLCK_EN()		RCC->APB1ENR |= (0x01 << 6)
-#define TIM13_PCLCK_EN()		RCC->APB1ENR |= (0x01 << 7)
-#define TIM14_PCLCK_EN()		RCC->APB1ENR |= (0x01 << 8)
+#define TIM2_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 0)
+#define TIM3_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 1)
+#define TIM4_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 2)
+#define TIM5_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 3)
+#define TIM6_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 4)
+#define TIM7_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 5)
+#define TIM12_PCLCK_EN()		RCC->APB1ENR |= (uint32_t)(0x01 << 6)
+#define TIM13_PCLCK_EN()		RCC->APB1ENR |= (uint32_t)(0x01 << 7)
+#define TIM14_PCLCK_EN()		RCC->APB1ENR |= (uint32_t)(0x01 << 8)
 
 
 // Clock Enable Macros for WWDG peripherals
 
-#define WWDG_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 11)
+#define WWDG_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 11)
 
 
 // Clock Enable Macros for SPI peripherals
 
-#define SPI2_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 14)
-#define SPI3_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 15)
+#define SPI2_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 14)
+#define SPI3_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 15)
 
 // Clock Enable Macros for SPDIFRX peripherals
 
-#define SPDIFRX_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 16)
+#define SPDIFRX_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 16)
 
 // Clock Enable Macros for UART peripherals
 
-#define USART2_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 17)
-#define USART3_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 18)
-#define UART4_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 19)
-#define UART5_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 20)
+#define USART2_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 17)
+#define USART3_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 18)
+#define UART4_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 19)
+#define UART5_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 20)
 
 // Clock Enable Macros for I2C peripherals
 
-#define I2C1_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 21)
-#define I2C2_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 22)
-#define I2C3_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 23)
+#define I2C1_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 21)
+#define I2C2_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 22)
+#define I2C3_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 23)
 
 
 // Clock Enable Macros for FMPI2C1 peripherals
@@ -552,59 +736,59 @@ typedef struct{
 
 // Clock Enable Macros for DAC peripherals
 
-#define DAC_PCLCK_EN()			RCC->APB1ENR |= (0x01 << 29)
+#define DAC_PCLCK_EN()			RCC->APB1ENR |= (uint32_t) (0x01 << 29)
 
 
 // Clock Enable Macros for TIMERS peripherals
 
-#define TIM1_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 0)
-#define TIM8_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 1)
-#define TIM9_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 16)
-#define TIM10_PCLCK_EN()		RCC->APB2ENR |= (0x01 << 17)
-#define TIM11_PCLCK_EN()		RCC->APB2ENR |= (0x01 << 18)
+#define TIM1_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 0)
+#define TIM8_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 1)
+#define TIM9_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 16)
+#define TIM10_PCLCK_EN()		RCC->APB2ENR |= (uint32_t) (0x01 << 17)
+#define TIM11_PCLCK_EN()		RCC->APB2ENR |= (uint32_t) (0x01 << 18)
 
 
 // Clock Enable Macros for TIMERS peripherals
 
-#define USART1_PCLCK_EN()		RCC->APB2ENR |= (0x01 << 5)
-#define USART6_PCLCK_EN()		RCC->APB2ENR |= (0x01 << 6)
+#define USART1_PCLCK_EN()		RCC->APB2ENR |= (uint32_t) (0x01 << 5)
+#define USART6_PCLCK_EN()		RCC->APB2ENR |= (uint32_t) (0x01 << 6)
 
 // Clock Enable Macros for ADC peripherals
 
-#define ADC1_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 8)
-#define ADC2_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 9)
-#define ADC3_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 10)
+#define ADC1_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 8)
+#define ADC2_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 9)
+#define ADC3_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 10)
 
 // Clock Enable Macros for SDIO peripherals
 
-#define SDIO_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 11)
+#define SDIO_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 11)
 
 // Clock Enable Macros for SPI peripherals
 
-#define SPI1_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 12)
-#define SPI4_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 13)
+#define SPI1_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 12)
+#define SPI4_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 13)
 
 // Clock Enable Macros for SYSCFG peripherals
 
-#define SYSCFG_PCLCK_EN()		RCC->APB2ENR |= (0x01 << 14)
+#define SYSCFG_PCLCK_EN()		RCC->APB2ENR |= (uint32_t) (0x01 << 14)
 
 
 // Clock Enable Macros for SAI peripherals
 
-#define SAI1_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 22)
-#define SAI2_PCLCK_EN()			RCC->APB2ENR |= (0x01 << 23)
+#define SAI1_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 22)
+#define SAI2_PCLCK_EN()			RCC->APB2ENR |= (uint32_t) (0x01 << 23)
 
 
 // Clock Disable Macros for GPIOx peripherals
 
-#define GPIOA_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 0)
-#define GPIOB_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 1)
-#define GPIOC_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 2)
-#define GPIOD_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 3)
-#define GPIOE_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 4)
-#define GPIOF_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 5)
-#define GPIOG_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 6)
-#define GPIOH_PCLCK_DIS()		RCC->AHB1ENR &= ~(0x01 << 7)
+#define GPIOA_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 0)
+#define GPIOB_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 1)
+#define GPIOC_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 2)
+#define GPIOD_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 3)
+#define GPIOE_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 4)
+#define GPIOF_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 5)
+#define GPIOG_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 6)
+#define GPIOH_PCLCK_DIS()		RCC->AHB1ENR &= (uint32_t) ~(0x01 << 7)
 
 // Clock Disable Macros for CRC peripheral
 
