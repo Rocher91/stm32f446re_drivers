@@ -156,9 +156,9 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	//2. Configure the speed.
 
-	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 temp = (uint32_t) pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
-	 pGPIOHandle->pGPIOx->OSPEEDER &= ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
+	 pGPIOHandle->pGPIOx->OSPEEDER &= (uint32_t) ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
 	 pGPIOHandle->pGPIOx->OSPEEDER |= temp;
 
 	 temp = 0;
@@ -167,13 +167,13 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinPupdControl << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
-	 pGPIOHandle->pGPIOx->PUPDR &= ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
+	 pGPIOHandle->pGPIOx->PUPDR &= (uint32_t) ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
 	 pGPIOHandle->pGPIOx->PUPDR |= temp;
 
 	 temp = 0;
 
 	//4. Configure the OPType of GPIO pin.
-	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 temp = (uint32_t) pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
 	 pGPIOHandle->pGPIOx->OTYPER &= ~( 0x01 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 	 pGPIOHandle->pGPIOx->OTYPER |= temp;
@@ -187,8 +187,8 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 		temp1 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 8;
 		temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 8;
 
-		pGPIOHandle->pGPIOx->AFR[temp1] &=  ~( 0xF << ( 4 * temp2) );
-		pGPIOHandle->pGPIOx->AFR[temp1] |=  ( pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFuncMode << ( 4 * temp2) );
+		pGPIOHandle->pGPIOx->AFR[temp1] &= (uint32_t) ~( 0xF << ( 4 * temp2) );
+		pGPIOHandle->pGPIOx->AFR[temp1] |= (uint32_t) ( pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFuncMode << ( 4 * temp2) );
 
 	}
 
@@ -286,10 +286,10 @@ uint16_t GPIO_ReadFromInputPort( GPIO_RegDef_t *pGPIOx ){
 void GPIO_WriteTouOutPutPin( GPIO_RegDef_t *pGPIOx , uint8_t PinNumber, uint8_t value){
 
 	if( value == SET){
-		pGPIOx->BSRR |= ( 0x01 << PinNumber );
+		pGPIOx->BSRR |= (uint32_t) ( 0x01 << PinNumber );
 	}
 	else if ( value == RESET ){
-		pGPIOx->BSRR |= ( (0x01 << 16) << PinNumber );
+		pGPIOx->BSRR |= (uint32_t) ( (0x01 << 16) << PinNumber );
 	}
 }
 
@@ -308,7 +308,7 @@ void GPIO_WriteTouOutPutPin( GPIO_RegDef_t *pGPIOx , uint8_t PinNumber, uint8_t 
  * */
 void GPIO_WriteTouOutPutPort( GPIO_RegDef_t *pGPIOx ,uint8_t value ){
 
-	pGPIOx->ODR = ( 0xFFFF & value );
+	pGPIOx->ODR = (uint32_t) ( 0xFFFF & value );
 }
 
 /********************************************************************************
@@ -326,7 +326,7 @@ void GPIO_WriteTouOutPutPort( GPIO_RegDef_t *pGPIOx ,uint8_t value ){
  * */
 void GPIO_ToggleOutputPin( GPIO_RegDef_t *pGPIOx , uint8_t PinNumber ){
 
-	pGPIOx->ODR ^= ( 0x01 << PinNumber );
+	pGPIOx->ODR ^= (uint32_t) ( 0x01 << PinNumber );
 }
 
 //IRQ Configuration and ISR handling

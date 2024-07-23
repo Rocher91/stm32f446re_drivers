@@ -133,7 +133,7 @@ int main(void)
 	// COnfigurar LSE
 	
 	RCC_LSEConfig(RCC_LSE_ON);
-	RCC_WaitForClkRdy(RCC_Clock_LSE);
+	//RCC_WaitForClkRdy(RCC_Clock_LSE);
 	
 	//COnfigurar MCO1
 	RCC_MCO1Config(RCC_MCO1_Source_LSE,RCC_MCO1_Prescaler_None);
