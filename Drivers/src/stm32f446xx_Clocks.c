@@ -28,7 +28,9 @@ void RCC_HSEConfig(RCC_HSE_Status_t HSE_Status){
 	 * RCC_CR->CSSON 		= 0
 	 ******************************/
 	
-	RCC->CR &= (uint32_t)~( (1 << RCC_CR_HSEON) | (1 << RCC_HSE_BYP)| (1 << RCC_CR_CSSON) );
+	RCC->CR &= (uint32_t)~( (1 << RCC_CR_HSEON) | (1 << RCC_HSE_BYP) | (1 << RCC_CR_CSSON) );
+	
+	//RCC->CR &= (uint32_t) ~(0x0F << 16);
 	
 	if( HSE_Status == RCC_HSE_ON ){
 			
@@ -36,11 +38,30 @@ void RCC_HSEConfig(RCC_HSE_Status_t HSE_Status){
 	}
 	else if( HSE_Status == RCC_HSE_BYP ){
 		
-		RCC->CR |= ( (1 << RCC_CR_HSEBYP) | (1<<RCC_CR_HSEON) ) ;	
+		RCC->CR |= ( (1 << RCC_CR_HSEBYP) | (1 << RCC_CR_HSEON) ) ;	
 	}
 	
 }
 
+//TODO
+/************************************************************************************************************************
+ *																																																											*
+ *		@brief 		Configura el External Low Speed Oscillator (LSE).																											*	
+ *																																																											*
+ *		@note			Posteriormente a la habilitacion del LSE (RCC_HSE_ON o RCC_HSE_Bypass),																	*
+ *							la aplicacion debe esperar a que haga set el flag HSERDY antes de usarlo																*
+ *							como clock.																																															*
+ *																																																											*
+ *		@param		HSE_Status: estado del HSE, cuyos valores pueder ser:																										*
+ *																																																											*	
+ *								@arg RCC_HSE_OFF: Deshabilita el HSE. El flag HSERDY se resetea despues de 6 ciclos de reloj.					*
+ *								@arg RCC_HSE_ON: 	Habilita el HSE.																																		*		
+ *								@arg RCC_HSE_BYP: Habilita el HSE para ser usado por un clock externo.																*
+ *																																																											*
+ *		@retval		None																																																		*
+ *																																																											*
+ ************************************************************************************************************************/
+ 
 void RCC_LSEConfig(RCC_LSE_Status_t LSE_Status){
 	
 	//Habilitar Escritura
@@ -132,7 +153,7 @@ uint32_t RCC_GetAPB1_TimerClk(void){
 	uint32_t rcc_cfgr_ppre1;
 	rcc_cfgr_ppre1 = (RCC->CFGR >> RCC_CFGR_PPRE1) & 0x07;
 	
-	if(rcc_cfgr_ppre1 == 1){
+	if(rcc_cfgr_ppre1 == RCC_APB_Prescaler_None ){
 		return RCC_GetAPB1Clk();
 	}
 	return RCC_GetAPB1Clk()*2;
@@ -143,7 +164,7 @@ uint32_t RCC_GetAPB2_TimerClk(void){
 	uint32_t rcc_cfgr_ppre2;
 	rcc_cfgr_ppre2 = (RCC->CFGR >> RCC_CFGR_PPRE2) & 0x07;
 	
-	if(rcc_cfgr_ppre2 == 1){
+	if(rcc_cfgr_ppre2 == RCC_APB_Prescaler_None ){
 		return RCC_GetAPB2Clk();
 	}
 	return RCC_GetAPB2Clk()*2;

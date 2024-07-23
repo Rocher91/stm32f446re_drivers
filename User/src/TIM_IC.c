@@ -45,6 +45,7 @@ freq_measurement_st_t freq_measurement_st = waiting_for_cap1_st;
 void GPIO_configurations(void);
 void TIM_setup(void);
 void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
+void SYSClk_PLL_Setup(void);
 
 void GPIO_configurations(){
 	
@@ -67,6 +68,45 @@ void GPIO_configurations(){
 	GPIO_Init(&TIM2_CH2_Pin);
 }
 
+void SYSClk_PLL_Setup(void){
+	
+	
+	// SYSCLK = 168 MHz
+	
+	uint32_t 	PLLM = 8,
+						PLLN = 336,
+						PLLP = 2,
+						PLLQ = 7,
+						PLLR = 5;
+	
+	//Configurar prescaler APB1 y APB2
+	
+	RCC_APBlCkConfig(RCC_APB_Prescaler_4); //42 MHz
+	RCC_APB2CkConfig(RCC_APB_Prescaler_2); //84 MHz
+	
+	// Habilitar HSE.
+	RCC_HSEConfig(RCC_HSE_ON);
+	
+	// Esperar a que HSI este OK.
+	RCC_WaitForClkRdy(RCC_Clock_HSE);
+	
+	//Config PLL.
+	RCC_PLLConfig(RCC_PLL_Source_HSE,PLLM,PLLN,PLLP,PLLQ,PLLR);
+	
+	// Habilitar PLLM
+	RCC_PLL_Enable(ENABLE);
+	
+	// Esperar a que PLL este OK.
+	RCC_WaitForClkRdy(RCC_Clock_PLL);
+	
+	//Flash Latency  pag RM 66.
+	setLatencyFlash(5);
+	
+	//Seleccionar PLL_P como fuente de reloj del sistema.
+	RCC_SysclkConfig(RCC_Sysclk_Src_PLL_P);
+	
+}
+
 void TIM_setup(){
 	
 	htim2.pTIMx = TIM2;
@@ -87,6 +127,9 @@ void TIM_setup(){
 
 int main(void)
 {
+	
+	SYSClk_PLL_Setup();
+	
 	// COnfigurar LSE
 	
 	RCC_LSEConfig(RCC_LSE_ON);
