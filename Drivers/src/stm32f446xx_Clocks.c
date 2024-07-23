@@ -1,7 +1,6 @@
 #include "stm32f446xx_Clocks.h"
 
 
-//TODO
 /************************************************************************************************************************
  *																																																											*
  *		@brief 		Configura el External High Speed Oscillator (HSE).																											*	
@@ -43,7 +42,7 @@ void RCC_HSEConfig(RCC_HSE_Status_t HSE_Status){
 	
 }
 
-//TODO
+
 /************************************************************************************************************************
  *																																																											*
  *		@brief 		Configura el External Low Speed Oscillator (LSE).																											*	
@@ -66,14 +65,14 @@ void RCC_LSEConfig(RCC_LSE_Status_t LSE_Status){
 	
 	//Habilitar Escritura
 	PWR_PCLCK_EN();
-	PWR->CR |= ( 1<< PWR_CR_DBP );
+	PWR->CR |= (1 << PWR_CR_DBP);
 	
 	/******************************
 	 * RCC_BDCR->LSEBYP 	= 0
 	 * RCC_BDCR->LSEON 		= 0
 	 * RCC_BDCR->LSEMOD 	= 0
 	 ******************************/
-	RCC->BDCR &= ~( (1 << RCC_BDCR_LSEBYP) | (1 << RCC_BDCR_LSEON)| (1 << RCC_BDCR_LSEMOD) );
+	RCC->BDCR &= (uint32_t) ~( (1 << RCC_BDCR_LSEBYP) | (1 << RCC_BDCR_LSEON)| (1 << RCC_BDCR_LSEMOD) );
 	
 	if( LSE_Status == RCC_LSE_ON ){
 			
@@ -86,20 +85,52 @@ void RCC_LSEConfig(RCC_LSE_Status_t LSE_Status){
 }
 
 
+
+/************************************************************************************************************************
+ *																																																											*
+ *		@brief 		Configura el PLL (PLL).																																									*	
+ *																																																											*																																													*
+ *		@param		PLL_Source: Seleccion de la fuente del PLL., cuyos valores pueder ser:																										*
+ *																																																											*	
+ *								@arg PLL_Source: .																											*
+ *								@arg RCC_HSE_ON: 	Habilita el HSE.																																		*		
+ *								@arg RCC_HSE_BYP: Habilita el HSE para ser usado por un clock externo.																*
+ *																																																											*
+ *		@retval		None																																																		*
+ *																																																											*
+ ************************************************************************************************************************/
 void RCC_PLLConfig(RCC_PLL_Source_t PLL_Source,uint32_t PLLM,uint32_t PLLN,uint32_t PLLP,uint32_t PLLQ,uint32_t PLLR){
 	
 	uint32_t temp_RCC_PLLCFGR = RCC->PLLCFGR;
 	
-	//ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLM));
-	//ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLN));
-	//ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLP));
-	//ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLQ));
-	//ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLR));
+	ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLM));
+	ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLN));
+	ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLP));
+	ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLQ));
+	ASSERT_TRUE(IS_VALID_PLLM_VAL(PLLR));
 	
-	temp_RCC_PLLCFGR = ( PLLM | ( PLLN << RCC_PLLCFGR_PLLN )| ( ( ( PLLP >> 1 ) - 1 ) << RCC_PLLCFGR_PLLP ) | ( PLL_Source << RCC_PLLCFGR_PLLSRC ) |(PLLQ << RCC_PLLCFGR_PLLQ ) | ( PLLR << RCC_PLLCFGR_PLLR ) );
+	temp_RCC_PLLCFGR = (uint32_t)( PLLM | \
+										 (uint32_t)( PLLN << RCC_PLLCFGR_PLLN )|\
+										 (uint32_t)( ( ( PLLP >> 1 ) - 1 ) << RCC_PLLCFGR_PLLP ) |\
+										 (uint32_t)( PLL_Source << RCC_PLLCFGR_PLLSRC ) |\
+										 (uint32_t)(PLLQ << RCC_PLLCFGR_PLLQ ) | \
+										 (uint32_t)( PLLR << RCC_PLLCFGR_PLLR ) );
 	
 	RCC->PLLCFGR = temp_RCC_PLLCFGR;
 }
+
+
+/************************************************************************************************************************
+ *																																																											*
+ *		@brief 		Habilita o Deshabilita el High Speed Internal Oscillator (HSI).																					*	
+ *																																																											*																																													*
+ *		@param		status: estado del HSI, cuyos valores pueder ser:																										*
+ *																																																											*	
+ *								@arg status: ENABLE o DISABLE.																																				*
+ *																																																											*
+ *		@retval		None																																																		*
+ *																																																											*
+ ************************************************************************************************************************/
 
 void RCC_HSI_Enable(uint8_t status){
 	
@@ -107,24 +138,50 @@ void RCC_HSI_Enable(uint8_t status){
 		RCC->CR |= (1<<RCC_CR_HSION);
 	}
 	else if(status == DISABLE ){
-		RCC->CR &= ~(1<<RCC_CR_HSION);
+		RCC->CR &= (uint32_t) ~(1<<RCC_CR_HSION);
 	}
 }
+
+/************************************************************************************************************************
+ *																																																											*
+ *		@brief 		Habilita o Deshabilita el Low Speed Internal Oscillator (lSI).																					*	
+ *																																																											*																																													*
+ *		@param		status: estado del LSI, cuyos valores pueder ser:																												*
+ *																																																											*	
+ *								@arg status: ENABLE o DISABLE.																																				*
+ *																																																											*
+ *		@retval		None																																																		*
+ *																																																											*
+ ************************************************************************************************************************/
+
 void RCC_LSI_Enable(uint8_t status){
 	if(status == ENABLE ){
 		RCC->CR |= (1<<RCC_CSR_LSION);
 	}
 	else if(status == DISABLE ){
-		RCC->CR &= ~(1<<RCC_CSR_LSION);
+		RCC->CR &= (uint32_t) ~(1<<RCC_CSR_LSION);
 	}
 }
+
+/************************************************************************************************************************
+ *																																																											*
+ *		@brief 		Habilita o Deshabilita el PLL Oscillator (PLL).																													*	
+ *																																																											*																																													*
+ *		@param		status: estado del PLL, cuyos valores pueder ser:																												*
+ *																																																											*	
+ *								@arg status: ENABLE o DISABLE.																																				*
+ *																																																											*
+ *		@retval		None																																																		*
+ *																																																											*
+ ************************************************************************************************************************/
+
 void RCC_PLL_Enable(uint8_t status){
 	
 	if(status == ENABLE ){
 		RCC->CR |= (1<<RCC_CR_PLLON);
 	}
 	else if(status == DISABLE ){
-		RCC->CR &= ~(1<<RCC_CR_PLLON);
+		RCC->CR &= (uint32_t) ~(1<<RCC_CR_PLLON);
 	}
 
 }
@@ -134,16 +191,16 @@ void RCC_MCO1Config(RCC_MCO1_Source_t MCO1_Source, RCC_MCO1_Prescaler_t MCO1_Pre
 	uint32_t temp_RCC_CFGR = RCC->CFGR;
 	
 	//Limpiar el valor del campo MCO1. 
-	temp_RCC_CFGR &= ~( 0x03 << RCC_CFGR_MCO1);
+	temp_RCC_CFGR &= (uint32_t) ~( 0x03 << RCC_CFGR_MCO1);
 	
 	// Settear bits de source 
-	temp_RCC_CFGR |= ( MCO1_Source << RCC_CFGR_MCO1);
+	temp_RCC_CFGR |= (uint32_t) ( MCO1_Source << RCC_CFGR_MCO1);
 	
 	//Limpiar Bits de prescaler
-	temp_RCC_CFGR &= ~( 0x07 << RCC_CFGR_MCO1PRE);
+	temp_RCC_CFGR &= (uint32_t) ~( 0x07 << RCC_CFGR_MCO1PRE);
 	
 	// Setear bits prescaler
-	temp_RCC_CFGR |= ( MCO1_Presc << RCC_CFGR_MCO1PRE);
+	temp_RCC_CFGR |= (uint32_t) ( MCO1_Presc << RCC_CFGR_MCO1PRE);
 	
 	RCC->CFGR = temp_RCC_CFGR;
 }
@@ -175,16 +232,16 @@ void RCC_MCO2Config(RCC_MCO2_Source_t MCO2_Source, RCC_MCO2_Prescaler_t MCO2_Pre
 	uint32_t temp_RCC_CFGR = RCC->CFGR;
 	
 	//Limpiar Bits de source
-	temp_RCC_CFGR &= ~( 0x03 << RCC_CFGR_MC02);
+	temp_RCC_CFGR &= (uint32_t)~((uint32_t)0x03 << (uint32_t)RCC_CFGR_MC02);
 	
 	// Settear bits de source 
-	temp_RCC_CFGR |= ( MCO2_Source << RCC_CFGR_MC02);
+	temp_RCC_CFGR |= (uint32_t) ( MCO2_Source << RCC_CFGR_MC02);
 	
 	//Limpiar Bits de prescaler
-	temp_RCC_CFGR &= ~( 0x07 << RCC_CFGR_MCO2PRE);
+	temp_RCC_CFGR &= (uint32_t) ~( 0x07 << RCC_CFGR_MCO2PRE);
 	
 	// Setear bits prescaler
-	temp_RCC_CFGR |= ( MCO2_Presc << RCC_CFGR_MCO2PRE);
+	temp_RCC_CFGR |= (uint32_t) ( MCO2_Presc << RCC_CFGR_MCO2PRE);
 	
 	RCC->CFGR = temp_RCC_CFGR;
 }
@@ -201,6 +258,11 @@ void RCC_WaitForClkRdy(RCC_Clock_t clk){
 		while(!(RCC->CR & (1 << RCC_CR_PLLRDY)));
 	}
 	else if(clk == RCC_Clock_LSE){	
+		
+		//Habilitar Escritura
+		PWR_PCLCK_EN();
+		PWR->CR |= (1 << PWR_CR_DBP);
+		
 		while(!(RCC->BDCR & (1 << RCC_BDCR_LSERDY)));
 	}
 
@@ -209,8 +271,8 @@ void RCC_SysclkConfig(RCC_SysClk_Source_t Sysclk_Src){
 	
 	uint32_t temp_RCC_CFGR = RCC->CFGR;
 
-	temp_RCC_CFGR &= ~(0x03 << RCC_CFGR_SW);
-	temp_RCC_CFGR |= (Sysclk_Src << RCC_CFGR_SW);
+	temp_RCC_CFGR &= (uint32_t) ~(0x03 << RCC_CFGR_SW);
+	temp_RCC_CFGR |= (uint32_t) (Sysclk_Src << RCC_CFGR_SW);
 	
 	RCC->CFGR = temp_RCC_CFGR;
 }
@@ -219,17 +281,17 @@ RCC_SysClk_Source_t RCC_getSysclkSorce(void){
 	
 	uint32_t SWS;
 	
-	SWS = (RCC_SysClk_Source_t)((RCC->CFGR & 0x0C) >> RCC_CFGR_SW );
+	SWS = (uint32_t) (RCC_SysClk_Source_t)((RCC->CFGR & 0x0C) >> RCC_CFGR_SW );
 	
-	return SWS;
+	return (RCC_SysClk_Source_t) SWS;
 }
 
 void RCC_AHB1CkConfig(RCC_AHB_Prescaler_t AHB_Presc){
 	
 	uint32_t temp_RCC_CFGR = RCC->CFGR;
 	
-	temp_RCC_CFGR &= ~(0x0F << RCC_CFGR_HPRE);
-	temp_RCC_CFGR |= (AHB_Presc << RCC_CFGR_HPRE);
+	temp_RCC_CFGR &= (uint32_t) ~(0x0F << RCC_CFGR_HPRE);
+	temp_RCC_CFGR |= (uint32_t) (AHB_Presc << RCC_CFGR_HPRE);
 	
 	RCC->CFGR = temp_RCC_CFGR;
 }
@@ -237,8 +299,8 @@ void RCC_APBlCkConfig(RCC_APB_Prescaler_t APB_Presc){
 	
 	uint32_t temp_RCC_CFGR = RCC->CFGR;
 	
-	temp_RCC_CFGR &= ~(0x07 << RCC_CFGR_PPRE1);
-	temp_RCC_CFGR |= (APB_Presc << RCC_CFGR_PPRE1);
+	temp_RCC_CFGR &= (uint32_t) ~(0x07 << RCC_CFGR_PPRE1);
+	temp_RCC_CFGR |= (uint32_t) (APB_Presc << RCC_CFGR_PPRE1);
 	
 	RCC->CFGR = temp_RCC_CFGR;
 }
@@ -246,8 +308,8 @@ void RCC_APB2CkConfig(RCC_APB_Prescaler_t APB_Presc){
 	
 	uint32_t temp_RCC_CFGR = RCC->CFGR;
 	
-	temp_RCC_CFGR &= ~(0x07 << RCC_CFGR_PPRE2);
-	temp_RCC_CFGR |= (APB_Presc << RCC_CFGR_PPRE2);
+	temp_RCC_CFGR &= (uint32_t) ~(0x07 << RCC_CFGR_PPRE2);
+	temp_RCC_CFGR |= (uint32_t) (APB_Presc << RCC_CFGR_PPRE2);
 	
 	RCC->CFGR = temp_RCC_CFGR;
 }
@@ -264,9 +326,8 @@ uint32_t RCC_getSysClk(void){
 	uint32_t freq 				= 0;
 	uint32_t rcc_cfgr_sws = 0;
 	
-	
-	
-	rcc_cfgr_sws = (RCC->CFGR) & 0x03;
+
+	rcc_cfgr_sws = RCC->CFGR & 0x03;
 	
 	if( rcc_cfgr_sws == 0 ){
 	
@@ -298,7 +359,7 @@ uint32_t RCC_getSysClk(void){
 		}
 		
 		
-		PLL_P 	= ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLP ) & 0x03 + 1 )* 2;
+		PLL_P 	= ( (RCC->PLLCFGR >> RCC_PLLCFGR_PLLP  & 0x03 ) + 1 )* 2;
 		
 		freq = PLL_VCO / PLL_P;
 	}
@@ -363,7 +424,7 @@ uint32_t RCC_GetAPB2Clk(void){
 
 void setLatencyFlash(uint8_t latency){
 
-	FLASH->ACR |= (latency << 0) ;
+	FLASH->ACR |= (uint32_t) (latency << 0) ;
 }
 
 

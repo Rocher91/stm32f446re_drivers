@@ -2,8 +2,8 @@
 #include <stm32f446xx_Gpio_Driver.h>
 #include <stm32f446xx_Clocks.h>
 
-GPIO_Handle_t MCO1 			= { 0 };
-GPIO_Handle_t PA5 			= { 0 };
+static GPIO_Handle_t MCO1 	= { 0 };
+static GPIO_Handle_t PA5 		= { 0 };
 
 void GPIO_Setup(void);
 void delay(uint32_t cnt);

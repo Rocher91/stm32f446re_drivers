@@ -20,8 +20,7 @@ typedef struct{
 	uint8_t GPIO_PinOPType;			/*< POSSIBLE VALUES FROM @GPIO OTYPER >*/
 	uint8_t GPIO_PinAltFuncMode;	/*< POSSIBLE VALUES FROM @GPIO ALTERNATE >*/
 
-}GPIO_PinConfig_t;
-
+}__attribute__((packed)) GPIO_PinConfig_t;
 
 
 typedef struct{
@@ -29,7 +28,7 @@ typedef struct{
 	GPIO_RegDef_t *pGPIOx;
 	GPIO_PinConfig_t GPIO_PinConfig;
 
-}GPIO_Handle_t;
+}__attribute__((packed)) GPIO_Handle_t;
 
 /* GPIO pin  */
 
