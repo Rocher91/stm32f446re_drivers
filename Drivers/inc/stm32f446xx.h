@@ -256,6 +256,7 @@ __weak void assert_failed(uint8_t* file, uint32_t line);
 #define FMC_BASEADDR							( AHB3_PERIPH_BASE + 0x0000 )
 
 
+
 /**************************************************Peripheral Register Definition Structures***************************************************/
 
 typedef struct{
@@ -922,27 +923,15 @@ typedef struct{
 
 // Clock Disable Macros for Timers peripherals
 
-#define TIM2_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 0)
-#define TIM3_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 1)
-#define TIM4_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 2)
-#define TIM5_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 3)
-#define TIM6_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 4)
-#define TIM7_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 5)
-#define TIM12_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 6)
-#define TIM13_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 7)
-#define TIM14_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 8)
-
-// Clock Disable Macros for Timers peripherals
-
-#define TIM2_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 0)
-#define TIM3_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 1)
-#define TIM4_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 2)
-#define TIM5_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 3)
-#define TIM6_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 4)
-#define TIM7_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 5)
-#define TIM12_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 6)
-#define TIM13_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 7)
-#define TIM14_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 8)
+#define TIM2_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 0)
+#define TIM3_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 1)
+#define TIM4_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 2)
+#define TIM5_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 3)
+#define TIM6_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 4)
+#define TIM7_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 5)
+#define TIM12_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 6)
+#define TIM13_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 7)
+#define TIM14_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 8)
 
 
 // Clock Disable Macros for WWDG peripherals
@@ -952,48 +941,48 @@ typedef struct{
 
 // Clock Disable Macros for SPI peripherals
 
-#define SPI2_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 14)
-#define SPI3_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 15)
+#define SPI2_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 14)
+#define SPI3_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 15)
 
 // Clock Enable Macros for SPDIFRX peripherals
 
-#define SPDIFRX_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 16)
+#define SPDIFRX_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 16)
 
 // Clock Enable Macros for UART peripherals
 
-#define USART2_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 17)
-#define USART3_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 18)
-#define UART4_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 19)
-#define UART5_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 20)
+#define USART2_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 17)
+#define USART3_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 18)
+#define UART4_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 19)
+#define UART5_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 20)
 
 // Clock Enable Macros for I2C peripherals
 
-#define I2C1_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 21)
-#define I2C2_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 22)
-#define I2C3_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 23)
+#define I2C1_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 21)
+#define I2C2_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 22)
+#define I2C3_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 23)
 
 
 // Clock Enable Macros for FMPI2C1 peripherals
 
-#define FMPI2C1_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 24)
+#define FMPI2C1_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 24)
 
 // Clock Enable Macros for CAN peripherals
 
-#define CAN1_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 25)
-#define CAN2_PCLCK_DIS()		RCC->APB1ENR &= ~(0x01 << 26)
+#define CAN1_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 25)
+#define CAN2_PCLCK_DIS()		RCC->APB1ENR &= (uint32_t) ~(0x01 << 26)
 
 
 // Clock Enable Macros for CEC peripherals
 
-#define CEC_PCLCK_DIS()			RCC->APB1ENR &= ~(0x01 << 27)
+#define CEC_PCLCK_DIS()			RCC->APB1ENR &= (uint32_t) ~(0x01 << 27)
 
 // Clock Enable Macros for PWR peripherals
 
-#define PWR_PCLCK_DIS()			RCC->APB1ENR &= ~(0x01 << 28)
+#define PWR_PCLCK_DIS()			RCC->APB1ENR &= (uint32_t) ~(0x01 << 28)
 
 // Clock Enable Macros for DAC peripherals
 
-#define DAC_PCLCK_DIS()			RCC->APB1ENR &= ~(0x01 << 29)
+#define DAC_PCLCK_DIS()			RCC->APB1ENR &= (uint32_t) ~(0x01 << 29)
 
 
 // Clock Enable Macros for TIMERS peripherals
@@ -1007,33 +996,33 @@ typedef struct{
 
 // Clock Disable Macros for TIMERS peripherals
 
-#define USART1_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 5)
-#define USART6_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 6)
+#define USART1_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 5)
+#define USART6_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 6)
 
 // Clock Disable Macros for ADC peripherals
 
-#define ADC1_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 8)
-#define ADC2_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 9)
-#define ADC3_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 10)
+#define ADC1_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 8)
+#define ADC2_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 9)
+#define ADC3_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 10)
 
 // Clock Disable Macros for SDIO peripherals
 
-#define SDIO_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 11)
+#define SDIO_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 11)
 
 // Clock Disable Macros for SPI peripherals
 
-#define SPI1_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 12)
-#define SPI4_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 13)
+#define SPI1_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 12)
+#define SPI4_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 13)
 
 // Clock Disable Macros for SYSCFG peripherals
 
-#define SYSCFG_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 14)
+#define SYSCFG_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 14)
 
 
 // Clock Disable Macros for SAI peripherals
 
-#define SAI1_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 22)
-#define SAI2_PCLCK_DIS()		RCC->APB2ENR &= ~(0x01 << 23)
+#define SAI1_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 22)
+#define SAI2_PCLCK_DIS()		RCC->APB2ENR &= (uint32_t) ~(0x01 << 23)
 
 
 // Reset Macros peripherals

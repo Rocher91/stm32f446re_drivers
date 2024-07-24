@@ -110,9 +110,9 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	if( pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG ){
 
-		temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+		temp = (uint32_t) pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
-		pGPIOHandle->pGPIOx->MODER &= ~( 0x03 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+		pGPIOHandle->pGPIOx->MODER &= (uint32_t) ~( 0x03 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 		pGPIOHandle->pGPIOx->MODER |= temp;
 	}
 	else{
@@ -144,7 +144,7 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 		portcode = GPIO_BASEADDR_TO_CODE( pGPIOHandle->pGPIOx );
 
 		SYSCFG_PCLCK_EN();
-		SYSCFGR->EXTICR[ temp1] = portcode <<( temp2 * 4) ;
+		SYSCFGR->EXTICR[ temp1] = (uint32_t) portcode <<( temp2 * 4) ;
 
 		//3. Enable the EXTI interrupt delivery using IMR.
 
@@ -165,7 +165,7 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 
 	//3. Configure the PUPD settings.
 
-	 temp = pGPIOHandle->GPIO_PinConfig.GPIO_PinPupdControl << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 temp = (uint32_t) pGPIOHandle->GPIO_PinConfig.GPIO_PinPupdControl << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
 	 pGPIOHandle->pGPIOx->PUPDR &= (uint32_t) ~( 0x03 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
 	 pGPIOHandle->pGPIOx->PUPDR |= temp;
@@ -181,8 +181,6 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 	temp = 0;
 	//5. Configure the alternate functionality GPIO pin.
 	if( pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ALTERNATE ){
-
-		uint8_t temp1 = 0, temp2 = 0;
 
 		temp1 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 8;
 		temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 8;

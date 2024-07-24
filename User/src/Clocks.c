@@ -54,7 +54,7 @@ void SYSClk_PLL_Setup(void){
 	// Habilitar HSE.
 	RCC_HSEConfig(RCC_HSE_ON);
 	
-	// Esperar a que HSI este OK.
+	// Esperar a que HSE este OK.
 	RCC_WaitForClkRdy(RCC_Clock_HSE);
 	
 	//Config PLL.
@@ -82,12 +82,6 @@ void delay(uint32_t cnt){
 
 void GPIO_Setup(void){
 	
-	MCO1.pGPIOx 																= GPIOA;
-	MCO1.GPIO_PinConfig.GPIO_PinNumber 					= GPIO_PIN_8;
-	MCO1.GPIO_PinConfig.GPIO_PinMode 						= GPIO_MODE_ALTERNATE;
-	
-	GPIO_Init(&MCO1);
-	
 	PA5.pGPIOx 																= NUCLEO_PORT_LED;
 	PA5.GPIO_PinConfig.GPIO_PinNumber 				= NUCLEO_PIN_LED;
 	PA5.GPIO_PinConfig.GPIO_PinMode 					= GPIO_MODE_OUTPUT;
@@ -96,8 +90,16 @@ void GPIO_Setup(void){
 	PA5.GPIO_PinConfig.GPIO_PinSpeed 					= GPIO_HIGH_SPEED;
 	
 	GPIO_Init(&PA5);
+	
+	MCO1.pGPIOx 																= GPIOA;
+	MCO1.GPIO_PinConfig.GPIO_PinNumber 					= GPIO_PIN_8;
+	MCO1.GPIO_PinConfig.GPIO_PinMode 						= GPIO_MODE_ALTERNATE;
+	
+	GPIO_Init(&MCO1);
 
 }
+
+
 
 
 
@@ -113,25 +115,25 @@ int main(){
 	/**************** HSE ****************/
 	
 	//1. Configurar HSE como fuente de reloj del sistema.
-	
 	SYSClk_HSE_Setup();
 	
 	//2. Configurar MC01 para sacar HSE por su pin.
 	RCC_MCO1Config(RCC_MCO1_Source_HSE,RCC_MCO1_Prescaler_4);
+	
 	//3. Leer frecuencia de SYSCLK
 	freq = RCC_getSysClk();
+	
 	//4. Mostrar tiempo de procesamiento de espera en PC10.
 	GPIO_WriteTouOutPutPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED,SET);
 	delay(500000);
 	GPIO_WriteTouOutPutPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED,RESET);
-	
-	
 	delay(500000);
 	
 	/**************** HSI ****************/
 	
 	//1. Configurar HSI como fuente de reloj del sistema.
 	SYSClk_HSI_Setup();
+	
 	//2. Configurar MC01 para sacar HSI por su pin.
 	RCC_MCO1Config(RCC_MCO1_Source_HSI,RCC_MCO1_Prescaler_4);
 	

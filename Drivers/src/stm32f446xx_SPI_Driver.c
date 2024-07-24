@@ -517,7 +517,7 @@ void SPI_Enable(SPI_RegDef_t *pSPIx,uint8_t enable){
 			pSPIx->CR[0] |= (1<<SPI_CR1_ENABLE);	//OK
 	 }
 	 else{
-			pSPIx->CR[0] &= ~(1<<SPI_CR1_ENABLE);	//OK
+			pSPIx->CR[0] &= (uint32_t) ~(1<<SPI_CR1_ENABLE);	//OK
 	 }
  }
 
@@ -527,7 +527,7 @@ void SPI_SSIConfig(SPI_RegDef_t *pSPIx,uint8_t enable){
 		pSPIx->CR[0] |= (1<<SPI_CR1_SSI);	//OK
 	}
 	else{
-		pSPIx->CR[0] &= ~(1<<SPI_CR1_SSI);	//OK
+		pSPIx->CR[0] &= (uint32_t) ~(1<<SPI_CR1_SSI);	//OK
 	}
 }
 
@@ -537,7 +537,7 @@ void SPI_SSOECOnfig(SPI_RegDef_t *pSPIx,uint8_t enable){
 		pSPIx->CR[1] |= (1<<SPI_CR2_SS_ENABLE);	//OK
 	}
 	else{
-		pSPIx->CR[1] &= ~(1<<SPI_CR2_SS_ENABLE);	//OK
+		pSPIx->CR[1] &= (uint32_t) ~(1<<SPI_CR2_SS_ENABLE);	//OK
 	}
 }
  
