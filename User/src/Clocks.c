@@ -29,7 +29,7 @@ void SYSClk_HSE_Setup(void){
 void SYSClk_HSI_Setup(void){
 	
 	// Habilitar HSI.
-	RCC_HSI_Enable(RCC_Clock_HSI);
+	RCC_HSI_Enable(ENABLE);
 	
 	// Esperar a que HSI este OK.
 	
