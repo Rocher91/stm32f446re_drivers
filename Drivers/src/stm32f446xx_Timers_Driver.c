@@ -209,6 +209,7 @@ uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT){
 
 
 
+
 /*Input Capture*/
 
 
@@ -504,4 +505,148 @@ void TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t valu
 }
 
 
+
+void TIM_OCInit(TIM_handle_t* pTIMHandle){
+	
+	uint32_t temp_CCMRx = 0;
+	uint32_t temp_CCER = 0;
+	
+	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMHandle->pTIMx ) );
+	
+	TIM_TimeBase_Init( pTIMHandle );
+	
+	if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH1 ){
+			
+		//Reset del bit CC1E para deshabilitar el canal
+		pTIMHandle->pTIMx->CCER &= (uint32_t)~(1 << TIMx_CCER_CC1E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[0];
+		temp_CCER = pTIMHandle->pTIMx->CCER;
+		
+		//Configurar el modo salida  en CCMR1
+		temp_CCMRx &= (uint32_t)~(0x03 << TIMx_CCMR1_CC1S);
+		
+		//Configurar el modo de salida en registro CCMR
+		temp_CCMRx &= (uint32_t)~(0x07 << TIMx_CCMR1_OC1M);
+		temp_CCMRx |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_Channel << TIMx_CCMR1_OC1M);
+		
+		temp_CCER &= (uint32_t)~(0x01 << TIMx_CCER_CC1P);
+		temp_CCER |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_OC_Polarity << TIMx_CCER_CC1P);
+		
+		pTIMHandle->pTIMx->CCER |= (uint32_t)(1 << TIMx_CCER_CC1E);
+		
+		//Actualizar registro CCMR1
+		pTIMHandle->pTIMx->CCMR[0] = temp_CCMRx;
+		
+		//Configurar CCR1 con el valor de pulso 
+		pTIMHandle->pTIMx->CCR[0] = pTIMHandle->TIM_OutputCompare.TIM_Pulse;
+		
+		//Actualizar registro CCER
+		pTIMHandle->pTIMx->CCER |= temp_CCER;
+		
+	}
+	else if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH2 ){
+		
+		ASSERT_TRUE( TIM_HAS_CH2( pTIMHandle->pTIMx ) );
+		
+		//Reset del bit CC1E para deshabilitar el canal
+		pTIMHandle->pTIMx->CCER &= (uint32_t)~(1 << TIMx_CCER_CC1E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[0];
+		temp_CCER = pTIMHandle->pTIMx->CCER;
+		
+		//Configurar el modo salida  en CCMR1
+		temp_CCMRx &= (uint32_t)~(0x03 << TIMx_CCMR1_CC2S);
+		
+		//Configurar el modo de salida en registro CCMR
+		temp_CCMRx &= (uint32_t)~(0x07 << TIMx_CCMR1_OC2M);
+		temp_CCMRx |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_Channel << TIMx_CCMR1_OC2M);
+		
+		temp_CCER &= (uint32_t)~(0x01 << TIMx_CCER_CC1P);
+		temp_CCER |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_OC_Polarity << TIMx_CCER_CC2P);
+		
+		pTIMHandle->pTIMx->CCER |= (uint32_t)(1 << TIMx_CCER_CC2E);
+		
+		
+		//Actualizar registro CCMR1
+		pTIMHandle->pTIMx->CCMR[0] = temp_CCMRx;
+		
+		//Configurar CCR1 con el valor de pulso 
+		pTIMHandle->pTIMx->CCR[1] = pTIMHandle->TIM_OutputCompare.TIM_Pulse;
+		
+		
+		//Actualizar registro CCER
+		pTIMHandle->pTIMx->CCER |= temp_CCER;
+		
+	}
+	else if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH3 ){
+		
+		ASSERT_TRUE( TIM_HAS_CH3( pTIMHandle->pTIMx ) );
+		
+		//Reset del bit CC1E para deshabilitar el canal
+		pTIMHandle->pTIMx->CCER &= (uint32_t)~(1 << TIMx_CCER_CC3E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[1];
+		temp_CCER = pTIMHandle->pTIMx->CCER;
+		
+		//Configurar el modo salida  en CCMR1
+		temp_CCMRx &= (uint32_t)~(0x03 << TIMx_CCMR2_CC3S);
+		
+		//Configurar el modo de salida en registro CCMR
+		temp_CCMRx &= (uint32_t)~(0x07 << TIMx_CCMR2_OC3M);
+		temp_CCMRx |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_Channel << TIMx_CCMR2_OC3M);
+		
+		temp_CCER &= (uint32_t)~(0x01 << TIMx_CCER_CC1P);
+		temp_CCER |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_OC_Polarity << TIMx_CCER_CC3P);
+		
+		pTIMHandle->pTIMx->CCER |= (uint32_t)(1 << TIMx_CCER_CC3E);
+		
+		
+		//Actualizar registro CCMR2
+		pTIMHandle->pTIMx->CCMR[1] = temp_CCMRx;
+		
+		//Configurar CCR1 con el valor de pulso 
+		pTIMHandle->pTIMx->CCR[2] = pTIMHandle->TIM_OutputCompare.TIM_Pulse;
+		
+		
+		//Actualizar registro CCER
+		pTIMHandle->pTIMx->CCER |= temp_CCER;
+		
+	}
+	else if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH4 ){
+		
+		ASSERT_TRUE( TIM_HAS_CH4( pTIMHandle->pTIMx ) );
+		
+		//Reset del bit CC1E para deshabilitar el canal
+		pTIMHandle->pTIMx->CCER &= (uint32_t)~(1 << TIMx_CCER_CC4E);
+		
+		temp_CCMRx = pTIMHandle->pTIMx->CCMR[1];
+		temp_CCER = pTIMHandle->pTIMx->CCER;
+		
+		//Configurar el modo salida  en CCMR1
+		temp_CCMRx &= (uint32_t)~(0x03 << TIMx_CCMR2_CC4S);
+		
+		//Configurar el modo de salida en registro CCMR
+		temp_CCMRx &= (uint32_t)~(0x07 << TIMx_CCMR2_OC4M);
+		temp_CCMRx |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_Channel << TIMx_CCMR2_OC4M);
+		
+		temp_CCER &= (uint32_t)~(0x01 << TIMx_CCER_CC4P);
+		temp_CCER |= (uint32_t)(pTIMHandle->TIM_OutputCompare.TIM_OC_Polarity << TIMx_CCER_CC4P);
+		
+		pTIMHandle->pTIMx->CCER |= (uint32_t)(1 << TIMx_CCER_CC4E);
+		
+		
+		//Actualizar registro CCMR1
+		pTIMHandle->pTIMx->CCMR[1] = temp_CCMRx;
+		
+		//Configurar CCR1 con el valor de pulso 
+		pTIMHandle->pTIMx->CCR[3] = pTIMHandle->TIM_OutputCompare.TIM_Pulse;
+		
+		
+		//Actualizar registro CCER
+		pTIMHandle->pTIMx->CCER |= temp_CCER;
+		
+	}
+
+}
 

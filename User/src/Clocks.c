@@ -132,20 +132,20 @@ int main(){
 	/**************** HSI ****************/
 	
 	//1. Configurar HSI como fuente de reloj del sistema.
-	SYSClk_HSI_Setup();
+	//SYSClk_HSI_Setup();
 	
 	//2. Configurar MC01 para sacar HSI por su pin.
-	RCC_MCO1Config(RCC_MCO1_Source_HSI,RCC_MCO1_Prescaler_4);
+	//RCC_MCO1Config(RCC_MCO1_Source_HSI,RCC_MCO1_Prescaler_4);
 	
 	//3. Leer frecuencia de SYSCLK
-	freq = RCC_getSysClk();
+	//freq = RCC_getSysClk();
 	
 	//4. Mostrar tiempo de procesamiento de espera en PC10.
-	GPIO_WriteTouOutPutPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED,SET);
-	delay(500000);
-	GPIO_WriteTouOutPutPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED,RESET);
+	//GPIO_WriteTouOutPutPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED,SET);
+	//delay(500000);
+	//GPIO_WriteTouOutPutPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED,RESET);
 	
-	delay(500000);
+	//delay(500000);
 	
 	/**************** PLL ****************/
 	
@@ -165,5 +165,5 @@ int main(){
 	
 	delay(500000);
 	
-	while(1);
+	//while(1);
 }

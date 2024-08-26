@@ -82,6 +82,23 @@ typedef enum{
 }TIM_ICPolarity_t;
 
 typedef enum{
+	TIM_OCPolarity_Active_HIGH,
+	TIM_OCPolarity_Active_LOW,
+}TIM_OCPolarity_t;
+
+typedef enum{
+	TIM_OCMode_Frozen,
+	TIM_OCMode_Active,
+	TIM_OCMode_Inactive,
+	TIM_OCMode_Toggle,
+	TIM_OCMode_Force_Inactive,
+	TIM_OCMode_Force_Active,
+	TIM_OCMode_PWM1,
+	TIM_OCMode_PWM2
+	
+}TIM_OC_Modes_t;
+
+typedef enum{
 	TIM_ICPrescaler_NONE,
 	TIM_ICPrescaler_2,
 	TIM_ICPrescaler_4,
@@ -128,10 +145,19 @@ typedef struct{
 }TIM_InputCapture_t;
 
 typedef struct{
+	TIM_Channels_t     	TIM_Channel;
+	TIM_OC_Modes_t   		TIM_OC_Mode;
+	TIM_OCPolarity_t   	TIM_OC_Polarity;
+	uint32_t     				TIM_Pulse;
+	
+}TIM_OutputCompare_t;
+
+typedef struct{
 	
 	TIM_RegDef_t* pTIMx;
 	TIM_TimeBase_t TIM_TimeBase;
 	TIM_InputCapture_t TIM_InputCapture;
+	TIM_OutputCompare_t TIM_OutputCompare;
 	
 }TIM_handle_t;
 
@@ -177,6 +203,7 @@ __attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t
 
 
 void TIM_ICInit(TIM_handle_t* pTIMHandle);
+void TIM_OCInit(TIM_handle_t* pTIMHandle);
 
 
 //.. TIMx_CR1
