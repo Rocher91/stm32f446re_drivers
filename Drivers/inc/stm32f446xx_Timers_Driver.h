@@ -50,6 +50,12 @@
 												 (( x ) == TIM4 ) || ( ( x ) == TIM5 ) \
 											 )
 											 
+
+#define TIM_HAS_MS_FUNCTIONALITY(x) ( (( x ) == TIM2 ) || ( ( x ) == TIM3 ) ||\
+																		(( x ) == TIM4 ) || ( ( x ) == TIM5 ) ||\
+																		(( x ) == TIM1 ) || ( ( x ) == TIM8 ) \
+																		)
+											 
 typedef enum{
 	
 	TIM_CounterMode_CenterAlign1 	= 1,
@@ -178,6 +184,45 @@ typedef enum{
 
 }TIM_Event_t;
 
+typedef enum{
+	
+	TIM_Trigger_Internal_0,
+	TIM_Trigger_Internal_1,
+	TIM_Trigger_Internal_2,
+	TIM_Trigger_Internal_3,
+	TIM_Trigger_Edge_Detector_TI1,
+	TIM_Trigger_Filtered_Timer_Input_1,
+	TIM_Trigger_Filtered_Timer_Input_2,
+	TIM_Trigger_External,
+
+}TIM_Trigger_t;
+
+typedef enum{
+	
+	TIM_Slave_Mode_Disabled,
+	TIM_Slave_Encoder_Mode_1,
+	TIM_Slave_Encoder_Mode_2,
+	TIM_Slave_Encoder_Mode_3,
+	TIM_Slave_Reset_Mode,
+	TIM_Slave_Gated_Mode,
+	TIM_Slave_Trigger_Mode,
+	TIM_Slave_External_Mode1
+
+}TIM_Slave_t;
+
+typedef enum{
+	
+	TIM_MasterOutput_Reset,
+	TIM_MasterOutput_Enable,
+	TIM_MasterOutput_Update,
+	TIM_MasterOutput_Compare_Pulse,
+	TIM_MasterOutput_OC1REF,
+	TIM_MasterOutput_OC2REF,
+	TIM_MasterOutput_OC3REF,
+	TIM_MasterOutput_OC4REF,
+
+}TIM_MasterOutput_t;
+
 /************APIS************/
 
 void TIM_ClockController(TIM_RegDef_t* pTIMx,uint8_t enable);
@@ -200,10 +245,16 @@ void TIM_Init(TIM_RegDef_t* pTIMx,uint8_t enable);
 __attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
 
 /*Input Capture*/
-
-
 void TIM_ICInit(TIM_handle_t* pTIMHandle);
 void TIM_OCInit(TIM_handle_t* pTIMHandle);
+
+
+//Configurar esclavo
+void TIM_InputTrigger(TIM_RegDef_t* pTIMx,TIM_Trigger_t trigger);
+void TIM_SlaveMode(TIM_RegDef_t* pTIMx, TIM_Slave_t mode);
+
+//Configurar Maestro
+void TIM_MasterTriggerOutput(TIM_RegDef_t* pTIMx, TIM_MasterOutput_t output);
 
 
 //.. TIMx_CR1

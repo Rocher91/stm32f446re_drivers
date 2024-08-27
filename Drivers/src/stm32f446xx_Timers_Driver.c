@@ -219,8 +219,9 @@ void TIM_ICInit(TIM_handle_t* pTIMHandle){
 	uint32_t temp_CCER = 0;
 	
 	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMHandle->pTIMx ) );
+	TIM_ClockController( pTIMHandle->pTIMx, ENABLE );
 	
-	TIM_TimeBase_Init( pTIMHandle );
+	//TIM_TimeBase_Init( pTIMHandle );
 	
 	if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH1 )
 	{
@@ -513,7 +514,8 @@ void TIM_OCInit(TIM_handle_t* pTIMHandle){
 	
 	ASSERT_FALSE( TIM_IS_BASIC_TIMER( pTIMHandle->pTIMx ) );
 	
-	TIM_TimeBase_Init( pTIMHandle );
+	//TIM_TimeBase_Init( pTIMHandle );
+	TIM_ClockController( pTIMHandle->pTIMx, ENABLE );
 	
 	if ( pTIMHandle->TIM_InputCapture.TIM_Channel == TIM_CH1 ){
 			
@@ -649,4 +651,47 @@ void TIM_OCInit(TIM_handle_t* pTIMHandle){
 	}
 
 }
+
+void TIM_InputTrigger(TIM_RegDef_t* pTIMx,TIM_Trigger_t trigger){
+	
+	uint16_t temp_SMCR = 0;
+	ASSERT_TRUE(TIM_HAS_MS_FUNCTIONALITY(pTIMx));
+	
+	temp_SMCR = (uint16_t)pTIMx->SMCR;
+	
+	temp_SMCR &= (uint32_t)~(0x07 << TIMx_SMCR_TS);
+	temp_SMCR |= (uint32_t)(trigger << TIMx_SMCR_TS);
+	
+	pTIMx->SMCR = temp_SMCR;
+}
+
+void TIM_SlaveMode(TIM_RegDef_t* pTIMx, TIM_Slave_t mode){
+	
+	uint16_t temp_SMCR = 0;
+	ASSERT_TRUE(TIM_HAS_MS_FUNCTIONALITY(pTIMx));
+	
+	temp_SMCR = (uint16_t)pTIMx->SMCR;
+	
+	temp_SMCR &= (uint32_t)~(0x07 << TIMx_SMCR_TS);
+	temp_SMCR |= (uint32_t)(mode << TIMx_SMCR_TS);
+	
+	pTIMx->SMCR = temp_SMCR;
+	
+}
+
+
+void TIM_MasterTriggerOutput(TIM_RegDef_t* pTIMx, TIM_MasterOutput_t output){
+
+	uint16_t temp_CR2 = 0;
+	ASSERT_TRUE(TIM_HAS_MS_FUNCTIONALITY(pTIMx));
+	
+	temp_CR2 = (uint16_t)pTIMx->CR[1];
+	
+	temp_CR2 &= (uint32_t)~(0x07 << TIMx_CR2_MMS);
+	temp_CR2 |= (uint32_t)(output << TIMx_CR2_MMS);
+	
+	pTIMx->CR[1] = temp_CR2;
+}
+
+
 

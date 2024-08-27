@@ -51,6 +51,7 @@ void TIM_Setup(){
 	htim2.TIM_TimeBase.TIM_Preescaler = 9;
 	htim2.TIM_TimeBase.TIM_Period = 1599;
 	htim2.TIM_TimeBase.TIM_CounterMode = TIM_CounterMode_UP;
+	TIM_TimeBase_Init(&htim2);
 	
 	CCR1_Pulse = 0;
 

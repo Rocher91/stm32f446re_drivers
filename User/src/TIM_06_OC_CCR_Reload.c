@@ -49,6 +49,7 @@ void TIM_Setup(){
 	htim2.TIM_TimeBase.TIM_Preescaler = 1;
 	htim2.TIM_TimeBase.TIM_Period = 0xFFFFFFFF;
 	htim2.TIM_TimeBase.TIM_CounterMode = TIM_CounterMode_UP;
+	TIM_TimeBase_Init(&htim2);
 	
 	CKcnt = RCC_GetAPB1_TimerClk()/(htim2.TIM_TimeBase.TIM_Preescaler+1);
 	CCR1_Pulse = CKcnt/(2*500);

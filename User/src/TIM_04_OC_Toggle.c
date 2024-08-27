@@ -28,6 +28,7 @@ void TIM_Setup(){
 	htim2.TIM_TimeBase.TIM_Preescaler = 15999;
 	htim2.TIM_TimeBase.TIM_Period = 999;
 	htim2.TIM_TimeBase.TIM_CounterMode = TIM_CounterMode_UP;
+	TIM_TimeBase_Init(&htim2);
 	
 	htim2.TIM_OutputCompare.TIM_Channel = TIM_CH1;
 	htim2.TIM_OutputCompare.TIM_OC_Mode = TIM_OCMode_Toggle;

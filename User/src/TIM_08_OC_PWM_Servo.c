@@ -50,6 +50,7 @@ void TIM_Setup(){
 	htim2.TIM_TimeBase.TIM_Preescaler = 99;
 	htim2.TIM_TimeBase.TIM_Period = 3199; // T= 20 ms
 	htim2.TIM_TimeBase.TIM_CounterMode = TIM_CounterMode_UP;
+	TIM_TimeBase_Init(&htim2);
 	
 	//Periodo PWM: T = 20ms
 	// 	0º 		-> Ton = 0.5ms, 	DC = 2.5%
@@ -60,6 +61,8 @@ void TIM_Setup(){
 	CCR1_Pulse[1] = (75 * (htim2.TIM_TimeBase.TIM_Period+1))/1000;
 	CCR1_Pulse[2] = (125 * (htim2.TIM_TimeBase.TIM_Period+1))/1000;
 
+	//TIM_ClockController( TIM2, ENABLE );
+	
 	htim2.TIM_OutputCompare.TIM_Channel = TIM_CH1;
 	htim2.TIM_OutputCompare.TIM_OC_Mode = TIM_OCMode_PWM1;
 	htim2.TIM_OutputCompare.TIM_OC_Polarity = TIM_OCPolarity_Active_HIGH;
