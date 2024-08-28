@@ -113,7 +113,30 @@ __weak void assert_failed(uint8_t* file, uint32_t line);
 #define NVIC_IPR_BASE				( (__vo uint32_t* )0xE000E400U )
 #define NO_PR_BITS_IMPLEMENTED		4
 
-#define STIR						( (__vo uint32_t* )0xE000EF00U )
+#define STIR								( (__vo uint32_t* )0xE000EF00U )
+
+#define SYSTICK_BASEADDR		( (__vo uint32_t* )0xE000E010UL )
+
+
+typedef struct{
+	__vo uint32_t CSR;
+	__vo uint32_t RVR;
+	__vo uint32_t CVR;
+	__vo uint32_t CALIB;
+}Systick_RegDef_t;
+
+#define SYSTICK	( ( Systick_RegDef_t*) SYSTICK_BASEADDR )
+
+
+#define SYSTICK_CSR_ENABLE		0
+#define SYSTICK_CSR_TICKINT		1
+#define SYSTICK_CSR_CLKSOURCE	2
+#define SYSTICK_CSR_COUNTFLAG	16
+
+#define SYSTICK_CALIB_TENMS		0
+#define SYSTICK_CALIB_SKEW		30
+#define SYSTICK_CALIB_NOREF		31
+
 
 
 /* !< PERIPHERAL_Bases >*/

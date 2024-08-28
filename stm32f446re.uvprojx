@@ -423,6 +423,11 @@
               <FileType>1</FileType>
               <FilePath>.\Drivers\src\usart2.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f446xx_Systick_Driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\src\stm32f446xx_Systick_Driver.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
