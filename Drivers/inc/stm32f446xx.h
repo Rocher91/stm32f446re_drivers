@@ -115,7 +115,7 @@ __weak void assert_failed(uint8_t* file, uint32_t line);
 
 #define STIR								( (__vo uint32_t* )0xE000EF00U )
 
-#define SYSTICK_BASEADDR		( (__vo uint32_t* )0xE000E010UL )
+#define SYSTICK_BASEADDR		0xE000E010UL
 
 
 typedef struct{
