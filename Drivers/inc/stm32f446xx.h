@@ -792,6 +792,15 @@ typedef struct{
 
 #define WWDG_PCLCK_EN()			RCC->APB1ENR |= (uint32_t)(0x01 << 11)
 
+#define WWDG_CR_T			0
+#define WWDG_CR_WDGA	7
+
+#define WWDG_CFR_W 			0
+#define WWDG_CFR_WDGTB 	7
+#define WWDG_CFR_EWI 		9
+
+#define WWDG_SR_EWIF 		0
+
 
 // Clock Enable Macros for SPI peripherals
 
@@ -1059,6 +1068,8 @@ typedef struct{
 #define RESET_GPIOG()			do{ RCC->AHB1RSTR |= (0x01 << 6);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 6); }while(0)
 #define RESET_GPIOH()			do{ RCC->AHB1RSTR |= (0x01 << 7);   RCC->AHB1RSTR &= (uint32_t)~(0x01 << 7); }while(0)
 
+#define RESET_WWDG()			do{ RCC->APB1RSTR |= (0x01 << 11);  RCC->APB1RSTR &= (uint32_t)~(0x01 << 11); }while(0)
+
 #define RESET_CRC()				RCC->AHB1RSTR |= (0x01 << 12)
 
 #define RESET_DMA1()			RCC->AHB1RSTR |= (0x01 << 21)
@@ -1084,7 +1095,7 @@ typedef struct{
 #define RESET_TIM13()			RCC->APB1RSTR |= (0x01 << 7)
 #define RESET_TIM14()			RCC->APB1RSTR |= (0x01 << 8)
 
-#define RESET_WWDG()			RCC->APB1RSTR |= (0x01 << 11)
+//#define RESET_WWDG()			RCC->APB1RSTR |= (0x01 << 11)
 
 #define RESET_SPI2()			RCC->APB1RSTR |= (0x01 << 14)
 #define RESET_SPI3()			RCC->APB1RSTR |= (0x01 << 15)
