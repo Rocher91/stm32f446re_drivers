@@ -21,13 +21,14 @@
 
 GPIO_Handle_t LED 				= { 0 };
 TIM_handle_t 	htim_led		= { 0 };
+#define TIMES 2
 
 void GPIO_configurations(void);
 void TIM_setup(void);
 
+
 void GPIO_configurations(void){
 		
-	
 		LED.pGPIOx 																= NUCLEO_PORT_LED;
 		LED.GPIO_PinConfig.GPIO_PinNumber 				= NUCLEO_PIN_LED;
 		LED.GPIO_PinConfig.GPIO_PinMode 					= GPIO_MODE_OUTPUT;
@@ -41,34 +42,39 @@ void GPIO_configurations(void){
 void TIM_setup(void){
 	
 	htim_led.pTIMx 												= TIM6;
-	htim_led.TIM_TimeBase.TIM_Period 			= 31890;
+	htim_led.TIM_TimeBase.TIM_Period 			= 319;
 	htim_led.TIM_TimeBase.TIM_Preescaler 	= 24;
 
 	TIM_TimeBase_Init(&htim_led);
-	
 }
 
 
 int main(void)
 {
 	
-	
 	GPIO_configurations();
-	
 	TIM_setup();
-	
 	TIM_Init(htim_led.pTIMx,ENABLE);
-
+	uint8_t times = 0;
 	
 	while(1){
 			
-			if(TIM6->SR & (0x01<<TIMx_SR_UIF)){
-			
-				TIM6->SR &= (uint32_t)~(0x01<<TIMx_SR_UIF);
-				GPIO_ToggleOutputPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED);
-			}
 		
-		}
+				if(TIM6->SR & (0x01<<TIMx_SR_UIF)){
+					
+					if (times == 0 || times == TIMES ){
+						GPIO_ToggleOutputPin(NUCLEO_PORT_LED,NUCLEO_PIN_LED);
+					}
+					
+					TIM6->SR &= (uint32_t)~(0x01<<TIMx_SR_UIF);
+					if ( times < (TIMES+1) )
+					{
+						times++;
+					}
+				}
+				
+
+	}
 
 }
 

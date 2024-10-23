@@ -1,0 +1,1 @@
+DMA Mapping pag 207 Referencwe Manual STM32F446RE

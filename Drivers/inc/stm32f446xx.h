@@ -262,8 +262,8 @@ typedef struct{
 #define BKPSRAM_BASEADDR					( AHB1_PERIPH_BASE + 0x4000 )
 
 /* !< DMA_peripheral_Bases >*/
-#define DMA1_BASEADDR							( AHB1_PERIPH_BASE + 0x0000 )
-#define DMA2_BASEADDR							( AHB1_PERIPH_BASE + 0x0000 )
+#define DMA1_BASEADDR							( AHB1_PERIPH_BASE + 0x6000 )
+#define DMA2_BASEADDR							( AHB1_PERIPH_BASE + 0x6400 )
 
 /* !< USB_peripheral_Bases >*/
 #define USB_OTG_HS_BASEADDR				( AHB1_PERIPH_BASE + 0x0000 )
@@ -1184,6 +1184,27 @@ typedef struct{
 
 #define IRQ_TIM6_DAC			54
 
+#define IRQ_DMA1_STREAM_0	18
+#define IRQ_DMA1_STREAM_1	19
+#define IRQ_DMA1_STREAM_2	20
+#define IRQ_DMA1_STREAM_3	21
+#define IRQ_DMA1_STREAM_4	22
+#define IRQ_DMA1_STREAM_5	23
+#define IRQ_DMA1_STREAM_6	24
+#define IRQ_DMA1_STREAM_7	47
+
+
+#define IRQ_DMA2_STREAM_0	56
+#define IRQ_DMA2_STREAM_1	57
+#define IRQ_DMA2_STREAM_2	58
+#define IRQ_DMA2_STREAM_3	59
+#define IRQ_DMA2_STREAM_4	60
+#define IRQ_DMA2_STREAM_5	68
+#define IRQ_DMA2_STREAM_6	69
+#define IRQ_DMA2_STREAM_7	70
+
+
+
 #define NVIC_IRQ_PRIORITY_0		0
 #define NVIC_IRQ_PRIORITY_15	15
 
@@ -1216,6 +1237,7 @@ typedef struct{
 	__vo uint32_t S0M0AR;			/**/
 	__vo uint32_t S0M1AR;			/**/
 	__vo uint32_t S0FCR;			/**/
+	__vo uint32_t S1CR;				/**/
 	__vo uint32_t S1NDTR;			/**/
 	__vo uint32_t S1PAR;			/**/
 	__vo uint32_t S1M0AR;			/**/
@@ -1245,11 +1267,188 @@ typedef struct{
 	__vo uint32_t S5M0AR;			/**/
 	__vo uint32_t S5M1AR;			/**/
 	__vo uint32_t S5FCR;			/**/
+	__vo uint32_t S6CR;				/**/
+	__vo uint32_t S6NDTR;			/**/
+	__vo uint32_t S6PAR;			/**/
+	__vo uint32_t S6M0AR;			/**/
+	__vo uint32_t S6M1AR;			/**/
+	__vo uint32_t S6FCR;			/**/
+	__vo uint32_t S7CR;				/**/
+	__vo uint32_t S7NDTR;			/**/
+	__vo uint32_t S7PAR;			/**/
+	__vo uint32_t S7M0AR;			/**/
+	__vo uint32_t S7M1AR;			/**/
+	__vo uint32_t S7FCR;			/**/
 
 }DMA_RegDef_t;
 
 #define DMA1	( ( DMA_RegDef_t*) DMA1_BASEADDR )
 #define DMA2	( ( DMA_RegDef_t*) DMA2_BASEADDR )
+
+/*>>> DMA LISR Bitfields <<<*/
+
+#define DMA_LISR_FEIF0			0
+#define DMA_LISR_DMEIF0			2
+#define DMA_LISR_TEIF0			3
+#define DMA_HTIF0						4
+#define DMA_LISR_TCIF0			5
+#define DMA_LISR_FEIF1			6
+#define DMA_LISR_DMEIF1			8
+#define DMA_LISR_TEIF1			9
+#define DMA_LISR_HTIF1			10
+#define DMA_LISR_TCIF1			11
+#define DMA_LISR_FEIF2			16
+#define DMA_LISR_DMEIF2			18
+#define DMA_LISR_TEIF2			19
+#define DMA_LISR_HTIF2			20
+#define DMA_LISR_TCIF2			21
+#define DMA_LISR_FEIF3			22
+#define DMA_DMEIF3					24
+#define DMA_LISR_TEIF3			25
+#define DMA_LISR_HTIF3			26
+#define DMA_LISR_TCIF3			27
+
+/*>>> DMA HISR Bitfields <<<*/
+
+#define DMA_HISR_FEIF4			0
+#define DMA_HISR_DMEIF4			2
+#define DMA_HISR_TEIF4			3
+#define DMA_HISR_HTIF4			4
+#define DMA_HISR_TCIF4			5
+#define DMA_HISR_FEIF5			6
+#define DMA_HISR_DMEIF5			8
+#define DMA_HISR_TEIF5			9
+#define DMA_HISR_HTIF5			10
+#define DMA_HISR_TCIF5			11
+#define DMA_HISR_FEIF6			16
+#define DMA_HISR_DMEIF6			18
+#define DMA_HISR_TEIF6			19
+#define DMA_HISR_HTIF6			20
+#define DMA_HISR_TCIF6			21
+#define DMA_HISR_FEIF7			22
+#define DMA_HISR_DMEIF7			24
+#define DMA_HISR_TEIF7			25
+#define DMA_HISR_HTIF7			26
+#define DMA_HISR_TCIF7			27
+
+/*>>> DMA LIFCR Bitfields <<<*/
+
+#define DMA_LIFCR_CFEIF0			0
+#define DMA_LIFCR_CDMEIF0			2
+#define DMA_LIFCR_CTEIF0			3
+#define DMA_LIFCR_CHTIF0			4
+#define DMA_LIFCR_CTCIF0			5
+#define DMA_LIFCR_CFEIF1			6
+#define DMA_LIFCR_CDMEIF1			8
+#define DMA_LIFCR_CTEIF1			9
+#define DMA_LIFCR_CHTIF1			10
+#define DMA_LIFCR_CTCIF1			11
+#define DMA_LIFCR_CFEIF2			16
+#define DMA_LIFCR_CDMEIF2			18
+#define DMA_LIFCR_CTEIF2			19
+#define DMA_LIFCR_CHTIF2			20
+#define DMA_LIFCR_CTCIF2			21
+#define DMA_LIFCR_CFEIF3			22
+#define DMA_LIFCR_CDMEIF3			24
+#define DMA_LIFCR_CTEIF3			25
+#define DMA_LIFCR_CHTIF3			26
+#define DMA_LIFCR_CTCIF3			27
+
+/*>>> DMA HIFCR Bitfields <<<*/
+
+#define DMA_HIFCR_CFEIF4			0
+#define DMA_HIFCR_CDMEIF4			2
+#define DMA_HIFCR_CTEIF4			3
+#define DMA_HIFCR_CHTIF4			4
+#define DMA_HIFCR_CTCIF4			5
+#define DMA_HIFCR_CFEIF5			6
+#define DMA_HIFCR_CDMEIF5			8
+#define DMA_HIFCR_CTEIF5			9
+#define DMA_HIFCR_CHTIF5			10
+#define DMA_HIFCR_CTCIF5			11
+#define DMA_HIFCR_CFEIF6			16
+#define DMA_HIFCR_CDMEIF6			18
+#define DMA_HIFCR_CTEIF6			19
+#define DMA_HIFCR_CHTIF6			20
+#define DMA_HIFCR_CTCIF6			21
+#define DMA_HIFCR_CFEIF7			22
+#define DMA_HIFCR_CDMEIF7			24
+#define DMA_HIFCR_CTEIF7			25
+#define DMA_HIFCR_CHTIF7			26
+#define DMA_HIFCR_CTCIF7			27
+
+/*>>> DMA SxNDTR Bitfields <<<*/
+
+#define DMA_SxNDTR_NDT		0
+
+/*>>> DMA SxCR Bitfields <<<*/
+
+#define DMA_SxCR_EN			0
+#define DMA_SxCR_DMEIE	1
+#define DMA_SxCR_TEIE		2
+#define DMA_SxCR_HTIE		3
+#define DMA_SxCR_TCIE		4
+#define DMA_SxCR_PFCTRL	5
+#define DMA_SxCR_DIR		6
+#define DMA_SxCR_CIRC		8
+#define DMA_SxCR_PINC		9
+#define DMA_SxCR_MINC		10
+#define DMA_SxCR_PSIZE	11
+#define DMA_SxCR_MSIZE	13
+#define DMA_SxCR_PINCOS	15
+#define DMA_SxCR_PL			16
+#define DMA_SxCR_DBM		18
+#define DMA_SxCR_CT			19
+#define DMA_SxCR_PBURST	21
+#define DMA_SxCR_MBURST	23
+#define DMA_SxCR_CHSEL	25
+
+
+#define MSIZE_1BYTE			0
+#define MSIZE_HALF_WORD	1
+#define MSIZE_WORD			2
+
+#define PSIZE_1BYTE			0
+#define PSIZE_HALF_WORD	1
+#define PSIZE_WORD			2
+
+#define MEM_INC_FIXED				0
+#define MEM_INC_INCREMENT		1
+
+#define MEM_PINC_FIXED				0
+#define MEM_PINC_INCREMENT		1
+
+#define TRANSFER_PERIPHERAL_TO_MEMORY 	0
+#define TRANSFER_MEMORY_TO_PERIPHERAL 	1
+#define TRANSFER_MEMORY_TO_MEMORY 			2
+
+#define TRANSFER_COMPLETE_INTERRUPT_DISABLE 	0
+#define TRANSFER_COMPLETE_INTERRUPT_ENABLE 		1
+
+#define TRANSFER_ERROR_INTERRUPT_DISABLE 		0
+#define TRANSFER_ERROR_INTERRUPT_ENABLE 		1
+
+
+#define DIRECT_MODE_ERROR_INTERRUPT_DISABLE 	0
+#define DIRECT_MODE_ERROR_INTERRUPT_ENABLE 		1
+
+#define DIRECT_MODE_ENABLE 	0
+#define DIRECT_MODE_DISABLE 1
+
+#define _1_4_FULL_FIFO 	0
+#define _1_2_FULL_FIFO 	1
+#define _3_4_FULL_FIFO 	2
+#define FULL_FIFO 			3
+
+
+/*>>> DMA SxFCR Bitfields <<<*/
+
+#define DMA_SxFCR_FTH			0
+#define DMA_SxFCR_DMDIS		2
+#define DMA_SxFCR_FS			3
+#define DMA_SxFCR_FEIE		7
+
+
 
 /*>>>EXTI Structure<<<*/
 
