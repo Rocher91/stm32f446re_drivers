@@ -16,6 +16,7 @@
 #include "stm32f446xx_NVIC.h"
 
 void DMA2_MemToMem_Config(void);
+void DMA2_Transfer_Start(uint32_t src_buff, uint32_t dest_buff, uint32_t len);
 
 
 void DMA2_MemToMem_Config(void)
@@ -67,6 +68,22 @@ void DMA2_MemToMem_Config(void)
 	IRQInterruptConfig( IRQ_DMA2_STREAM_0, ENABLE);
 	
 	
+}
+
+
+void DMA2_Transfer_Start(uint32_t src_buff, uint32_t dest_buff, uint32_t len)
+{
+	// Set peripheral Address
+	DMA2->S0PAR = src_buff;
+	
+	// Set memory Address
+	DMA2->S0M0AR = dest_buff;
+	
+	// Set transfer len
+	DMA2->S0NDTR = len;
+	
+	// Enable DMA Stream
+	DMA2->S0CR |= ( 0x01 << DMA_SxCR_EN ); 
 }
 
 int main(void)
