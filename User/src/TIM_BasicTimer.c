@@ -21,7 +21,7 @@
 
 GPIO_Handle_t LED 				= { 0 };
 TIM_handle_t 	htim_led		= { 0 };
-#define TIMES 2
+#define TIMES 24
 
 void GPIO_configurations(void);
 void TIM_setup(void);
@@ -42,8 +42,8 @@ void GPIO_configurations(void){
 void TIM_setup(void){
 	
 	htim_led.pTIMx 												= TIM6;
-	htim_led.TIM_TimeBase.TIM_Period 			= 319;
-	htim_led.TIM_TimeBase.TIM_Preescaler 	= 24;
+	htim_led.TIM_TimeBase.TIM_Period 			= 133;
+	htim_led.TIM_TimeBase.TIM_Preescaler 	= 2;
 
 	TIM_TimeBase_Init(&htim_led);
 }
@@ -73,7 +73,6 @@ int main(void)
 					}
 				}
 				
-
 	}
 
 }

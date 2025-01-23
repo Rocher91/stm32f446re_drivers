@@ -17,8 +17,6 @@
 #include "stm32f446xx_Gpio_Driver.h"
 #include "stm32f446xx_Timers_Driver.h"
 
-
-
 /* Peripheral user definitions*/
 
 GPIO_Handle_t LED 				= { 0 };
@@ -44,8 +42,8 @@ void GPIO_configurations(){
 void TIM_setup(){
 	
 	htim_led.pTIMx 												= TIM6;
-	htim_led.TIM_TimeBase.TIM_Period 			= 31890;
-	htim_led.TIM_TimeBase.TIM_Preescaler 	= 24;
+	htim_led.TIM_TimeBase.TIM_Period 			= 7979;
+	htim_led.TIM_TimeBase.TIM_Preescaler 	= 2004;
 
 	TIM_TimeBase_Init(&htim_led);
 
@@ -58,7 +56,6 @@ int main(void)
 	GPIO_configurations();
 	
 	TIM_setup();
-	
 	TIM_ITConfig(htim_led.pTIMx,TIM_EVENT_UI,ENABLE);
 	TIM_Init(htim_led.pTIMx,ENABLE);
 	
@@ -71,7 +68,8 @@ int main(void)
 void TIM6_DAC_IRQHandler(void){
 	
 	TIM_IRQHandling(&htim_led);
-
+	//TIM_ClearITPendingBit( htim_led.pTIMx, (uint16_t)(0x01 << TIMx_DIER_UIE));
+	//GPIO_ToggleOutputPin(LED.pGPIOx,NUCLEO_PIN_LED);
 }
 
 void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){

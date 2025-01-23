@@ -134,8 +134,8 @@ typedef enum{
 }TIM_ICFilter_t;
 
 typedef struct{
-	uint16_t TIM_Preescaler;
-	uint32_t TIM_Period;
+	uint16_t TIM_Preescaler; 
+	uint32_t TIM_Period;		// ARR	
 	TIM_CounterMode_t TIM_CounterMode;
 	
 }TIM_TimeBase_t;
@@ -225,8 +225,8 @@ typedef enum{
 
 /************APIS************/
 
-void TIM_ClockController(TIM_RegDef_t* pTIMx,uint8_t enable);
-void TIM_TimeBase_Init(TIM_handle_t* pTIM_Handle);
+void TIM_ClockController(TIM_RegDef_t* pTIMx,uint8_t enable); // Enable clock TIMER
+void TIM_TimeBase_Init(TIM_handle_t* pTIM_Handle); // Configuraciones TIMER
 void TIM_ClearITPendingBit(TIM_RegDef_t *pTIMx,uint16_t TIM_IT);
 uint8_t TIM_GetStatus(TIM_RegDef_t *pTIMx,uint16_t TIM_IT);
 void TIM_IRQHandling( TIM_handle_t *pTIMHandle );
@@ -240,9 +240,9 @@ void TIM_SetCompare(TIM_RegDef_t* pTIMx,TIM_Channels_t TIM_Channel,uint32_t valu
 
 
 void TIM_ITConfig(TIM_RegDef_t* pTIMx,uint16_t IT_type,uint8_t enable);
-void TIM_DeInit(TIM_RegDef_t* pTIMx);
 void TIM_Init(TIM_RegDef_t* pTIMx,uint8_t enable);
-__attribute__((weak))void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
+void TIM_DeInit(TIM_RegDef_t* pTIMx);
+void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event);
 
 /*Input Capture*/
 void TIM_ICInit(TIM_handle_t* pTIMHandle);
