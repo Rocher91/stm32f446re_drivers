@@ -112,6 +112,27 @@ typedef struct
 #define I2C_FLTR_DNF 			0
 #define I2C_FLTR_ANOFF 			4
 
+
+//FLAGS I2C
+
+#define I2C_SB_FLAG                ( 1 << I2C_SR1_SB )
+#define I2C_ADDR_FLAG              ( 1 << I2C_SR1_ADDR )
+#define I2C_BTF_FLAG               ( 1 << I2C_SR1_BTF )
+#define I2C_ADD10_FLAG             ( 1 << I2C_SR1_ADD10 )
+#define I2C_STOPF_FLAG             ( 1 << I2C_SR1_STOPF )
+#define I2C_RxNE_FLAG              ( 1 << I2C_SR1_RxNE )
+#define I2C_TxE_FLAG              ( 1 << I2C_SR1_TxE )
+#define I2C_BERR_FLAG              ( 1 << I2C_SR1_BERR )
+#define I2C_ARLO_FLAG              ( 1 << I2C_SR1_ARLO )
+#define I2C_AF_FLAG                ( 1 << I2C_SR1_AF )
+#define I2C_OVR_FLAG               ( 1 << I2C_SR1_OVR )
+#define I2C_PEC_ERROR_FLAG         ( 1 << I2C_SR1_PECERR )
+#define I2C_TIMEOUT_FLAG           ( 1 << I2C_SR1_TIMEOUT )
+#define I2C_SMB_ALERT_FLAG         ( 1 << I2C_SR1_SMBALERT )
+
+
+#define I2C_SB_FLAG                ( 1 << I2C_SR1_SB )
+
 void I2C_PerCLKControl( I2C_RegDef_t *pI2Cx, uint8_t Enable_Disable );
 
 /*
@@ -125,7 +146,12 @@ void I2C_DeInit( I2C_Handle_t *pI2Cx );
 /*
  * Data Send and Receive
  */
-	
+
+static void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx);
+static void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
+static void I2C_ExecuteAddressPhase( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
+static void I2C_ClearADDRFlag(I2C_RegDef_t *pI2Cx);
+void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress );
 
 
 /*

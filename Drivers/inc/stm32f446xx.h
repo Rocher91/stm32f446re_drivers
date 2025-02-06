@@ -388,22 +388,22 @@ typedef struct{
 #define RCC_PLLCFGR_PLLM		0
 #define RCC_PLLCFGR_PLLN		6
 #define RCC_PLLCFGR_PLLP		16
-#define RCC_PLLCFGR_PLLSRC	22
+#define RCC_PLLCFGR_PLLSRC		22
 #define RCC_PLLCFGR_PLLQ		24
 #define RCC_PLLCFGR_PLLR		28
 
 /*>>> RCC CFGR Bitfields <<<*/
 
-#define RCC_CFGR_SW					0
-#define RCC_CFGR_SWS				2
-#define RCC_CFGR_HPRE				4
+#define RCC_CFGR_SW				0
+#define RCC_CFGR_SWS			2
+#define RCC_CFGR_HPRE			4
 #define RCC_CFGR_PPRE1			10
 #define RCC_CFGR_PPRE2			13
 #define RCC_CFGR_RTCPRE			16
-#define RCC_CFGR_MCO1				21
+#define RCC_CFGR_MCO1			21
 #define RCC_CFGR_MCO1PRE		24
 #define RCC_CFGR_MCO2PRE		27
-#define RCC_CFGR_MC02				30
+#define RCC_CFGR_MC02			30
 
 /*>>> RCC CIR Bitfields <<<*/
 

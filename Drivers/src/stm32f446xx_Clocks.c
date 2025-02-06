@@ -403,7 +403,7 @@ uint32_t RCC_GetAHBClk(void){
 uint32_t RCC_GetAPB1Clk(void){
 	
 	uint32_t rcc_cfgr_ppre1 	= 0;
-	uint16_t prescaler 				= 0;
+	uint16_t prescaler 			= 0;
 	
 	rcc_cfgr_ppre1 = ( RCC->CFGR >> RCC_CFGR_PPRE1 ) & 0x07;
 	prescaler = APB_Prescaler[rcc_cfgr_ppre1];
