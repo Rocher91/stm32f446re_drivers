@@ -225,7 +225,56 @@ void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t L
 
 }
 
+void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress )
+{
+    //1. Generate the START condition.
 
+    //2. Confirm that start generation is completed by checking the SB flag in the SR1
+    // NOTE: Until SB is cleared SCL will be stretched (pulled to LOW).
+
+    //3. Send the address of the slave with r/nw bit set ro R(1) (total 8 bits).
+
+    //4. wait until address phase is completed by checking the ADDR flag in the SR1.
+
+    //procedure to read only 1 byte from slave.
+    if ( Len == 1)
+    {
+        //Disable Acking
+
+        //Clear the ADDR flag.
+
+        //wait RxNE becomes 1.
+
+        //generate STOP condition.
+
+        //read data in to buffer.
+        return;
+    }
+
+    // procedure to read data from slave when Len>1
+    if ( Len > 1)
+    {
+        //clear the ADDR flag.
+
+        //read the data until Len becomes zero.
+
+        for( uint32_t i = Len; i>0 ; i--)
+        {
+            //wait until RxNE becomes 1
+            if( i == 2) //if last 2 bytes are remaining
+            {
+                //wclear the ack bit
+
+                //generate STOP condition
+
+            }
+            //read the data from data register in to buffer
+
+            //increment the buffer address
+        }
+    }
+    //re-enable ACKing
+}
 
 void I2C_ScanBus()
 {

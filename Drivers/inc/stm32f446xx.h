@@ -1290,7 +1290,7 @@ typedef struct{
 #define DMA_LISR_FEIF0			0
 #define DMA_LISR_DMEIF0			2
 #define DMA_LISR_TEIF0			3
-#define DMA_HTIF0						4
+#define DMA_HTIF0				4
 #define DMA_LISR_TCIF0			5
 #define DMA_LISR_FEIF1			6
 #define DMA_LISR_DMEIF1			8
@@ -1303,7 +1303,7 @@ typedef struct{
 #define DMA_LISR_HTIF2			20
 #define DMA_LISR_TCIF2			21
 #define DMA_LISR_FEIF3			22
-#define DMA_DMEIF3					24
+#define DMA_DMEIF3				24
 #define DMA_LISR_TEIF3			25
 #define DMA_LISR_HTIF3			26
 #define DMA_LISR_TCIF3			27
@@ -1384,38 +1384,38 @@ typedef struct{
 /*>>> DMA SxCR Bitfields <<<*/
 
 #define DMA_SxCR_EN			0
-#define DMA_SxCR_DMEIE	1
+#define DMA_SxCR_DMEIE		1
 #define DMA_SxCR_TEIE		2
 #define DMA_SxCR_HTIE		3
 #define DMA_SxCR_TCIE		4
-#define DMA_SxCR_PFCTRL	5
+#define DMA_SxCR_PFCTRL		5
 #define DMA_SxCR_DIR		6
 #define DMA_SxCR_CIRC		8
 #define DMA_SxCR_PINC		9
 #define DMA_SxCR_MINC		10
-#define DMA_SxCR_PSIZE	11
-#define DMA_SxCR_MSIZE	13
-#define DMA_SxCR_PINCOS	15
+#define DMA_SxCR_PSIZE		11
+#define DMA_SxCR_MSIZE		13
+#define DMA_SxCR_PINCOS		15
 #define DMA_SxCR_PL			16
 #define DMA_SxCR_DBM		18
 #define DMA_SxCR_CT			19
-#define DMA_SxCR_PBURST	21
-#define DMA_SxCR_MBURST	23
-#define DMA_SxCR_CHSEL	25
+#define DMA_SxCR_PBURST	 	21
+#define DMA_SxCR_MBURST	 	23
+#define DMA_SxCR_CHSEL		25
 
 
 #define MSIZE_1BYTE			0
-#define MSIZE_HALF_WORD	1
+#define MSIZE_HALF_WORD		1
 #define MSIZE_WORD			2
 
 #define PSIZE_1BYTE			0
-#define PSIZE_HALF_WORD	1
+#define PSIZE_HALF_WORD		1
 #define PSIZE_WORD			2
 
-#define MEM_INC_FIXED				0
+#define MEM_INC_FIXED			0
 #define MEM_INC_INCREMENT		1
 
-#define MEM_PINC_FIXED				0
+#define MEM_PINC_FIXED			0
 #define MEM_PINC_INCREMENT		1
 
 #define TRANSFER_PERIPHERAL_TO_MEMORY 	0
@@ -1438,14 +1438,14 @@ typedef struct{
 #define _1_4_FULL_FIFO 	0
 #define _1_2_FULL_FIFO 	1
 #define _3_4_FULL_FIFO 	2
-#define FULL_FIFO 			3
+#define FULL_FIFO 		3
 
 
 /*>>> DMA SxFCR Bitfields <<<*/
 
-#define DMA_SxFCR_FTH			0
+#define DMA_SxFCR_FTH		0
 #define DMA_SxFCR_DMDIS		2
-#define DMA_SxFCR_FS			3
+#define DMA_SxFCR_FS		3
 #define DMA_SxFCR_FEIE		7
 
 
@@ -1483,7 +1483,7 @@ typedef struct{
 	__vo uint32_t BWTR3;			/**/
 	__vo uint32_t BWTR4;			/**/
 	__vo uint32_t PCR;				/**/
-	__vo uint32_t SR;					/**/
+	__vo uint32_t SR;				/**/
 	__vo uint32_t PMEM;				/**/
 	__vo uint32_t PATT;				/**/
 	__vo uint32_t ECCR;				/**/
@@ -1504,15 +1504,15 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR;					/**/
+	__vo uint32_t CR;				/**/
 	__vo uint32_t DCR;				/**/
-	__vo uint32_t SR;					/**/
+	__vo uint32_t SR;				/**/
 	__vo uint32_t FCR;				/**/
 	__vo uint32_t DLR;				/**/
 	__vo uint32_t CCR;				/**/
-	__vo uint32_t AR;					/**/
+	__vo uint32_t AR;				/**/
 	__vo uint32_t ABR;				/**/
-	__vo uint32_t DR;					/**/
+	__vo uint32_t DR;				/**/
 	__vo uint32_t PSMKR;			/**/
 	__vo uint32_t PSMAR;			/**/
 	__vo uint32_t PIR;				/**/
@@ -1557,22 +1557,22 @@ typedef struct{
 
 #define ADC_COMMON	( ( ADC_RegDef_t*) ADC_COMMON_BASEADDR )
 
-#define ADC_CH0							( 0x00 << 0 )
-#define ADC_CH1							( 0x01 << 1 )
-#define ADC_CH2							( 0x01 << 2 )
-#define ADC_CH3							( 0x01 << 3 )
-#define ADC_CH4							( 0x01 << 4 )
-#define ADC_CH5							( 0x01 << 5 )
-#define ADC_CH6							( 0x01 << 6 )
-#define ADC_CH7							( 0x01 << 7 )
-#define ADC_CH8							( 0x01 << 8 )
-#define ADC_CH9							( 0x01 << 9 )
-#define ADC_CH10						( 0x01 << 10 )
-#define ADC_CH11						( 0x01 << 11 )
-#define ADC_CH12						( 0x01 << 12 )
-#define ADC_CH13						( 0x01 << 13 )
-#define ADC_CH14						( 0x01 << 14 )
-#define ADC_CH15						( 0x01 << 15 )
+#define ADC_CH0					( 0x00 << 0 )
+#define ADC_CH1					( 0x01 << 1 )
+#define ADC_CH2					( 0x01 << 2 )
+#define ADC_CH3					( 0x01 << 3 )
+#define ADC_CH4					( 0x01 << 4 )
+#define ADC_CH5					( 0x01 << 5 )
+#define ADC_CH6					( 0x01 << 6 )
+#define ADC_CH7					( 0x01 << 7 )
+#define ADC_CH8					( 0x01 << 8 )
+#define ADC_CH9					( 0x01 << 9 )
+#define ADC_CH10				( 0x01 << 10 )
+#define ADC_CH11				( 0x01 << 11 )
+#define ADC_CH12				( 0x01 << 12 )
+#define ADC_CH13				( 0x01 << 13 )
+#define ADC_CH14				( 0x01 << 14 )
+#define ADC_CH15				( 0x01 << 15 )
 
 #define ADC_1_CONVERSION 		( 	0x00	)
 #define ADC_2_CONVERSION 		( 	0x01	)
@@ -1583,31 +1583,31 @@ typedef struct{
 #define ADC_7_CONVERSION 		( 	0x06	)
 #define ADC_8_CONVERSION 		( 	0x07	)
 #define ADC_9_CONVERSION 		( 	0x08	)
-#define ADC_10_CONVERSION 	( 	0x09	)
-#define ADC_11_CONVERSION 	( 	0x0A	)
-#define ADC_12_CONVERSION 	( 	0x0B	)
-#define ADC_13_CONVERSION 	( 	0x0C	)
-#define ADC_14_CONVERSION 	( 	0x0D	)
-#define ADC_15_CONVERSION 	( 	0x0E	)
-#define ADC_16_CONVERSION 	( 	0x0F	)
+#define ADC_10_CONVERSION 		( 	0x09	)
+#define ADC_11_CONVERSION 		( 	0x0A	)
+#define ADC_12_CONVERSION 		( 	0x0B	)
+#define ADC_13_CONVERSION 		( 	0x0C	)
+#define ADC_14_CONVERSION 		( 	0x0D	)
+#define ADC_15_CONVERSION 		( 	0x0E	)
+#define ADC_16_CONVERSION 		( 	0x0F	)
 
 
 #define ADC_N_CONVERSION( x ) 		(	( x == 1 )? ADC_1_CONVERSION :\
-																	( x == 2 )? ADC_2_CONVERSION :\
-																	( x == 3 )? ADC_3_CONVERSION :\
-																	( x == 4 )? ADC_4_CONVERSION :\
-																	( x == 5 )? ADC_5_CONVERSION :\
-																	( x == 6 )? ADC_6_CONVERSION :\
-																	( x == 7 )? ADC_7_CONVERSION :\
-																	( x == 8 )? ADC_8_CONVERSION :\
-																	( x == 9 )? ADC_9_CONVERSION :\
-																	( x == 10 )? ADC_10_CONVERSION :\
-																	( x == 11 )? ADC_11_CONVERSION :\
-																	( x == 12 )? ADC_12_CONVERSION :\
-																	( x == 13 )? ADC_13_CONVERSION :\
-																	( x == 14 )? ADC_14_CONVERSION :\
-																	( x == 15 )? ADC_15_CONVERSION :\
-																	( x == 15 )? ADC_16_CONVERSION :0 )
+										( x == 2 )? ADC_2_CONVERSION :\
+										( x == 3 )? ADC_3_CONVERSION :\
+										( x == 4 )? ADC_4_CONVERSION :\
+										( x == 5 )? ADC_5_CONVERSION :\
+										( x == 6 )? ADC_6_CONVERSION :\
+										( x == 7 )? ADC_7_CONVERSION :\
+										( x == 8 )? ADC_8_CONVERSION :\
+										( x == 9 )? ADC_9_CONVERSION :\
+										( x == 10 )? ADC_10_CONVERSION :\
+										( x == 11 )? ADC_11_CONVERSION :\
+										( x == 12 )? ADC_12_CONVERSION :\
+										( x == 13 )? ADC_13_CONVERSION :\
+										( x == 14 )? ADC_14_CONVERSION :\
+										( x == 15 )? ADC_15_CONVERSION :\
+										( x == 15 )? ADC_16_CONVERSION :0 )
 
 
 /*>>>DAC Common Structure<<<*/
@@ -1638,8 +1638,8 @@ typedef struct{
 
 typedef struct{
 
-	__vo uint32_t CR;						/**/
-	__vo uint32_t SR;						/**/
+	__vo uint32_t CR;					/**/
+	__vo uint32_t SR;					/**/
 	__vo uint32_t RIS;					/**/
 	__vo uint32_t IER;					/**/
 	__vo uint32_t MIS;					/**/
@@ -1648,7 +1648,7 @@ typedef struct{
 	__vo uint32_t ESUR;					/**/
 	__vo uint32_t CWSTRT;				/**/
 	__vo uint32_t CWSIZE;				/**/
-	__vo uint32_t DR;						/**/
+	__vo uint32_t DR;					/**/
 
 }DCMI_RegDef_t;
 
@@ -1659,9 +1659,9 @@ typedef struct{
 	__vo uint32_t CR[2];					/**/
 	__vo uint32_t SMCR;						/**/
 	__vo uint32_t DIER;						/**/
-	__vo uint32_t SR;							/**/
+	__vo uint32_t SR;						/**/
 	__vo uint32_t EGR;						/**/
-	__vo uint32_t CCMR[2];				/**/
+	__vo uint32_t CCMR[2];					/**/
 	__vo uint32_t CCER;						/**/
 	__vo uint32_t CNT;						/**/
 	__vo uint32_t PSC;						/**/
@@ -1671,7 +1671,7 @@ typedef struct{
 	__vo uint32_t BDTR;						/**/
 	__vo uint32_t DCR;						/**/
 	__vo uint32_t DMAR;						/**/
-	__vo uint32_t OR;							/**/
+	__vo uint32_t OR;						/**/
 
 }TIM_RegDef_t;
 
@@ -1831,48 +1831,48 @@ typedef struct{
 #define SPI4	( ( SPI_RegDef_t*) SPI4_BASEADDR )
 
 
-#define SPI_CR1_CPHA 							0
-#define SPI_CR1_CPOL 							1
-#define SPI_CR1_MASTER_SELECTION 	2
+#define SPI_CR1_CPHA 						0
+#define SPI_CR1_CPOL 						1
+#define SPI_CR1_MASTER_SELECTION 			2
 #define SPI_CR1_BAUDRATE 					3
 #define SPI_CR1_ENABLE 						6
 #define SPI_CR1_LSBFIRST 					7
-#define SPI_CR1_SSI 							8
-#define SPI_CR1_SSM 							9
+#define SPI_CR1_SSI 						8
+#define SPI_CR1_SSM 						9
 #define SPI_CR1_RXONLY 						10
-#define SPI_CR1_DFF 							11
+#define SPI_CR1_DFF 						11
 #define SPI_CR1_CRC_EN 						13
 #define SPI_CR1_BIDIMODE 					15
 
 
 
-#define SPI_CR2_RX_DMA_ENABLE											0
-#define SPI_CR2_TX_DMA_ENABLE											1
-#define SPI_CR2_SS_ENABLE 												2
-#define SPI_CR2_FRAME_FORMAT											4
-#define SPI_CR2_ERROR_INTERRUPT_ENABLE						5
+#define SPI_CR2_RX_DMA_ENABLE						0
+#define SPI_CR2_TX_DMA_ENABLE						1
+#define SPI_CR2_SS_ENABLE 							2
+#define SPI_CR2_FRAME_FORMAT						4
+#define SPI_CR2_ERROR_INTERRUPT_ENABLE				5
 #define SPI_CR2_RXBUFFER_NEMPTY_INTERRUPT_ENABLE	6
 #define SPI_CR2_TXBUFFER_EMPTY_INTERRUPT_ENABLE		7
 
 
-#define SPI_SR_RXBUFFER_NEMPTY		0
-#define SPI_SR_TXBUFFER_EMPTY			1
+#define SPI_SR_RXBUFFER_NEMPTY				0
+#define SPI_SR_TXBUFFER_EMPTY				1
 #define SPI_SR_CH_SIDE 						2
-#define SPI_SR_UDR								3
+#define SPI_SR_UDR							3
 #define SPI_SR_CRC_ERROR					4
 #define SPI_SR_MODE_FAULT					5
 #define SPI_SR_OVERRUN						6
-#define SPI_SR_BUSY								7
-#define SPI_SR_FRAME_ERROR				8
+#define SPI_SR_BUSY							7
+#define SPI_SR_FRAME_ERROR					8
 
 
 #define SPI_RXBUFFER_EMPTY_FLAG  	(1<<SPI_SR_RXBUFFER_NEMPTY)
 #define SPI_TXBUFFER_EMPTY_FLAG  	(1<<SPI_SR_TXBUFFER_EMPTY)
-#define SPI_CH_SID_FLAG  					(1<<SPI_SR_CH_SIDE)
-#define SPI_UDR_FLAG  						(1<<SPI_SR_UDR)
-#define SPI_CRC_ERROR_FLAG  			(1<<SPI_SR_CRC_ERROR)
-#define SPI_MODE_FAULT_FLAG  			(1<<SPI_SR_MODE_FAULT)
-#define SPI_BUSY_FLAG  						(1<<SPI_SR_BUSY)
+#define SPI_CH_SID_FLAG  			(1<<SPI_SR_CH_SIDE)
+#define SPI_UDR_FLAG  				(1<<SPI_SR_UDR)
+#define SPI_CRC_ERROR_FLAG  		(1<<SPI_SR_CRC_ERROR)
+#define SPI_MODE_FAULT_FLAG  		(1<<SPI_SR_MODE_FAULT)
+#define SPI_BUSY_FLAG  				(1<<SPI_SR_BUSY)
 #define SPI_FRAME_ERROR_FLAG  		(1<<SPI_SR_FRAME_ERROR)
 
 /*>>>SPDIFRX Structure<<<*/
