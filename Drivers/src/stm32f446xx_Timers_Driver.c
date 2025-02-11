@@ -695,5 +695,8 @@ void TIM_MasterTriggerOutput(TIM_RegDef_t* pTIMx, TIM_MasterOutput_t output){
 	pTIMx->CR[1] = temp_CR2;
 }
 
+void TIM_EventCallback(TIM_handle_t* pTIMHandle,TIM_Event_t event){
+
+}
 
 
