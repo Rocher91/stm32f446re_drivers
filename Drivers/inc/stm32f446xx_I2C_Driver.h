@@ -129,9 +129,10 @@ typedef struct
 #define I2C_PEC_ERROR_FLAG         ( 1 << I2C_SR1_PECERR )
 #define I2C_TIMEOUT_FLAG           ( 1 << I2C_SR1_TIMEOUT )
 #define I2C_SMB_ALERT_FLAG         ( 1 << I2C_SR1_SMBALERT )
-
-
 #define I2C_SB_FLAG                ( 1 << I2C_SR1_SB )
+
+#define I2C_ENABLE_SR		    SET
+#define I2C_DISABLE_SR		    RESET
 
 void I2C_PerCLKControl( I2C_RegDef_t *pI2Cx, uint8_t Enable_Disable );
 
@@ -153,8 +154,8 @@ static void I2C_ExecuteAddressPhaseWrite( I2C_RegDef_t *pI2Cx, uint8_t slaveAddr
 static void I2C_ExecuteAddressPhaseRead( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
 static void I2C_ClearADDRFlag(I2C_RegDef_t *pI2Cx);
 
-void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress );
-void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress );
+void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr);
+void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr);
 void I2C_ScanBus(I2C_Handle_t *pI2CHandle );
 
 void I2C_ManageAcking(I2C_RegDef_t *pI2Cx,uint8_t Enable_Disable);

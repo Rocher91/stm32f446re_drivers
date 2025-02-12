@@ -94,7 +94,7 @@ int main(){
 		delay();
 		
 		//Send data
-		I2C_MasterSendData( &I2C1Handle, data, (uint8_t) strlen(data), 0x52 );
+		I2C_MasterSendData( &I2C1Handle, data, (uint8_t) strlen(data), 0x52 ,I2C_DISABLE_SR);
 		
 	}
 }
