@@ -102,21 +102,21 @@ int main(){
 		//to avoid button de-bouncing related issues 200ms of delay
 		delay();
         
-        commandCode = 0x51;
+		commandCode = 0x51;
 
-				//Send data
-        I2C_MasterSendData(&I2C1Handle,&commandCode,1,SLAVE_ADDR,I2C_ENABLE_SR);
+		//Send data
+		I2C_MasterSendData(&I2C1Handle,&commandCode,1,SLAVE_ADDR,I2C_ENABLE_SR);
 
-        //Read Data
-        I2C_MasterReceiveData(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR);
+		//Read Data
+		I2C_MasterReceiveData(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR);
 
-        commandCode = 0x52;
+		commandCode = 0x52;
 
-				//Send data
-        I2C_MasterSendData(&I2C1Handle,&commandCode,1,SLAVE_ADDR,I2C_ENABLE_SR);
+		//Send data
+		I2C_MasterSendData(&I2C1Handle,&commandCode,1,SLAVE_ADDR,I2C_ENABLE_SR);
 
-        //Read Data
-        I2C_MasterReceiveData(&I2C1Handle,&rcv_buff,len,SLAVE_ADDR,I2C_DISABLE_SR);
+		//Read Data
+		I2C_MasterReceiveData(&I2C1Handle,&rcv_buff,len,SLAVE_ADDR,I2C_DISABLE_SR);
 
 		
 	}

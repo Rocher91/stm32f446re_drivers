@@ -6,18 +6,26 @@
 
 typedef struct{
 
-    uint32_t I2C_SCL_Speed;
-    uint8_t I2C_DeviceAddress;
-    uint8_t I2C_ACK_Control;
-    uint16_t I2C_FM_DutyCycle;
+    uint32_t    I2C_SCL_Speed;
+    uint8_t     I2C_DeviceAddress;
+    uint8_t     I2C_ACK_Control;
+    uint16_t    I2C_FM_DutyCycle;
 
 } I2C_Config_t;
 
 
 typedef struct 
 {
-    I2C_RegDef_t *pI2Cx;
-    I2C_Config_t I2C_Config;
+    I2C_RegDef_t    *pI2Cx;
+    I2C_Config_t    I2C_Config;
+    uint8_t         *pTxBuffer;
+    uint8_t         *pRxBuffer;
+    uint8_t         TxLen;
+    uint8_t         RxLen;
+    uint8_t         TxRxState;
+    uint8_t         DevAddress;
+    uint32_t        RxSize;
+    uint8_t         Sr;
 
 }I2C_Handle_t;
 
@@ -134,6 +142,12 @@ typedef struct
 #define I2C_ENABLE_SR		    SET
 #define I2C_DISABLE_SR		    RESET
 
+
+#define I2C_READY               0
+#define I2C_BUSY_IN_TX          1
+#define I2C_BUSY_IN_RX          2
+
+
 void I2C_PerCLKControl( I2C_RegDef_t *pI2Cx, uint8_t Enable_Disable );
 
 /*
@@ -156,6 +170,10 @@ static void I2C_ClearADDRFlag(I2C_RegDef_t *pI2Cx);
 
 void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr);
 void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr);
+
+uint8_t I2C_MasterSendDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr);
+uint8_t I2C_MasterReceiveDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr);
+
 void I2C_ScanBus(I2C_Handle_t *pI2CHandle );
 
 void I2C_ManageAcking(I2C_RegDef_t *pI2Cx,uint8_t Enable_Disable);

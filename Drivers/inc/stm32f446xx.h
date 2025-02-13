@@ -510,11 +510,11 @@ typedef struct{
 #define RCC_AHB1ENR_GPIOG				6
 #define RCC_AHB1ENR_GPIOH				7
 #define RCC_AHB1ENR_CRC					12
-#define RCC_AHB1ENR_BKP_SRAM		18
+#define RCC_AHB1ENR_BKP_SRAM			18
 #define RCC_AHB1ENR_DMA1				21
 #define RCC_AHB1ENR_DMA2				22
 #define RCC_AHB1ENR_OTGHS				29
-#define RCC_AHB1ENR_OTGHS_ULPI	30
+#define RCC_AHB1ENR_OTGHS_ULPI			30
 
 /*>>> RCC AHB2ENR Bitfields <<<*/
 
@@ -1172,41 +1172,105 @@ typedef struct{
 
 /*>>>SYSCFGR Structure<<<*/
 
-#define IRQ_TIM2					28
-
-#define IRQ_NO_EXTI0			6
-#define IRQ_NO_EXTI1			7
-#define IRQ_NO_EXTI2			8
-#define IRQ_NO_EXTI3			9
-#define IRQ_NO_EXTI4			10
-#define IRQ_NO_EXTI9_5		23
-#define IRQ_NO_EXTI15_10	40
-
-#define IRQ_TIM6_DAC			54
-
-#define IRQ_DMA1_STREAM_0	18
-#define IRQ_DMA1_STREAM_1	19
-#define IRQ_DMA1_STREAM_2	20
-#define IRQ_DMA1_STREAM_3	21
-#define IRQ_DMA1_STREAM_4	22
-#define IRQ_DMA1_STREAM_5	23
-#define IRQ_DMA1_STREAM_6	24
-#define IRQ_DMA1_STREAM_7	47
 
 
-#define IRQ_DMA2_STREAM_0	56
-#define IRQ_DMA2_STREAM_1	57
-#define IRQ_DMA2_STREAM_2	58
-#define IRQ_DMA2_STREAM_3	59
-#define IRQ_DMA2_STREAM_4	60
-#define IRQ_DMA2_STREAM_5	68
-#define IRQ_DMA2_STREAM_6	69
-#define IRQ_DMA2_STREAM_7	70
+#define IRQ_TIM6_DAC								54
+#define IRQ_NO_TIM7									55
+#define IRQ_NO_TIM1_BRK_TIM9				24
+#define IRQ_NO_TIM1_UP_TIM10				25
+#define IRQ_NO_TIM1_TRG_COM_TIM11		26
+#define IRQ_NO_TIM1_CC							27
+#define IRQ_NO_TIM2									28
+#define IRQ_NO_TIM3									72
+#define IRQ_NO_TIM4									73
+
+#define IRQ_NO_I2C1_EV							31
+#define IRQ_NO_I2C1_ER							32
+#define IRQ_NO_I2C2_EV							33
+#define IRQ_NO_I2C2_ER							34
+#define IRQ_NO_I2C3_EV							72
+#define IRQ_NO_I2C3_ER							73
+
+#define IRQ_NO_SPI1									35
+#define IRQ_NO_SPI2									36
+
+#define IRQ_NO_USART1								37
+#define IRQ_NO_USART2								38
+#define IRQ_NO_USART3								39
+#define IRQ_NO_UART4								52
+#define IRQ_NO_UART5								53
+#define IRQ_NO_USART6								71
+
+
+#define IRQ_NO_EXTI0								6
+#define IRQ_NO_EXTI1								7
+#define IRQ_NO_EXTI2								8
+#define IRQ_NO_EXTI3								9
+#define IRQ_NO_EXTI4								10
+#define IRQ_NO_EXTI9_5							23
+#define IRQ_NO_EXTI15_10						40
+
+#define IRQ_NO_RTC_ALARM						41
+#define IRQ_NO_OTG_FS_WKUP					42
+
+#define IRQ_NO_TIM8_BRK_TIM12				43
+#define IRQ_NO_TIM8_UP_TIM13				44
+#define IRQ_NO_TIM8_COM_TIM14				45
+#define IRQ_TIM8_CC									46
+
+#define IRQ_CAN2_TX									63
+#define IRQ_CAN2_RX0								64
+#define IRQ_CAN2_RX1								65
+#define IRQ_CAN2_SCE								66
+
+#define IRQ_OTG_FS									67
+
+#define IRQ_DMA1_STREAM_0						18
+#define IRQ_DMA1_STREAM_1						19
+#define IRQ_DMA1_STREAM_2						20
+#define IRQ_DMA1_STREAM_3						21
+#define IRQ_DMA1_STREAM_4						22
+#define IRQ_DMA1_STREAM_5						23
+#define IRQ_DMA1_STREAM_6						24
+#define IRQ_DMA1_STREAM_7						47
+
+
+#define IRQ_DMA2_STREAM_0						56
+#define IRQ_DMA2_STREAM_1						57
+#define IRQ_DMA2_STREAM_2						58
+#define IRQ_DMA2_STREAM_3						59
+#define IRQ_DMA2_STREAM_4						60
+#define IRQ_DMA2_STREAM_5						68
+#define IRQ_DMA2_STREAM_6						69
+#define IRQ_DMA2_STREAM_7						70
+
+#define IRQ_FMC											48
+#define IRQ_SDIO										49
+#define IRQ_TIM5										50
+#define IRQ_SPI3										51
+#define IRQ_SPI4										84
+
+#define IRQ_SAI1										87
+#define IRQ_SAI2										91
+
+#define IRQ_QUADSPI									92
+
+#define IRQ_HDMI_CEC								93
+#define IRQ_SPDIF_RX								94
+#define IRQ_FMPI2C1									95
+#define IRQ_FMPI2C1_ERROR						96
+
+#define IRQ_HS_EP1_OUT							74
+#define IRQ_HS_EP1_IN								75
+#define IRQ_HS_WKUP									76
+#define IRQ_OTG_HS									77
+#define IRQ_DCMI										78
+#define IRQ_FPU											81
 
 
 
-#define NVIC_IRQ_PRIORITY_0		0
-#define NVIC_IRQ_PRIORITY_15	15
+#define NVIC_IRQ_PRIORITY_0					0
+#define NVIC_IRQ_PRIORITY_15				15
 
 
 typedef struct{

@@ -351,3 +351,14 @@ void I2C_ScanBus(I2C_Handle_t *pI2CHandle )
         }
     }
 }
+
+
+uint8_t I2C_MasterSendDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr)
+{
+
+}
+
+uint8_t I2C_MasterReceiveDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr)
+{
+    
+}
