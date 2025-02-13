@@ -1174,98 +1174,98 @@ typedef struct{
 
 
 
-#define IRQ_TIM6_DAC								54
-#define IRQ_NO_TIM7									55
+#define IRQ_TIM6_DAC						54
+#define IRQ_NO_TIM7							55
 #define IRQ_NO_TIM1_BRK_TIM9				24
 #define IRQ_NO_TIM1_UP_TIM10				25
-#define IRQ_NO_TIM1_TRG_COM_TIM11		26
-#define IRQ_NO_TIM1_CC							27
-#define IRQ_NO_TIM2									28
-#define IRQ_NO_TIM3									72
-#define IRQ_NO_TIM4									73
+#define IRQ_NO_TIM1_TRG_COM_TIM11			26
+#define IRQ_NO_TIM1_CC						27
+#define IRQ_NO_TIM2							28
+#define IRQ_NO_TIM3							72
+#define IRQ_NO_TIM4							73
 
-#define IRQ_NO_I2C1_EV							31
-#define IRQ_NO_I2C1_ER							32
-#define IRQ_NO_I2C2_EV							33
-#define IRQ_NO_I2C2_ER							34
-#define IRQ_NO_I2C3_EV							72
-#define IRQ_NO_I2C3_ER							73
+#define IRQ_NO_I2C1_EV						31
+#define IRQ_NO_I2C1_ER						32
+#define IRQ_NO_I2C2_EV						33
+#define IRQ_NO_I2C2_ER						34
+#define IRQ_NO_I2C3_EV						72
+#define IRQ_NO_I2C3_ER						73
 
-#define IRQ_NO_SPI1									35
-#define IRQ_NO_SPI2									36
+#define IRQ_NO_SPI1							35
+#define IRQ_NO_SPI2							36
 
-#define IRQ_NO_USART1								37
-#define IRQ_NO_USART2								38
-#define IRQ_NO_USART3								39
-#define IRQ_NO_UART4								52
-#define IRQ_NO_UART5								53
-#define IRQ_NO_USART6								71
+#define IRQ_NO_USART1						37
+#define IRQ_NO_USART2						38
+#define IRQ_NO_USART3						39
+#define IRQ_NO_UART4						52
+#define IRQ_NO_UART5						53
+#define IRQ_NO_USART6						71
 
 
-#define IRQ_NO_EXTI0								6
-#define IRQ_NO_EXTI1								7
-#define IRQ_NO_EXTI2								8
-#define IRQ_NO_EXTI3								9
-#define IRQ_NO_EXTI4								10
-#define IRQ_NO_EXTI9_5							23
-#define IRQ_NO_EXTI15_10						40
+#define IRQ_NO_EXTI0						6
+#define IRQ_NO_EXTI1						7
+#define IRQ_NO_EXTI2						8
+#define IRQ_NO_EXTI3						9
+#define IRQ_NO_EXTI4						10
+#define IRQ_NO_EXTI9_5						23
+#define IRQ_NO_EXTI15_10					40
 
-#define IRQ_NO_RTC_ALARM						41
+#define IRQ_NO_RTC_ALARM					41
 #define IRQ_NO_OTG_FS_WKUP					42
 
 #define IRQ_NO_TIM8_BRK_TIM12				43
 #define IRQ_NO_TIM8_UP_TIM13				44
 #define IRQ_NO_TIM8_COM_TIM14				45
-#define IRQ_TIM8_CC									46
+#define IRQ_TIM8_CC							46
 
-#define IRQ_CAN2_TX									63
-#define IRQ_CAN2_RX0								64
-#define IRQ_CAN2_RX1								65
-#define IRQ_CAN2_SCE								66
+#define IRQ_CAN2_TX							63
+#define IRQ_CAN2_RX0						64
+#define IRQ_CAN2_RX1						65
+#define IRQ_CAN2_SCE						66
 
-#define IRQ_OTG_FS									67
+#define IRQ_OTG_FS							67
 
-#define IRQ_DMA1_STREAM_0						18
-#define IRQ_DMA1_STREAM_1						19
-#define IRQ_DMA1_STREAM_2						20
-#define IRQ_DMA1_STREAM_3						21
-#define IRQ_DMA1_STREAM_4						22
-#define IRQ_DMA1_STREAM_5						23
-#define IRQ_DMA1_STREAM_6						24
-#define IRQ_DMA1_STREAM_7						47
+#define IRQ_DMA1_STREAM_0					18
+#define IRQ_DMA1_STREAM_1					19
+#define IRQ_DMA1_STREAM_2					20
+#define IRQ_DMA1_STREAM_3					21
+#define IRQ_DMA1_STREAM_4					22
+#define IRQ_DMA1_STREAM_5					23
+#define IRQ_DMA1_STREAM_6					24
+#define IRQ_DMA1_STREAM_7					47
 
 
-#define IRQ_DMA2_STREAM_0						56
-#define IRQ_DMA2_STREAM_1						57
-#define IRQ_DMA2_STREAM_2						58
-#define IRQ_DMA2_STREAM_3						59
-#define IRQ_DMA2_STREAM_4						60
-#define IRQ_DMA2_STREAM_5						68
-#define IRQ_DMA2_STREAM_6						69
-#define IRQ_DMA2_STREAM_7						70
+#define IRQ_DMA2_STREAM_0					56
+#define IRQ_DMA2_STREAM_1					57
+#define IRQ_DMA2_STREAM_2					58
+#define IRQ_DMA2_STREAM_3					59
+#define IRQ_DMA2_STREAM_4					60
+#define IRQ_DMA2_STREAM_5					68
+#define IRQ_DMA2_STREAM_6					69
+#define IRQ_DMA2_STREAM_7					70
 
-#define IRQ_FMC											48
-#define IRQ_SDIO										49
-#define IRQ_TIM5										50
-#define IRQ_SPI3										51
-#define IRQ_SPI4										84
+#define IRQ_FMC								48
+#define IRQ_SDIO							49
+#define IRQ_TIM5							50
+#define IRQ_SPI3							51
+#define IRQ_SPI4							84
 
-#define IRQ_SAI1										87
-#define IRQ_SAI2										91
+#define IRQ_SAI1							87
+#define IRQ_SAI2							91
 
-#define IRQ_QUADSPI									92
+#define IRQ_QUADSPI							92
 
-#define IRQ_HDMI_CEC								93
-#define IRQ_SPDIF_RX								94
-#define IRQ_FMPI2C1									95
-#define IRQ_FMPI2C1_ERROR						96
+#define IRQ_HDMI_CEC						93
+#define IRQ_SPDIF_RX						94
+#define IRQ_FMPI2C1							95
+#define IRQ_FMPI2C1_ERROR					96
 
-#define IRQ_HS_EP1_OUT							74
-#define IRQ_HS_EP1_IN								75
-#define IRQ_HS_WKUP									76
-#define IRQ_OTG_HS									77
-#define IRQ_DCMI										78
-#define IRQ_FPU											81
+#define IRQ_HS_EP1_OUT						74
+#define IRQ_HS_EP1_IN						75
+#define IRQ_HS_WKUP							76
+#define IRQ_OTG_HS							77
+#define IRQ_DCMI							78
+#define IRQ_FPU								81
 
 
 
@@ -1277,10 +1277,10 @@ typedef struct{
 
 	__vo uint32_t MEMRMP;				/**/
 	__vo uint32_t PMC;					/**/
-	__vo uint32_t EXTICR[4];		/**/
-	__vo uint32_t RESERVED0[2];	/**/
+	__vo uint32_t EXTICR[4];			/**/
+	__vo uint32_t RESERVED0[2];			/**/
 	__vo uint32_t CMPCR;				/**/
-	__vo uint32_t RESERVED1[2];	/**/
+	__vo uint32_t RESERVED1[2];			/**/
 	__vo uint32_t CFGR;					/**/
 
 }SYSCFGR_RegDef_t;
@@ -1468,13 +1468,13 @@ typedef struct{
 #define DMA_SxCR_CHSEL		25
 
 
-#define MSIZE_1BYTE			0
-#define MSIZE_HALF_WORD		1
-#define MSIZE_WORD			2
+#define MSIZE_1BYTE				0
+#define MSIZE_HALF_WORD			1
+#define MSIZE_WORD				2
 
-#define PSIZE_1BYTE			0
-#define PSIZE_HALF_WORD		1
-#define PSIZE_WORD			2
+#define PSIZE_1BYTE				0
+#define PSIZE_HALF_WORD			1
+#define PSIZE_WORD				2
 
 #define MEM_INC_FIXED			0
 #define MEM_INC_INCREMENT		1
@@ -1482,9 +1482,9 @@ typedef struct{
 #define MEM_PINC_FIXED			0
 #define MEM_PINC_INCREMENT		1
 
-#define TRANSFER_PERIPHERAL_TO_MEMORY 	0
-#define TRANSFER_MEMORY_TO_PERIPHERAL 	1
-#define TRANSFER_MEMORY_TO_MEMORY 			2
+#define TRANSFER_PERIPHERAL_TO_MEMORY 			0
+#define TRANSFER_MEMORY_TO_PERIPHERAL 			1
+#define TRANSFER_MEMORY_TO_MEMORY 				2
 
 #define TRANSFER_COMPLETE_INTERRUPT_DISABLE 	0
 #define TRANSFER_COMPLETE_INTERRUPT_ENABLE 		1
@@ -1496,22 +1496,21 @@ typedef struct{
 #define DIRECT_MODE_ERROR_INTERRUPT_DISABLE 	0
 #define DIRECT_MODE_ERROR_INTERRUPT_ENABLE 		1
 
-#define DIRECT_MODE_ENABLE 	0
-#define DIRECT_MODE_DISABLE 1
+#define DIRECT_MODE_ENABLE 		0
+#define DIRECT_MODE_DISABLE 	1
 
-#define _1_4_FULL_FIFO 	0
-#define _1_2_FULL_FIFO 	1
-#define _3_4_FULL_FIFO 	2
-#define FULL_FIFO 		3
+#define _1_4_FULL_FIFO 			0
+#define _1_2_FULL_FIFO 			1
+#define _3_4_FULL_FIFO 			2
+#define FULL_FIFO 				3
 
 
 /*>>> DMA SxFCR Bitfields <<<*/
 
-#define DMA_SxFCR_FTH		0
-#define DMA_SxFCR_DMDIS		2
-#define DMA_SxFCR_FS		3
-#define DMA_SxFCR_FEIE		7
-
+#define DMA_SxFCR_FTH			0
+#define DMA_SxFCR_DMDIS			2
+#define DMA_SxFCR_FS			3
+#define DMA_SxFCR_FEIE			7
 
 
 /*>>>EXTI Structure<<<*/
@@ -1621,39 +1620,39 @@ typedef struct{
 
 #define ADC_COMMON	( ( ADC_RegDef_t*) ADC_COMMON_BASEADDR )
 
-#define ADC_CH0					( 0x00 << 0 )
-#define ADC_CH1					( 0x01 << 1 )
-#define ADC_CH2					( 0x01 << 2 )
-#define ADC_CH3					( 0x01 << 3 )
-#define ADC_CH4					( 0x01 << 4 )
-#define ADC_CH5					( 0x01 << 5 )
-#define ADC_CH6					( 0x01 << 6 )
-#define ADC_CH7					( 0x01 << 7 )
-#define ADC_CH8					( 0x01 << 8 )
-#define ADC_CH9					( 0x01 << 9 )
-#define ADC_CH10				( 0x01 << 10 )
-#define ADC_CH11				( 0x01 << 11 )
-#define ADC_CH12				( 0x01 << 12 )
-#define ADC_CH13				( 0x01 << 13 )
-#define ADC_CH14				( 0x01 << 14 )
-#define ADC_CH15				( 0x01 << 15 )
+#define ADC_CH0					 0x00 << 0 
+#define ADC_CH1					 0x01 << 1 
+#define ADC_CH2					 0x01 << 2 
+#define ADC_CH3					 0x01 << 3 
+#define ADC_CH4					 0x01 << 4 
+#define ADC_CH5					 0x01 << 5 
+#define ADC_CH6					 0x01 << 6 
+#define ADC_CH7					 0x01 << 7 
+#define ADC_CH8					 0x01 << 8 
+#define ADC_CH9					 0x01 << 9 
+#define ADC_CH10				 0x01 << 10
+#define ADC_CH11				 0x01 << 11
+#define ADC_CH12				 0x01 << 12
+#define ADC_CH13				 0x01 << 13
+#define ADC_CH14				 0x01 << 14
+#define ADC_CH15				 0x01 << 15
 
-#define ADC_1_CONVERSION 		( 	0x00	)
-#define ADC_2_CONVERSION 		( 	0x01	)
-#define ADC_3_CONVERSION 		( 	0x02	)
-#define ADC_4_CONVERSION 		( 	0x03	)
-#define ADC_5_CONVERSION 		( 	0x04	)
-#define ADC_6_CONVERSION 		( 	0x05	)
-#define ADC_7_CONVERSION 		( 	0x06	)
-#define ADC_8_CONVERSION 		( 	0x07	)
-#define ADC_9_CONVERSION 		( 	0x08	)
-#define ADC_10_CONVERSION 		( 	0x09	)
-#define ADC_11_CONVERSION 		( 	0x0A	)
-#define ADC_12_CONVERSION 		( 	0x0B	)
-#define ADC_13_CONVERSION 		( 	0x0C	)
-#define ADC_14_CONVERSION 		( 	0x0D	)
-#define ADC_15_CONVERSION 		( 	0x0E	)
-#define ADC_16_CONVERSION 		( 	0x0F	)
+#define ADC_1_CONVERSION 		 0x00	
+#define ADC_2_CONVERSION 		 0x01	
+#define ADC_3_CONVERSION 		 0x02	
+#define ADC_4_CONVERSION 		 0x03	
+#define ADC_5_CONVERSION 		 0x04	
+#define ADC_6_CONVERSION 		 0x05	
+#define ADC_7_CONVERSION 		 0x06	
+#define ADC_8_CONVERSION 		 0x07	
+#define ADC_9_CONVERSION 		 0x08	
+#define ADC_10_CONVERSION 		 0x09	
+#define ADC_11_CONVERSION 		 0x0A	
+#define ADC_12_CONVERSION 		 0x0B	
+#define ADC_13_CONVERSION 		 0x0C	
+#define ADC_14_CONVERSION 		 0x0D	
+#define ADC_15_CONVERSION 		 0x0E	
+#define ADC_16_CONVERSION 		 0x0F	
 
 
 #define ADC_N_CONVERSION( x ) 		(	( x == 1 )? ADC_1_CONVERSION :\
@@ -1895,18 +1894,18 @@ typedef struct{
 #define SPI4	( ( SPI_RegDef_t*) SPI4_BASEADDR )
 
 
-#define SPI_CR1_CPHA 						0
-#define SPI_CR1_CPOL 						1
-#define SPI_CR1_MASTER_SELECTION 			2
-#define SPI_CR1_BAUDRATE 					3
-#define SPI_CR1_ENABLE 						6
-#define SPI_CR1_LSBFIRST 					7
-#define SPI_CR1_SSI 						8
-#define SPI_CR1_SSM 						9
-#define SPI_CR1_RXONLY 						10
-#define SPI_CR1_DFF 						11
-#define SPI_CR1_CRC_EN 						13
-#define SPI_CR1_BIDIMODE 					15
+#define SPI_CR1_CPHA 								0
+#define SPI_CR1_CPOL 								1
+#define SPI_CR1_MASTER_SELECTION 					2
+#define SPI_CR1_BAUDRATE 							3
+#define SPI_CR1_ENABLE 								6
+#define SPI_CR1_LSBFIRST 							7
+#define SPI_CR1_SSI 								8
+#define SPI_CR1_SSM 								9
+#define SPI_CR1_RXONLY 								10
+#define SPI_CR1_DFF 								11
+#define SPI_CR1_CRC_EN 								13
+#define SPI_CR1_BIDIMODE 							15
 
 
 
@@ -1919,25 +1918,25 @@ typedef struct{
 #define SPI_CR2_TXBUFFER_EMPTY_INTERRUPT_ENABLE		7
 
 
-#define SPI_SR_RXBUFFER_NEMPTY				0
-#define SPI_SR_TXBUFFER_EMPTY				1
-#define SPI_SR_CH_SIDE 						2
-#define SPI_SR_UDR							3
-#define SPI_SR_CRC_ERROR					4
-#define SPI_SR_MODE_FAULT					5
-#define SPI_SR_OVERRUN						6
-#define SPI_SR_BUSY							7
-#define SPI_SR_FRAME_ERROR					8
+#define SPI_SR_RXBUFFER_NEMPTY						0
+#define SPI_SR_TXBUFFER_EMPTY						1
+#define SPI_SR_CH_SIDE 								2
+#define SPI_SR_UDR									3
+#define SPI_SR_CRC_ERROR							4
+#define SPI_SR_MODE_FAULT							5
+#define SPI_SR_OVERRUN								6
+#define SPI_SR_BUSY									7
+#define SPI_SR_FRAME_ERROR							8
 
 
-#define SPI_RXBUFFER_EMPTY_FLAG  	(1<<SPI_SR_RXBUFFER_NEMPTY)
-#define SPI_TXBUFFER_EMPTY_FLAG  	(1<<SPI_SR_TXBUFFER_EMPTY)
-#define SPI_CH_SID_FLAG  			(1<<SPI_SR_CH_SIDE)
-#define SPI_UDR_FLAG  				(1<<SPI_SR_UDR)
-#define SPI_CRC_ERROR_FLAG  		(1<<SPI_SR_CRC_ERROR)
-#define SPI_MODE_FAULT_FLAG  		(1<<SPI_SR_MODE_FAULT)
-#define SPI_BUSY_FLAG  				(1<<SPI_SR_BUSY)
-#define SPI_FRAME_ERROR_FLAG  		(1<<SPI_SR_FRAME_ERROR)
+#define SPI_RXBUFFER_EMPTY_FLAG  					1<<SPI_SR_RXBUFFER_NEMPTY
+#define SPI_TXBUFFER_EMPTY_FLAG  					1<<SPI_SR_TXBUFFER_EMPTY
+#define SPI_CH_SID_FLAG  							1<<SPI_SR_CH_SIDE
+#define SPI_UDR_FLAG  								1<<SPI_SR_UDR
+#define SPI_CRC_ERROR_FLAG  						1<<SPI_SR_CRC_ERROR
+#define SPI_MODE_FAULT_FLAG  						1<<SPI_SR_MODE_FAULT
+#define SPI_BUSY_FLAG  								1<<SPI_SR_BUSY
+#define SPI_FRAME_ERROR_FLAG  						1<<SPI_SR_FRAME_ERROR
 
 /*>>>SPDIFRX Structure<<<*/
 

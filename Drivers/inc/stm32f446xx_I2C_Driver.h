@@ -4,31 +4,6 @@
 #include "stm32f446xx.h"
 
 
-typedef struct{
-
-    uint32_t    I2C_SCL_Speed;
-    uint8_t     I2C_DeviceAddress;
-    uint8_t     I2C_ACK_Control;
-    uint16_t    I2C_FM_DutyCycle;
-
-} I2C_Config_t;
-
-
-typedef struct 
-{
-    I2C_RegDef_t    *pI2Cx;
-    I2C_Config_t    I2C_Config;
-    uint8_t         *pTxBuffer;
-    uint8_t         *pRxBuffer;
-    uint8_t         TxLen;
-    uint8_t         RxLen;
-    uint8_t         TxRxState;
-    uint8_t         DevAddress;
-    uint32_t        RxSize;
-    uint8_t         Sr;
-
-}I2C_Handle_t;
-
 /* I2C_SCL_Speed*/
 #define I2C_SCL_SPEED_SM    100000
 #define I2C_SCL_SPEED_FM2k  200000
@@ -148,6 +123,33 @@ typedef struct
 #define I2C_BUSY_IN_RX          2
 
 
+typedef struct{
+
+    uint32_t    I2C_SCL_Speed;
+    uint8_t     I2C_DeviceAddress;
+    uint8_t     I2C_ACK_Control;
+    uint16_t    I2C_FM_DutyCycle;
+
+} I2C_Config_t;
+
+
+typedef struct 
+{
+    I2C_RegDef_t    *pI2Cx;
+    I2C_Config_t    I2C_Config;
+    uint8_t         *pTxBuffer;
+    uint8_t         *pRxBuffer;
+    uint8_t         TxLen;
+    uint8_t         RxLen;
+    uint8_t         TxRxState;
+    uint8_t         DevAddress;
+    uint32_t        RxSize;
+    uint8_t         Sr;
+
+}I2C_Handle_t;
+
+
+
 void I2C_PerCLKControl( I2C_RegDef_t *pI2Cx, uint8_t Enable_Disable );
 
 /*
@@ -193,7 +195,6 @@ void I2C_PeripheralControl(I2C_RegDef_t *pI2Cx,uint8_t Enable);
 uint8_t I2C_GetFlagStatus(I2C_RegDef_t *pI2Cx, uint32_t FlagName);
 
 
- 
  /*
 	Application Callback
  */

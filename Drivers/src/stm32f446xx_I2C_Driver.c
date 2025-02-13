@@ -130,17 +130,17 @@ void I2C_Init(I2C_Handle_t *pI2CHandle )
 
 }
 
-void I2C_DeInit( I2C_Handle_t *pI2Cx )
+void I2C_DeInit( I2C_Handle_t *pI2CHandle )
 {
-    if( pI2Cx == I2C1 )
+    if( pI2CHandle->pI2Cx == I2C1 )
     {
 		RESET_I2C1();
 	}
-    else if( pI2Cx == I2C2 )
+    else if( pI2CHandle->pI2Cx == I2C2 )
     {
 		RESET_I2C2();
 	}
-    else if( pI2Cx == I2C3 )
+    else if( pI2CHandle->pI2Cx == I2C3 )
     {
 		RESET_I2C3();
 	}
@@ -268,7 +268,7 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
 	I2C_ExecuteAddressPhaseRead( pI2CHandle->pI2Cx, slaveAddress );
 	
     //4. wait until address phase is completed by checking the ADDR flag in the SR1.
-	while( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_ADDR_FLAG ) );
+	while( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_ADDR_FLAG ) ){}
 
     //procedure to read only 1 byte from slave.
     if ( Len == 1)
@@ -301,8 +301,8 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
 				I2C_ClearADDRFlag(pI2CHandle->pI2Cx);
 			
         //read the data until Len becomes zero.
-			while( !I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_RxNE_FLAG ) ); //Wait till RxNE is set 
-
+			while( !I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_RxNE_FLAG ) ){} //Wait till RxNE is set 
+			
         for( uint32_t i = Len; i>0 ; i--)
         {
             //wait until RxNE becomes 1
@@ -353,12 +353,105 @@ void I2C_ScanBus(I2C_Handle_t *pI2CHandle )
 }
 
 
+/*********************************************************************
+ * @fn      		  - I2C_MasterSendDataIT
+ *
+ * @brief             -
+ *
+ * @param[in]         -
+ * @param[in]         -
+ * @param[in]         -
+ *
+ * @return            -
+ *
+ * @Note              -  Complete the below code . Also include the function prototype in header file
+
+ */
+
+
 uint8_t I2C_MasterSendDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr)
+{
+
+	uint8_t busystate = pI2CHandle->TxRxState;
+
+	if( (busystate != I2C_BUSY_IN_TX) && (busystate != I2C_BUSY_IN_RX))
+	{
+		pI2CHandle->pTxBuffer   = pTxBuffer;
+		pI2CHandle->TxLen       = Len;
+		pI2CHandle->TxRxState   = I2C_BUSY_IN_TX;
+		pI2CHandle->DevAddress  = slaveAddress;
+		pI2CHandle->Sr          = Sr;
+
+		//Implement code to Generate START Condition
+		I2C_GenerateStartCondition(pI2CHandle->pI2Cx);
+
+		//Implement the code to enable ITBUFEN Control Bit
+		pI2CHandle->pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITBUFEN);
+
+		//Implement the code to enable ITEVFEN Control Bit
+		pI2CHandle->pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITEVTEN);
+
+		//Implement the code to enable ITERREN Control Bit
+		pI2CHandle->pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITERREN);
+
+	}
+
+	return busystate;
+
+}
+
+/*********************************************************************
+ * @fn      		  - I2C_MasterReceiveDataIT
+ *
+ * @brief             -
+ *
+ * @param[in]         -
+ * @param[in]         -
+ * @param[in]         -
+ *
+ * @return            -
+ *
+ * @Note              - Complete the below code . Also include the fn prototype in header file
+
+ */
+uint8_t I2C_MasterReceiveDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr)
+{
+
+	uint8_t busystate = pI2CHandle->TxRxState;
+
+	if( (busystate != I2C_BUSY_IN_TX) && (busystate != I2C_BUSY_IN_RX))
+	{
+		pI2CHandle->pRxBuffer   = pRxBuffer;
+		pI2CHandle->RxLen       = Len;
+		pI2CHandle->TxRxState   = I2C_BUSY_IN_RX;
+		pI2CHandle->RxSize      = Len; //Rxsize is used in the ISR code to manage the data reception 
+		pI2CHandle->DevAddress  = slaveAddress;
+		pI2CHandle->Sr          = Sr;
+
+		//Implement code to Generate START Condition
+		I2C_GenerateStartCondition(pI2CHandle->pI2Cx);
+
+		//Implement the code to enable ITBUFEN Control Bit
+		pI2CHandle->pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITBUFEN);
+
+		//Implement the code to enable ITEVFEN Control Bit
+		pI2CHandle->pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITEVTEN);
+
+		//Implement the code to enable ITERREN Control Bit
+		pI2CHandle->pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITERREN);
+		
+	}
+
+	return busystate;
+}
+
+
+void I2C_IRQInterruptConfig( uint8_t IRQNumber, uint8_t Enable_Disable)
 {
 
 }
 
-uint8_t I2C_MasterReceiveDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr)
+void I2C_IRQConfigPriority( uint8_t IRQNumber, uint32_t IRQPriority )
 {
-    
+
 }
