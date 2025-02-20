@@ -184,6 +184,20 @@ void I2C_DeInit( I2C_Handle_t *pI2Cx );
 
 
 /*
+ * Internal functions
+ */
+static void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx);
+static void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
+
+static void I2C_ExecuteAddressPhaseWrite( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
+static void I2C_ExecuteAddressPhaseRead( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
+static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle);
+
+static void I2C_MasterHandleRxNEInterrupt(I2C_Handle_t* pI2CHandle);
+static void I2C_MasterHandleTxEInterrupt( I2C_Handle_t *pI2CHandle );
+
+
+/*
  * Data Send and Receive
  */
 
@@ -231,5 +245,7 @@ void I2C_ER_IRQHandling(I2C_Handle_t *pI2CHandle);
 	Application Callback
  */
 void I2C_ApplicationEventCallback(I2C_Handle_t*pI2CHandle,uint8_t AppEv);
+
+
 
 #endif
