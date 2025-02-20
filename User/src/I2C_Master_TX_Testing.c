@@ -20,9 +20,7 @@ uint8_t data[] = "We are Testing I2C Master TX\n";
 
 void delay(void)
 {
-	int i = 0;
-	
-	for( i=0; i< 100000; i++);
+	for( uint32_t i=0; i< 500000/2; i++);
 }
 
 
@@ -34,14 +32,13 @@ void I2C_GPIOInits(void)
                                 .GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTERNATE,
                                 .GPIO_PinConfig.GPIO_PinAltFuncMode = GPIO_AF4,
                                 .GPIO_PinConfig.GPIO_PinOPType      = GPIO_OPEN_DRAIN,
-                                .GPIO_PinConfig.GPIO_PinPupdControl = GPIO_NPUPD,
+                                .GPIO_PinConfig.GPIO_PinPupdControl = GPIO_PU,
                                 .GPIO_PinConfig.GPIO_PinSpeed       = GPIO_FAST_SPEED,
                                 .pGPIOx                             = GPIOB  
                             };
 		
 		GPIO_Handle_t UserButton = {                                 
-                                .GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_IT_FALLING,
-                                .GPIO_PinConfig.GPIO_PinOPType      = GPIO_OPEN_DRAIN,
+                                .GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_INPUT,
                                 .GPIO_PinConfig.GPIO_PinPupdControl = GPIO_NPUPD,
                                 .GPIO_PinConfig.GPIO_PinSpeed       = GPIO_HIGH_SPEED,
                                 .pGPIOx                             = NUCLEO_PORT_BUTTON  
@@ -56,7 +53,7 @@ void I2C_GPIOInits(void)
     GPIO_PerCLKControl( GPIOB, ENABLE );
     GPIO_Init(&I2CPins);
 
-    I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_7;
+    I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_9;
     GPIO_PerCLKControl( GPIOB, ENABLE );
     GPIO_Init(&I2CPins);
 
@@ -88,16 +85,20 @@ int main(){
 	while(1)
 	{
 		//wait for Button press
-		while(!GPIO_ReadFromInputPin( NUCLEO_PORT_BUTTON, NUCLEO_PIN_LED ));
+		while( GPIO_ReadFromInputPin( NUCLEO_PORT_BUTTON, NUCLEO_PIN_BUTTON ) == 1 );
 		
 		//to avoid button de-bouncing related issues 200ms of delay
 		delay();
-		
+		I2C_ScanBus(&I2C1Handle );
 		//Send data
-		I2C_MasterSendData( &I2C1Handle, data, (uint8_t) strlen(data), 0x52 ,I2C_DISABLE_SR);
+		I2C_MasterSendData( &I2C1Handle, data, strlen((char*)data), 0x68 ,I2C_DISABLE_SR);
 		
 	}
 }
 
+void I2C_ApplicationEventCallback(I2C_Handle_t*pI2CHandle,uint8_t AppEv)
+{
+
+}
 
 

@@ -4,25 +4,23 @@
 #include "stm32f446xx.h"
 
 
-
-
 /* I2C application states */
 #define I2C_READY               0
 #define I2C_BUSY_IN_TX          1
 #define I2C_BUSY_IN_RX          2
 
 /* I2C_SCL_Speed */
-#define I2C_SCL_SPEED_SM    100000
-#define I2C_SCL_SPEED_FM2k  200000
-#define I2C_SCL_SPEED_FM4K  400000
+#define I2C_SCL_SPEED_SM        100000
+#define I2C_SCL_SPEED_FM2k      200000
+#define I2C_SCL_SPEED_FM4K      400000
 
 /* I2C_ACK_Control */
-#define I2C_ACK_ENABLE      1
-#define I2C_ACK_DISABLE     0
+#define I2C_ACK_ENABLE          1
+#define I2C_ACK_DISABLE         0
 
 /* I2C_FM_DutyCycle */
-#define I2C_FM_DUTY_2       0
-#define I2C_FM_DUTY_16_9    1
+#define I2C_FM_DUTY_2           0
+#define I2C_FM_DUTY_16_9        1
 
 /* FLAGS I2C */
 
@@ -186,12 +184,12 @@ void I2C_DeInit( I2C_Handle_t *pI2Cx );
 /*
  * Internal functions
  */
-static void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx);
-static void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
+void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx);
+void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
 
-static void I2C_ExecuteAddressPhaseWrite( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
-static void I2C_ExecuteAddressPhaseRead( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
-static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle);
+void I2C_ExecuteAddressPhaseWrite( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
+void I2C_ExecuteAddressPhaseRead( I2C_RegDef_t *pI2Cx, uint8_t slaveAddress );
+void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle);
 
 static void I2C_MasterHandleRxNEInterrupt(I2C_Handle_t* pI2CHandle);
 static void I2C_MasterHandleTxEInterrupt( I2C_Handle_t *pI2CHandle );
@@ -201,7 +199,7 @@ static void I2C_MasterHandleTxEInterrupt( I2C_Handle_t *pI2CHandle );
  * Data Send and Receive
  */
 
-void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr);
+void I2C_MasterSendData( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint32_t Len, uint8_t slaveAddress, uint8_t Sr);
 void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr);
 uint8_t I2C_MasterSendDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pTxBuffer, uint8_t Len, uint8_t slaveAddress, uint8_t Sr);
 uint8_t I2C_MasterReceiveDataIT( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_t Len, uint8_t slaveAddress , uint8_t Sr);
@@ -229,23 +227,16 @@ void I2C_PeripheralControl(I2C_RegDef_t *pI2Cx,uint8_t Enable);
 uint8_t I2C_GetFlagStatus(I2C_RegDef_t *pI2Cx, uint32_t FlagName);
 void I2C_ManageAcking(I2C_RegDef_t *pI2Cx,uint8_t Enable_Disable);
 
-
 void I2C_ScanBus(I2C_Handle_t *pI2CHandle );
-
 
 /*
  * IRQ Configuration and ISR handling
  */
- 
-
-
 void I2C_ER_IRQHandling(I2C_Handle_t *pI2CHandle);
 
  /*
 	Application Callback
  */
 void I2C_ApplicationEventCallback(I2C_Handle_t*pI2CHandle,uint8_t AppEv);
-
-
 
 #endif
