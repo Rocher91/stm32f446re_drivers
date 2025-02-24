@@ -50,11 +50,9 @@ void I2C_GPIOInits(void)
 													
 
     I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_6;
-    GPIO_PerCLKControl( GPIOB, ENABLE );
     GPIO_Init(&I2CPins);
 
     I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_9;
-    GPIO_PerCLKControl( GPIOB, ENABLE );
     GPIO_Init(&I2CPins);
 
 }
@@ -89,7 +87,7 @@ int main(){
 		
 		//to avoid button de-bouncing related issues 200ms of delay
 		delay();
-		I2C_ScanBus(&I2C1Handle );
+		//I2C_ScanBus(&I2C1Handle );
 		//Send data
 		I2C_MasterSendData( &I2C1Handle, data, strlen((char*)data), 0x68 ,I2C_DISABLE_SR);
 		

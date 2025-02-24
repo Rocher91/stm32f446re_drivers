@@ -173,7 +173,7 @@ void GPIO_Init( GPIO_Handle_t *pGPIOHandle ){
 	 temp = 0;
 
 	//4. Configure the OPType of GPIO pin.
-	 temp = (uint32_t) pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
+	 temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 
 	 pGPIOHandle->pGPIOx->OTYPER &= ~( 0x01 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
 	 pGPIOHandle->pGPIOx->OTYPER |= temp;
