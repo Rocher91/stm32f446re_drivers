@@ -396,7 +396,7 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
 	I2C_ExecuteAddressPhaseRead( pI2CHandle->pI2Cx, slaveAddress );
 	
     //4. wait until address phase is completed by checking the ADDR flag in the SR1.
-	while( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_ADDR_FLAG ) ){}
+	while( !I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_ADDR_FLAG ) ){}
 
     //procedure to read only 1 byte from slave.
     if ( Len == 1)
@@ -437,7 +437,7 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
             if( i == 2) //if last 2 bytes are remaining
             {
                 //Disable Acking
-                I2C_ManageAcking(pI2CHandle->pI2Cx,DISABLE);
+                I2C_ManageAcking(pI2CHandle->pI2Cx,I2C_ACK_DISABLE);
 
                 //generate STOP condition
                 if ( Sr == I2C_DISABLE_SR)
@@ -457,7 +457,7 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
     //re-enable ACKing	
     if( pI2CHandle->I2C_Config.I2C_ACK_Control == I2C_ACK_ENABLE)
     {
-        I2C_ManageAcking(pI2CHandle->pI2Cx,ENABLE);
+        I2C_ManageAcking(pI2CHandle->pI2Cx,I2C_ACK_ENABLE);
     }
 		
 }
@@ -519,7 +519,7 @@ void I2C_MasterSendData(I2C_Handle_t *pI2CHandle,uint8_t *pTxbuffer, uint32_t Le
 	I2C_ClearADDRFlag(pI2CHandle);
 
 	//6. send the data until len becomes 0
-
+ 
 	while(Len > 0)
 	{
 		while(! I2C_GetFlagStatus(pI2CHandle->pI2Cx,I2C_TxE_FLAG) ); //Wait till TXE is set
