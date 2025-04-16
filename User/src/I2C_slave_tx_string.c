@@ -19,7 +19,7 @@ void delay(void);
 I2C_Handle_t I2C1Handle;
 
 //DATA
-uint8_t rcv_buff[] = "";
+uint8_t Tx_buff[] = "STM32 Slave Mode Testing..";
 uint8_t rxComplete = RESET;
 
 void delay(void)
@@ -85,9 +85,7 @@ void I2CInits(void)
 
 int main(){
 	
-  uint8_t commandCode = 0;
-  uint8_t len  = 0;
-
+  
   //I2C Pin Inits
 	I2C_GPIOInits();
 
@@ -97,6 +95,7 @@ int main(){
 	//I2C IRQ Configurations
 	I2C_IRQInterruptConfig( IRQ_NO_I2C1_EV, ENABLE );
 	I2C_IRQInterruptConfig( IRQ_NO_I2C1_ER, ENABLE );
+	I2C_SlaveEnableCallbackEvents( I2C1, ENABLE );
 
 	//Enable the I2C peripheral
 	I2C_PeripheralControl(I2C1,I2C_ACK_ENABLE);
@@ -106,34 +105,7 @@ int main(){
 	
 	while(1)
 	{
-		//wait for Button press
-		while(!GPIO_ReadFromInputPin( NUCLEO_PORT_BUTTON, NUCLEO_PIN_BUTTON ));
-		
-		//to avoid button de-bouncing related issues 200ms of delay
-		delay();
-        
-		commandCode = 0x51;
-
-		//Send data
-		while( I2C_MasterSendDataIT(&I2C1Handle,&commandCode,1,SLAVE_ADDR,I2C_ENABLE_SR) != I2C_READY );
-
-		//Read Data
-		while( I2C_MasterReceiveDataIT(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR) != I2C_READY );
-
-		commandCode = 0x52;
-
-		//Send data
-		while( I2C_MasterSendDataIT(&I2C1Handle,&commandCode,1,SLAVE_ADDR,I2C_ENABLE_SR) != I2C_READY );
-
-		//Read Data
-		while( I2C_MasterReceiveDataIT(&I2C1Handle,&rcv_buff[0],len,SLAVE_ADDR,I2C_DISABLE_SR) != I2C_READY );
-		
-		rxComplete = RESET;
-		
-		while( rxComplete != SET);
-		
-		rcv_buff[len+1] = '\0';
-			
+	
 	}
 }
 
@@ -148,29 +120,39 @@ void I2C_ER_IRQHandler(void)
 }
 
 void I2C_ApplicationEventCallback(I2C_Handle_t *pI2CHandle, uint8_t AppEv )
-{
-	if( AppEv == I2C_EV_TX_CMPLTE)
-	{
-		//printf("Tx is completed.\n");
-	}
-	else if( AppEv == I2C_EV_RX_CMPLTE)
-	{
-		//printf("Rx is completed.\n");
-		rxComplete = SET;
-	}
-	else if( AppEv == I2C_ERROR_AF)
-	{	
-		//in master ack failure happens when fails to send ack for the byte 
-		//sent from the master
-		
-		//printf("Error Ack failure.\n");
-		I2C_CloseSendData(pI2CHandle);
-		
-		//generate stop condition to release the bus.
-		I2C_GenerateStopCondition(pI2CHandle->pI2Cx);
-		
-		//hang in infinite loop
-		while(1);
-		
-	}
+{		
+		static uint8_t commandCode = 0;
+		static uint8_t Cnt = 0;
+	
+	 if( AppEv == I2C_EV_DATA_REQ )	
+	 {
+			// Master wants some data. Slave has to send it
+		 if ( commandCode == 0x51 )
+		 {
+				I2C_SlaveSendData(pI2CHandle->pI2Cx,strlen( (char *)Tx_buff ));
+		 }
+		 else if ( commandCode == 0x52 )
+		 {
+				I2C_SlaveSendData( pI2CHandle->pI2Cx, strlen( (char *)Tx_buff[Cnt++] ));
+		 }
+	 }
+	 else if ( AppEv == I2C_EV_DATA_RCV ) 
+	 {
+			// Data is waiting for the slave to read. Slae has to read it.
+		 commandCode = I2C_SlaveReceiveData(pI2CHandle->pI2Cx);
+		 
+	 }
+	 else if ( AppEv == I2C_ERROR_AF )	
+	 {
+			//This happens only during slave txing.
+		 // Master has sent the NACK. So Slave should understand that master doesn't need more data.
+		 commandCode = 0xFF;
+		 Cnt = 0;
+	 }
+	 else if ( AppEv == I2C_EV_STOP )	
+	 {
+			//This happens only during slave reception.
+		 // Master has ended the I2C communication with the slave.
+		 
+	 }
 }

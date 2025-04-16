@@ -261,8 +261,8 @@ void I2C_Init(I2C_Handle_t *pI2CHandle ) //OK
 
     // Set Address
     tempreg = 0;
-	tempreg |= ( pI2CHandle->I2C_Config.I2C_DeviceAddress << I2C_OAR1_ADD_7_1 );
-	tempreg |=  (1 << 14);
+		tempreg |= ( pI2CHandle->I2C_Config.I2C_DeviceAddress << I2C_OAR1_ADD_7_1 );
+		tempreg |=  (1 << 14);
 
     pI2CHandle->pI2Cx->OAR[0] |=  tempreg;
 
@@ -390,7 +390,7 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
 	
     //2. Confirm that start generation is completed by checking the SB flag in the SR1
     // NOTE: Until SB is cleared SCL will be stretched (pulled to LOW).
-	while( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_SB_FLAG ) );
+	while( !I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_SB_FLAG ) );
 		
     //3. Send the address of the slave with r/nw bit set ro R(1) (total 8 bits).
 	I2C_ExecuteAddressPhaseRead( pI2CHandle->pI2Cx, slaveAddress );
@@ -432,7 +432,8 @@ void I2C_MasterReceiveData( I2C_Handle_t *pI2CHandle, uint8_t *pRxBuffer, uint8_
         for( uint32_t i = Len; i>0 ; i--)
         {	
 			//wait until RxNE becomes 1
-			while( !I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_RxNE_FLAG ) ); //Wait till RxNE is set 
+			while( !I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_RxNE_FLAG ) ) //Wait till RxNE is set 
+			{}
 
             if( i == 2) //if last 2 bytes are remaining
             {
@@ -570,7 +571,8 @@ void I2C_ScanBus(I2C_Handle_t *pI2CHandle )
 			
 				//2. Confirm that start generation is completed by checking the SB flag in the SR1
 				// NOTE: Until SB is cleared SCL will be stretched (pulled to LOW).
-				while( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_SB_FLAG ) );
+				while( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_SB_FLAG ) )
+				{}
 			
         if ( I2C_GetFlagStatus( pI2CHandle->pI2Cx, I2C_ADDR_FLAG ) )
         {
@@ -582,6 +584,22 @@ void I2C_ScanBus(I2C_Handle_t *pI2CHandle )
     }
 }
 
+
+void I2C_SlaveEnableCallbackEvents(I2C_RegDef_t *pI2Cx, uint8_t Enable)
+{
+	if (Enable == ENABLE)
+	{
+		pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITEVTEN);
+		pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITBUFEN);
+		pI2Cx->CR[1] |= ( 1 << I2C_CR2_ITERREN);
+	}
+	else
+	{
+		pI2Cx->CR[1] &= ~( 1 << I2C_CR2_ITEVTEN);
+		pI2Cx->CR[1] &= ~( 1 << I2C_CR2_ITBUFEN);
+		pI2Cx->CR[1] &= ~( 1 << I2C_CR2_ITERREN);
+	}
+}
 
 /*********************************************************************
  * @fn      		  - I2C_MasterSendDataIT
@@ -850,7 +868,7 @@ void I2C_SlaveSendData(I2C_RegDef_t *pI2C,uint8_t data) //OK
  * @Note              - 
  *********************************************************************/
 uint8_t I2C_SlaveReceiveData(I2C_RegDef_t *pI2C) //OK
-{
+ {
     return (uint8_t) pI2C->DR;
 }
 

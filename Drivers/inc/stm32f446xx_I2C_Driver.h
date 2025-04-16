@@ -46,9 +46,9 @@
 #define I2C_DISABLE_SR		       RESET
 
 /* I2C application events macros */
-#define I2C_EV_TX_CMPLTE 		0
-#define I2C_EV_RX_CMPLTE 		1
-#define I2C_EV_STOP 			2
+#define I2C_EV_TX_CMPLTE 				0
+#define I2C_EV_RX_CMPLTE 				1
+#define I2C_EV_STOP 						2
 #define I2C_ERROR_BERR          3
 #define I2C_ERROR_ARLO          4
 #define I2C_ERROR_AF            5
@@ -209,6 +209,7 @@ void I2C_CloseReceiveData(I2C_Handle_t *pI2CHandle);
 void I2C_SlaveSendData(I2C_RegDef_t *pI2C,uint8_t data);
 uint8_t I2C_SlaveReceiveData(I2C_RegDef_t *pI2C);
 
+
 /*
  * IRQ Configuration and ISR handling
  */
@@ -227,6 +228,8 @@ uint8_t I2C_GetFlagStatus(I2C_RegDef_t *pI2Cx, uint32_t FlagName);
 void I2C_ManageAcking(I2C_RegDef_t *pI2Cx,uint8_t Enable_Disable);
 
 void I2C_ScanBus(I2C_Handle_t *pI2CHandle );
+
+void I2C_SlaveEnableCallbackEvents(I2C_RegDef_t *pI2Cx, uint8_t Enable);
 
 /*
  * IRQ Configuration and ISR handling
