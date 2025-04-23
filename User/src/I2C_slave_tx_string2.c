@@ -167,17 +167,17 @@ void I2C_ApplicationEventCallback(I2C_Handle_t *pI2CHandle, uint8_t AppEv)
 		if(CommandCode == 0x51)
 		{
 			//Here we are sending 4 bytes of length information
-			I2C_SlaveSendData(I2C1,((data_len >> ((cnt%4) * 8)) & 0xFF));
+			I2C_SlaveSendData(pI2CHandle->pI2Cx,((data_len >> ((cnt%4) * 8)) & 0xFF));
 		    cnt++;
 		}else if (CommandCode == 0x52)
 		{
 			//sending Tx_buf contents indexed by w_ptr variable
-			I2C_SlaveSendData(I2C1,Tx_buff[w_ptr++]);
+			I2C_SlaveSendData(pI2CHandle->pI2Cx,Tx_buff[w_ptr++]);
 		}
 	}else if (AppEv == I2C_EV_DATA_RCV)
 	{
 		//Master has sent command code, read it
-		 CommandCode = I2C_SlaveReceiveData(I2C1);
+		 CommandCode = I2C_SlaveReceiveData(pI2CHandle->pI2Cx);
 
 	}
 }

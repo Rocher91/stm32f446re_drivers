@@ -1189,7 +1189,7 @@ void I2C_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority) //OK
  
  }
 
- 
+ void I2C_ApplicationEventCallback(I2C_Handle_t*pI2CHandle,uint8_t AppEv){}
 
  
  
