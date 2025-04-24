@@ -26,6 +26,12 @@ typedef struct{
 
 	USART_RegDef_t *pUSARTx;
 	USART_Config_t  USART_Config;
+	uint8_t *pTxBuffer;
+	uint8_t *pRxBuffer;
+	uint32_t TxLen;
+	uint32_t RxLen;
+	uint8_t TxBusyState;
+	uint8_t RxBusyState;
 	
 }USART_Handle_t;
 
@@ -97,6 +103,24 @@ typedef struct{
 #define USART_RXNE_FLAG  					(1<<USART_SR_RXNE)
 #define USART_PARITY_CONTROL_FLAG (1<<USART_CR1_PCE)
 #define USART_TX_COMPLETE_FLAG  	(1<<USART_SR_TC)
+
+/*
+ * Application states
+ */
+#define USART_BUSY_IN_RX 1
+#define USART_BUSY_IN_TX 2
+#define USART_READY 0
+
+
+#define 	USART_EVENT_TX_CMPLT   0
+#define		USART_EVENT_RX_CMPLT   1
+#define		USART_EVENT_IDLE      2
+#define		USART_EVENT_CTS       3
+#define		USART_EVENT_PE        4
+#define		USART_ERREVENT_FE     	5
+#define		USART_ERREVENT_NF    	 6
+#define		USART_ERREVENT_ORE    	7
+
 
 /******************************************************************************************
  *								APIs supported by this driver

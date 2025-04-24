@@ -27,7 +27,7 @@
 #define HSE_FREQ ( (uint32_t) 8000000 )
 #define HSI_FREQ ( (uint32_t) 16000000 )
 
-__weak void assert_failed(uint8_t* file, uint32_t line);
+void assert_failed(uint8_t* file, uint32_t line);
 
 #define ASSERT_TRUE(expr)  	( (expr)? (void)0 : assert_failed((uint8_t*)__FILE__,__LINE__) )
 #define ASSERT_FALSE(expr)  ( (!expr)? (void)0 : assert_failed((uint8_t*)__FILE__,__LINE__) )
