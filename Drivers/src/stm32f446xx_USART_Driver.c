@@ -973,3 +973,5 @@ void USART_ClearFlagStatus( USART_RegDef_t * pUSARTx, uint8_t StatusFlagName )
 {
 		pUSARTx->SR &= ~(1 << StatusFlagName);
 }
+
+void USART_ApplicationEventCallback(USART_Handle_t *pUSARTHandle,uint8_t AppEv){}
