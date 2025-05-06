@@ -44,7 +44,7 @@ void ds1307_set_current_time(RTC_time_t* rtc_time)
 	
 	seconds &= ~( 1 << 7 );
 	
-	ds1307_write(DS1307_I2C_ADDRESS,DS1307_ADDR_SECONDS);
+	ds1307_write(DS1307_ADDR_SECONDS,seconds);
 	ds1307_write(DS1307_ADDR_MINUTES,minutes);
 	
 	if( rtc_time->time_format == TIME_FORMAT_24HOURS )
