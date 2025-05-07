@@ -18,6 +18,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define SYSTICK_TIM_CLK   16000000UL
+
 /* Private typedef -----------------------------------------------------------*/
 
 
@@ -30,6 +32,7 @@
 USART_Handle_t usart2_handle;
 
 /* Private functions ---------------------------------------------------------*/
+void init_systick_timer(uint32_t tick_hz);
 char* get_day_of_week(uint8_t day);
 char* time_to_string(RTC_time_t* rtc_time);
 char* date_to_string(RTC_date_t *rtc_date);
@@ -84,12 +87,17 @@ int main(void)
 	RTC_time_t current_time;
 	RTC_date_t current_date;
 	
-	uint8_t fail = 0;
 	
 	uint8_t status = ds1307_init();
 	
 	if( !status )
-	{
+	{	
+		
+		//init_systick_timer(1);
+		
+		char initMessage[] = "DS1307 is initiated";
+		USART_SendData(&usart2_handle,(uint8_t*)initMessage,strlen(initMessage));
+		
 		current_date.day = FRIDAY;
 		current_date.date = 30;
 		current_date.month = 4;
@@ -110,32 +118,53 @@ int main(void)
 			am_pm = ( current_time.time_format )?"PM":"AM";
 			// uart wite 04:25:41 PM
 			
-			char* msg[12] ;
-			msg[]
-			time_to_string( &current_time,msg);
-			
-			
-			//USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+			char* msg = time_to_string( &current_time );
+			USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
 		}
 		else
 		{
 			// uart wite 04:25:41 
-			//USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+			char* msg = time_to_string( &current_time );
+			USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
 		}
 		
 		// uart wite 30/04/25
-		//USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+		char* msg = date_to_string( &current_date );
+		USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
 		
 	}
 	else
 	{	
-		fail = 1;
+		char initMessage[] = "DS1307 is not initiated. Check connections!";
+		USART_SendData(&usart2_handle,(uint8_t*)initMessage,strlen(initMessage));
 		while(1);
 	}
 	
 	return 0;
 }
 
+void init_systick_timer(uint32_t tick_hz)
+{
+	uint32_t *pSRVR = (uint32_t*)0xE000E014;
+	uint32_t *pSCSR = (uint32_t*)0xE000E010;
+
+    /* calculation of reload value */
+    uint32_t count_value = (SYSTICK_TIM_CLK/tick_hz)-1;
+
+    //Clear the value of SVR
+    *pSRVR &= ~(0x00FFFFFFFF);
+
+    //load the value in to SVR
+    *pSRVR |= count_value;
+
+    //do some settings
+    *pSCSR |= ( 1 << 1); //Enables SysTick exception request:
+    *pSCSR |= ( 1 << 2);  //Indicates the clock source, processor clock source
+
+    //enable the systick
+    *pSCSR |= ( 1 << 0); //enables the counter
+
+}
 
 char* get_day_of_week(uint8_t day)
 {
@@ -194,3 +223,8 @@ char* date_to_string(RTC_date_t *rtc_date)
 }
 
 /* User interrupts -----------------------------------------------------------*/
+
+void SysTick_Handler(void)
+{
+
+}
