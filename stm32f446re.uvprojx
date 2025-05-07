@@ -1959,7 +1959,12 @@
             <File>
               <FileName>rtc_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\rtc_lcd.c</FilePath>
+              <FilePath>.\User\src\rtc_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtc_lcd_no_Systick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\src\rtc_lcd_no_Systick.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1967,7 +1972,7 @@
                   <RVCTZI>0</RVCTZI>
                   <RVCTOtherData>0</RVCTOtherData>
                   <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>1</IncludeInBuild>
+                  <IncludeInBuild>0</IncludeInBuild>
                   <AlwaysBuild>2</AlwaysBuild>
                   <GenerateAssemblyFile>2</GenerateAssemblyFile>
                   <AssembleAssemblyFile>2</AssembleAssemblyFile>
