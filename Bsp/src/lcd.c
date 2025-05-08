@@ -2,6 +2,9 @@
 
 static void write_4_bits( uint8_t value );
 static void lcd_enable(void);
+static void mdelay(uint32_t cnt);
+static void udelay(uint32_t cnt);
+
 
 void lcd_send_commamd(uint8_t command)
 {
@@ -17,12 +20,46 @@ void lcd_send_commamd(uint8_t command)
 	
 	
 }
+void lcd_display_return_home( void)
+{
+	lcd_send_commamd( LCD_CMD_DIS_RETURN_HOME );
 
-void lcd_send_data(uint8_t data)
+}
+
+void lcd_print_string( char* message )
+{
+	do
+	{
+		lcd_print_char( (uint8_t)* message++ );
+	}
+	while(*message != '\0');
+
+}
+
+void lcd_set_cursor( uint8_t row, uint8_t column )
+{
+
+	column--;
+	switch( row )
+	{
+		case 1:
+			/* Set cursor to 1st row address and add index */
+			lcd_send_commamd( (column |= 0x80 ) );
+		break;
+		
+		case 2:
+			/* Set cursor to 2nd row address and add index */
+			lcd_send_commamd( (column |= 0xC0 ) );
+		break;
+	
+	}
+}
+
+void lcd_print_char(uint8_t data)
 {
 	
 	/* RS = 0 for LCD command*/
-	GPIO_WriteTouOutPutPin(LCD_GPIO_PORT,LCD_GPIO_RS,RESET);
+	GPIO_WriteTouOutPutPin(LCD_GPIO_PORT,LCD_GPIO_RS,SET);
 	
 	/* R/nW = 0 for write*/
 	GPIO_WriteTouOutPutPin(LCD_GPIO_PORT,LCD_GPIO_RW,RESET);
@@ -93,9 +130,30 @@ void lcd_init(void)
 	write_4_bits(0x03);
 	write_4_bits(0x02);
 	
+	//function set command
+	lcd_send_commamd( LCD_CMD_4DL_2N_5X8F);
+	
+	//display on and cursor on
+	lcd_send_commamd( LCD_CMD_DON_CURON );
+	
+	// Display clear
+	lcd_display_clear();
+	
+	// ENTRY MODE SET
+	
+	lcd_send_commamd( LCD_CMD_INCADD );
+	
 	
 	
 }
+
+
+void lcd_display_clear(void)
+{
+	lcd_send_commamd(LCD_CMD_DIS_CLEAR );
+	mdelay(2);
+}
+
 
 static void write_4_bits( uint8_t value )
 {
@@ -114,4 +172,16 @@ static void lcd_enable(void)
 	GPIO_WriteTouOutPutPin( LCD_GPIO_PORT, LCD_GPIO_EN, RESET );
 	udelay(100);
 
+}
+
+static void mdelay(uint32_t cnt)
+{
+	uint32_t i = 0;
+	for( i=0 ; i< (cnt*1000) ; i++);
+}
+
+static void udelay(uint32_t cnt)
+{
+	uint32_t i = 0;
+	for( i=0 ; i< (cnt) ; i++);
 }

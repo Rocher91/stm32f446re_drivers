@@ -14,6 +14,7 @@
 #include "ds1307.h"
 #include <stdio.h>
 #include <string.h>
+#include "lcd.h"
 
 
 /* Private define ------------------------------------------------------------*/
@@ -40,6 +41,14 @@ void number_to_string(uint8_t num, char* buf);
 void assert_failed(uint8_t* file, uint32_t line){}
 void USART2_Init(void);
 void USART2_GPIOInit(void);
+static void mdelay(uint32_t cnt);
+	
+	
+static void mdelay(uint32_t cnt)
+{
+	uint32_t i = 0;
+	for( i=0 ; i< (cnt*1000) ; i++);
+}
 
 void USART2_GPIOInit(void)
 {   
@@ -89,6 +98,11 @@ int main(void)
 	RTC_time_t current_time;
 	RTC_date_t current_date;
 	
+	lcd_init();
+	lcd_print_string("RTC Testt...");
+	mdelay( 2000 );
+	lcd_display_clear();
+	lcd_display_return_home();
 	
 	uint8_t status = ds1307_init();
 	
@@ -99,6 +113,11 @@ int main(void)
 		
 		char initMessage[] = "DS1307 is initiated";
 		USART_SendData(&usart2_handle,(uint8_t*)initMessage,strlen(initMessage));
+		lcd_print_string(initMessage);
+		
+		mdelay( 2000 );
+		lcd_display_clear();
+		lcd_display_return_home();
 		
 		current_date.day = FRIDAY;
 		current_date.date = 30;
@@ -129,12 +148,14 @@ int main(void)
 			strcat(result, am_pm);
 			
 			USART_SendData(&usart2_handle,(uint8_t*)result,strlen(result));
+			lcd_print_string(result);
 		}
 		else
 		{
 			// uart wite 04:25:41 
 			char* msg = time_to_string( &current_time );
 			USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+			lcd_print_string(msg);
 		}
 		
 		// uart wite 30/04/25
@@ -142,12 +163,16 @@ int main(void)
 		
 		char* msg = date_to_string( &current_date );
 		USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+		lcd_set_cursor(2,1);
+		lcd_print_string(msg);
 		
 	}
 	else
 	{	
 		char initMessage[] = "DS1307 is not initiated. Check connections!";
 		USART_SendData(&usart2_handle,(uint8_t*)initMessage,strlen(initMessage));
+		lcd_print_string(initMessage);
+		
 		while(1);
 	}
 	
@@ -244,6 +269,8 @@ void SysTick_Handler(void)
 		
 		ds1307_get_current_time(&current_time);
 		
+		lcd_set_cursor(1,1);
+	
 		char* am_pm = NULL;
 		
 		if ( current_time.time_format != TIME_FORMAT_24HOURS )
@@ -257,12 +284,14 @@ void SysTick_Handler(void)
 			strcat(result, am_pm);
 			
 			USART_SendData(&usart2_handle,(uint8_t*)result,strlen(result));
+			lcd_print_string(result);
 		}
 		else
 		{
 			// uart wite 04:25:41 
 			char* msg = time_to_string( &current_time );
 			USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+			lcd_print_string(msg);
 		}
 		
 		// uart wite 30/04/25
@@ -270,5 +299,11 @@ void SysTick_Handler(void)
 		
 		char* msg = date_to_string( &current_date );
 		USART_SendData(&usart2_handle,(uint8_t*)msg,strlen(msg));
+		
+		lcd_set_cursor(2,1);
+		lcd_print_string(msg);
+		lcd_print_char('<');
+		lcd_print_string(get_day_of_week(current_date.day));
+		lcd_print_char('>');
 		
 }
